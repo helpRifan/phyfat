@@ -23,6 +23,7 @@ MathJax = {
   --m1: #60a5fa; --m1b: #0c1e3a; --m2: #a78bfa; --m2b: #1a1235;
   --m3: #fbbf24; --m3b: #1e1a08; --m4: #f97316; --m4b: #1e1208;
   --m5: #34d399; --m5b: #081e18;
+  --m6: #ff4757; --m6b: #1c0a0c;
   --gn: #34d399; --rd: #f87171; --yl: #fbbf24;
   --sbw: 270px; --hh: 54px; --rad: 10px; --rads: 6px;
 }
@@ -43,12 +44,14 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
 .ht[data-m="3"].on{border-bottom-color:var(--m3);color:var(--m3)}
 .ht[data-m="4"].on{border-bottom-color:var(--m4);color:var(--m4)}
 .ht[data-m="5"].on{border-bottom-color:var(--m5);color:var(--m5)}
+.ht[data-m="6"].on{border-bottom-color:var(--m6);color:var(--m6)}
 .ht .n{font-family:'JetBrains Mono',monospace;font-size:.62rem;font-weight:700;background:var(--sf3);color:var(--txm);padding:2px 6px;border-radius:4px}
 .ht.on .n{background:var(--m1);color:#000}
 .ht[data-m="2"].on .n{background:var(--m2)}
 .ht[data-m="3"].on .n{background:var(--m3);color:#000}
 .ht[data-m="4"].on .n{background:var(--m4);color:#000}
 .ht[data-m="5"].on .n{background:var(--m5);color:#000}
+.ht[data-m="6"].on .n{background:var(--m6);color:#wh}
 
 /* ═══════════════════ LAYOUT ═══════════════════ */
 #app{display:flex;margin-top:var(--hh);min-height:calc(100vh - var(--hh))}
@@ -63,6 +66,7 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
 .smb[data-m="3"].on{color:var(--m3);border-left-color:var(--m3)}
 .smb[data-m="4"].on{color:var(--m4);border-left-color:var(--m4)}
 .smb[data-m="5"].on{color:var(--m5);border-left-color:var(--m5)}
+.smb[data-m="6"].on{color:var(--m6);border-left-color:var(--m6)}
 .smb .arr{margin-left:auto;font-size:.62rem;transition:transform .2s}
 .smb.on .arr{transform:rotate(90deg)}
 .sts{display:none;padding:4px 0 8px}
@@ -79,7 +83,7 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
 /* Page header */
 .ph{margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--bd)}
 .ph .bg{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:700;letter-spacing:.1em;padding:3px 12px;border-radius:20px;margin-bottom:8px}
-.m1p .bg{background:var(--m1b);color:var(--m1)}.m2p .bg{background:var(--m2b);color:var(--m2)}.m3p .bg{background:var(--m3b);color:var(--m3)}.m4p .bg{background:var(--m4b);color:var(--m4)}.m5p .bg{background:var(--m5b);color:var(--m5)}
+.m1p .bg{background:var(--m1b);color:var(--m1)}.m2p .bg{background:var(--m2b);color:var(--m2)}.m3p .bg{background:var(--m3b);color:var(--m3)}.m4p .bg{background:var(--m4b);color:var(--m4)}.m5p .bg{background:var(--m5b);color:var(--m5)}.m6p .bg{background:var(--m6b);color:var(--m6)}
 .ph h1{font-family:'Inter',sans-serif;font-size:1.6rem;font-weight:800;color:var(--wh);line-height:1.3}
 .ph p{font-size:.88rem;color:var(--txm);margin-top:5px;font-style:italic}
 
@@ -214,6 +218,7 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
     <button class="ht" data-m="3" onclick="goMod(2)"><span class="n">3</span>Lasers</button>
     <button class="ht" data-m="4" onclick="goMod(3)"><span class="n">4</span>Fiber Optics</button>
     <button class="ht" data-m="5" onclick="goMod(4)"><span class="n">5</span>Optoelectronics</button>
+    <button class="ht" data-m="6" onclick="goMod(5)"><span class="n">🎯</span>Exam Predictor</button>
   </div>
 </header>
 
@@ -225,6 +230,7 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
   <div class="sm"><button class="smb" data-m="3" onclick="goMod(2)">💡 Module 3<span class="arr">▶</span></button><div class="sts"><button class="st" data-m="3">Laser Properties</button><button class="st" data-m="3">Einstein Coefficients</button><button class="st" data-m="3">Population Inversion</button><button class="st" data-m="3">He-Ne / Nd:YAG / CO₂</button></div></div>
   <div class="sm"><button class="smb" data-m="4" onclick="goMod(3)">🔆 Module 4<span class="arr">▶</span></button><div class="sts"><button class="st" data-m="4">Fiber Structure & TIR</button><button class="st" data-m="4">Acceptance Angle & NA</button><button class="st" data-m="4">V-Parameter & Types</button><button class="st" data-m="4">Attenuation & Dispersion</button></div></div>
   <div class="sm"><button class="smb" data-m="5" onclick="goMod(4)">💎 Module 5<span class="arr">▶</span></button><div class="sts"><button class="st" data-m="5">Direct / Indirect Bandgap</button><button class="st" data-m="5">LED</button><button class="st" data-m="5">Laser Diode</button><button class="st" data-m="5">Photodetectors</button></div></div>
+  <div class="sm" style="margin-top:16px"><button class="smb" data-m="6" onclick="goMod(5)">🏆 Exam Predictor<span class="arr">▶</span></button><div class="sts"><button class="st" data-m="6">Full Paper Blueprint</button></div></div>
 </aside>
 
 <!-- ═══════════════════ MAIN CONTENT ═══════════════════ -->
@@ -2399,6 +2405,55 @@ $= 0.411$ A/W</div>
   </div>
 </div>
 
+<!-- ╔══════════════════════════════════════════════════════════╗
+     ║  EXAM PREDICTOR (MODULE 6)                              ║
+     ╚══════════════════════════════════════════════════════════╝ -->
+<div class="mp m6p" id="mod5">
+  <div class="ph"><div class="bg">LAST MINUTE REVISION</div><h1>🎯 100-Mark FAT Blueprint</h1><p>Module-by-module breakdown of high-probability questions to secure maximum marks.</p></div>
+  <div class="ct">
+    <button class="ctb on" onclick="goTab(this,'m6c')">🔥 Sure-Shot Questions</button>
+  </div>
+
+  <div class="tp on" id="m6c">
+    <div class="cd op"><div class="cdh" onclick="tCard(this)"><h3>⚛ Module 1: Elements of Quantum Mechanics (3 Qs)</h3><span class="tg tgh">10-25 Marks</span><span class="chv">▶</span></div><div class="cdb">
+      <p><b>Theory part (1 Question):</b></p>
+      <ul><li><b>Derivations:</b> Schrödinger wave equations — Time-dependent and time-independent forms. <b>(Time-independent is MORE important!)</b></li><li><b>Concepts:</b> Wave function properties &amp; probability, Idea of quantization, Davisson-Germer experiment.</li></ul>
+      <p><b>Numerical part (2 Questions):</b></p>
+      <ul><li>Compton effect</li><li>de Broglie wavelength</li><li>Heisenberg Uncertainty Principle</li><li>Wave function</li></ul>
+    </div></div>
+
+    <div class="cd op"><div class="cdh" onclick="tCard(this)"><h3>🔬 Module 2: Applications of QM (2 Qs)</h3><span class="tg tgh">10-25 Marks</span><span class="chv">▶</span></div><div class="cdb">
+      <p><b>Theory part:</b></p>
+      <ul><li>1D Box Derivation</li><li>Tunnelling effect</li><li>Scanning Tunnelling Microscope (STM) + study application also</li><li>Quantum confinement</li><li>Differences between bulk and nanomaterials</li></ul>
+      <p><b>Numerical part:</b></p>
+      <ul><li>Tunnelling effect</li><li>How to point out the maximum and minimum probability density of electron in 1D box</li></ul>
+    </div></div>
+
+    <div class="cd op"><div class="cdh" onclick="tCard(this)"><h3>💡 Module 3: Lasers (2 Qs)</h3><span class="tg tgh">10-25 Marks</span><span class="chv">▶</span></div><div class="cdb">
+      <p><b>Theory part (1 Question):</b></p>
+      <ul><li>Any one laser compulsory: He-Ne, Nd:YAG, or CO₂</li><li>Einstein coefficients</li><li>Threshold gain coefficients</li><li>Laser characteristics (3 or 4 marks)</li></ul>
+      <p><b>Numerical part (1 Question):</b></p>
+      <ul><li>Population Inversion</li><li>Finding number of photons</li><li>Finding $N_1/N_2$ (or $N_2/N_1$)</li></ul>
+    </div></div>
+
+    <div class="cd op"><div class="cdh" onclick="tCard(this)"><h3>🔆 Module 4: Fiber Optics (2 Qs)</h3><span class="tg tgh">10-25 Marks</span><span class="chv">▶</span></div><div class="cdb">
+      <p><b>Theory part (1 Question):</b></p>
+      <ul><li>Dispersion (Intermodal and Intramodal)</li><li>Attenuation</li><li>V-parameter</li><li>Optical fibre communication</li><li>Relative refractive index relation to $n_1, n_2$</li></ul>
+      <p><b>Numerical part (1 Question):</b></p>
+      <ul><li>Given $n_1, n_2$: find critical angle, acceptance angle, numerical aperture, relative index, delta formula</li></ul>
+    </div></div>
+
+    <div class="cd op"><div class="cdh" onclick="tCard(this)"><h3>💎 Module 5: Optoelectronics (1 Q)</h3><span class="tg tgh">10-25 Marks</span><span class="chv">▶</span></div><div class="cdb">
+      <p><b>Theory part:</b></p>
+      <ul><li>Differences between Direct and Indirect bandgap</li><li>Light sources: LED and Laser Diode (imp)</li><li>Photodetectors: PN and PIN</li></ul>
+      <p><b>Numerical part:</b></p>
+      <ul><li>Quantum efficiency</li><li>Responsivity of photodiode</li></ul>
+    </div></div>
+
+    <div class="exb" style="margin-top:16px;background:var(--m6b);border-color:var(--m6)"><h4>💡 Last Minute Strategy</h4><p style="color:var(--tx)">This layout exactly mirrors the FAT 100-mark paper blueprint. Master these specific derivations and numerical templates. <b>Good luck!</b></p></div>
+  </div>
+</div>
+
 </main>
 </div>
 
@@ -2426,7 +2481,7 @@ function goTab(btn,id){
 function tCard(h){h.closest('.cd').classList.toggle('op')}
 function tProb(q){q.closest('.prob').classList.toggle('op')}
 window.addEventListener('scroll',()=>{document.querySelector('.sctop').classList.toggle('sh',window.scrollY>300)});
-document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;const k=parseInt(e.key);if(k>=1&&k<=5)goMod(k-1)});
+document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;const k=parseInt(e.key);if(k>=1&&k<=6)goMod(k-1)});
 document.addEventListener('DOMContentLoaded',()=>{if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise().catch(()=>{})});
 </script>
 </body>
