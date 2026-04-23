@@ -312,6 +312,13 @@ body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(-
       <p><b>Macroscopic vs microscopic:</b> For a 1 kg ball with $\Delta x = 10^{-10}$ m (atomic!), $\Delta v = h/(4\pi m \Delta x) = 5 \times 10^{-25}$ m/s — totally negligible. For an electron with $\Delta x = 10^{-10}$ m, $\Delta v \approx 6 \times 10^{5}$ m/s — hugely significant!</p>
       <div class="wb">⚠ <b>Exam approach:</b> Given $\Delta x$ → find $\Delta p_{min} = h/(4\pi\Delta x)$ → then $\Delta v = \Delta p/m$. Always use $h/(4\pi)$, not $h/(2\pi)$!</div>
     </div></div>
+
+    <div class="cd op"><div class="cdh" onclick="tCard(this)"><h3>🌊 Schrödinger Wave Equation</h3><span class="tg tgh">★ Derivation Outline</span><span class="chv">▶</span></div><div class="cdb">
+      <p>The Schrödinger equation is the quantum equivalent of Newton's laws of motion ($F=ma$). It describes how the wave function $\psi$ evolves over time and space.</p>
+      <div class="fb"><div class="fl">Time-Dependent Form (TDSE)</div>$$i\hbar\frac{\partial\Psi}{\partial t} = -\frac{\hbar^2}{2m}\frac{\partial^2\Psi}{\partial x^2} + V\Psi$$<p style="margin-top:8px">Used when the potential energy $V$ changes with time, or to describe evolving quantum states.</p></div>
+      <div class="fb"><div class="fl">Time-Independent Form (TISE)</div>$$\frac{d^2\psi}{dx^2} + \frac{2m}{\hbar^2}(E - V)\psi = 0$$<p style="margin-top:8px">Used for stationary states (like a particle in a box) where $V$ does not depend on time. <b>This is the most crucial equation for exam derivations.</b></p></div>
+      <div class="ib">💡 <b>Note:</b> The full step-by-step derivations for both of these equations are strictly required for the exam and are available in the <b>📝 Derivations</b> tab of this module!</div>
+    </div></div>
   </div>
 
   <!-- M1: FORMULAS -->
@@ -1195,6 +1202,7 @@ $= 6.85 \times 10^{-34}$ J·s</div>
     <button class="ctb" onclick="goTab(this,'m2f')">📐 Formulas</button>
     <button class="ctb" onclick="goTab(this,'m2d')">📝 1D Box Derivation</button>
     <button class="ctb" onclick="goTab(this,'m2n')">🔢 Numericals</button>
+    <button class="ctb" onclick="goTab(this,'m2q')">⚡ Quick Ref</button>
   </div>
 
   <div class="tp on" id="m2c">
@@ -1533,6 +1541,16 @@ $T = e^{-212.8} \approx 10^{-92}$</div>
     </div></div>
 
   </div>
+
+  <!-- M2: QUICK REF -->
+  <div class="tp" id="m2q">
+    <div class="qrg">
+      <div class="qrc"><h4>1D Box</h4><div class="qrr"><span class="qrl">Energy</span><span class="qrv">E_n = n²h²/(8mL²)</span></div><div class="qrr"><span class="qrl">Wave Func</span><span class="qrv">ψ_n = √(2/L) sin(nπx/L)</span></div><div class="qrr"><span class="qrl">Zero Point</span><span class="qrv">E_1 = h²/(8mL²)</span></div></div>
+      <div class="qrc"><h4>Tunnelling</h4><div class="qrr"><span class="qrl">Coeff (T)</span><span class="qrv">T ≈ e^(-2κL)</span></div><div class="qrr"><span class="qrl">Decay (κ)</span><span class="qrv">κ = √(2m(V₀-E))/ℏ</span></div><div class="qrr"><span class="qrl">STM Current</span><span class="qrv">I ∝ e^(-2κd)</span></div></div>
+      <div class="qrc"><h4>Nanophysics</h4><div class="qrr"><span class="qrl">Quantum Well</span><span class="qrv">1D confined, 2D free</span></div><div class="qrr"><span class="qrl">Quantum Wire</span><span class="qrv">2D confined, 1D free</span></div><div class="qrr"><span class="qrl">Quantum Dot</span><span class="qrv">3D confined, 0D free</span></div></div>
+    </div>
+    <div class="exb"><h4>🎯 Exam Strategy — Module 2</h4><ul><li><b>10-mark derivation:</b> 1D Box is practically guaranteed. Practice the normalization step $\int_0^L \psi^2 dx = 1$.</li><li><b>Numerical hotspots:</b> Calculating transmission probability $T$ (Tunnelling) and finding nodes/antinodes in 1D box.</li><li><b>Theory questions:</b> STM working principle and differences between bulk/nanomaterials.</li></ul></div>
+  </div>
 </div>
 
 <!-- ╔══════════════════════════════════════════════════════════╗
@@ -1546,6 +1564,7 @@ $T = e^{-212.8} \approx 10^{-92}$</div>
     <button class="ctb" onclick="goTab(this,'m3l')">🔴 Laser Types</button>
     <button class="ctb" onclick="goTab(this,'m3d')">📝 Einstein Derivation</button>
     <button class="ctb" onclick="goTab(this,'m3n')">🔢 Numericals</button>
+    <button class="ctb" onclick="goTab(this,'m3q')">⚡ Quick Ref</button>
   </div>
 
   <div class="tp on" id="m3c">
@@ -1606,6 +1625,16 @@ $T = e^{-212.8} \approx 10^{-92}$</div>
       <p>Laser oscillation is sustained when <b>gain ≥ losses per round trip</b>.</p>
       <div class="fb"><div class="fl">Threshold Gain Coefficient</div>$$g_{th} = \alpha_{int} + \frac{1}{2L}\ln\!\left(\frac{1}{R_1 R_2}\right)$$<p style="margin-top:6px">$\alpha_{int}$ = internal loss (scattering + absorption), $L$ = cavity length, $R_1, R_2$ = mirror reflectivities</p><p>Gain coefficient: $g = \sigma(N_2 - N_1)$ where $\sigma$ = stimulated emission cross section</p></div>
       <p>Below threshold: spontaneous emission (LED-like). Above threshold: output increases sharply → coherent laser.</p>
+    </div></div>
+
+    <div class="cd op"><div class="cdh" onclick="tCard(this)"><h3>🔴 Engineering Lasers: He-Ne, Nd:YAG &amp; CO₂</h3><span class="tg tgh">★ Overview</span><span class="chv">▶</span></div><div class="cdb">
+      <p>The three most important practical lasers covered in this module are:</p>
+      <ul>
+        <li><b>He-Ne Laser:</b> A 4-level gas laser emitting a continuous red beam (632.8 nm). Uses electrical pumping. <i>Applications:</i> Holography, barcode scanners, optical alignment.</li>
+        <li><b>Nd:YAG Laser:</b> A high-power 4-level solid-state laser emitting in the near-IR (1064 nm). Uses optical pumping. <i>Applications:</i> Laser cutting/welding, medical surgery, LIDAR.</li>
+        <li><b>CO₂ Laser:</b> Extremely powerful molecular gas laser emitting in the far-IR (10.6 μm). Operates via vibrational transitions. <i>Applications:</i> Heavy industrial cutting/welding of metals, bloodless surgery.</li>
+      </ul>
+      <div class="ib">💡 <b>Note:</b> Full structural details, working mechanisms, and step-by-step energy level diagrams for each of these lasers are available in the dedicated <b>🔴 Laser Types</b> tab!</div>
     </div></div>
   </div>
 
@@ -1823,6 +1852,16 @@ $= 29,948$ K $\approx 30,000$ K</div>
       <div class="sol-insight">💡 <b>You'd need ~30,000 K for stimulated emission to equal spontaneous emission at visible frequencies!</b> That's 5× the surface temperature of the Sun. This dramatically shows why thermal equilibrium can never produce laser action — you MUST use external pumping to achieve population inversion.</div>
     </div></div>
   </div>
+
+  <!-- M3: QUICK REF -->
+  <div class="tp" id="m3q">
+    <div class="qrg">
+      <div class="qrc"><h4>Einstein Coeffs</h4><div class="qrr"><span class="qrl">B₁₂ = B₂₁</span><span class="qrv">Stim Absorption = Stim Emission</span></div><div class="qrr"><span class="qrl">A₂₁ / B₂₁</span><span class="qrv">= (8πhν³)/c³</span></div></div>
+      <div class="qrc"><h4>Key Conditions</h4><div class="qrr"><span class="qrl">Pop Inversion</span><span class="qrv">N₂ > N₁</span></div><div class="qrr"><span class="qrl">Threshold Gain</span><span class="qrv">g_th = α_int + (1/2L)ln(1/R₁R₂)</span></div><div class="qrr"><span class="qrl">Photons/sec</span><span class="qrv">N = P/E = (Pλ)/(hc)</span></div></div>
+      <div class="qrc"><h4>Laser Types</h4><div class="qrr"><span class="qrl">He-Ne</span><span class="qrv">4-level, Gas, 632.8nm, CW</span></div><div class="qrr"><span class="qrl">Nd:YAG</span><span class="qrv">4-level, Solid, 1064nm, Pulsed/CW</span></div><div class="qrr"><span class="qrl">CO₂</span><span class="qrv">Vibrational, Gas, 10.6μm, High Pwr</span></div></div>
+    </div>
+    <div class="exb"><h4>🎯 Exam Strategy — Module 3</h4><ul><li><b>Theory Priority:</b> You MUST study the construction and working of at least one laser (He-Ne, Nd:YAG, CO₂). The Einstein Coefficient derivation is also highly asked.</li><li><b>Numerical hotspots:</b> Calculating Population Inversion ratio ($N_2/N_1$) using Boltzmann distribution, or finding total number of photons emitted per second.</li></ul></div>
+  </div>
 </div>
 
 <!-- ╔══════════════════════════════════════════════════════════╗
@@ -1835,6 +1874,7 @@ $= 29,948$ K $\approx 30,000$ K</div>
     <button class="ctb" onclick="goTab(this,'m4f')">📐 Formulas</button>
     <button class="ctb" onclick="goTab(this,'m4d')">📝 NA Derivation</button>
     <button class="ctb" onclick="goTab(this,'m4n')">🔢 Numericals</button>
+    <button class="ctb" onclick="goTab(this,'m4q')">⚡ Quick Ref</button>
   </div>
 
   <div class="tp on" id="m4c">
@@ -1850,6 +1890,14 @@ $= 29,948$ K $\approx 30,000$ K</div>
       <div class="fb"><div class="fl">Critical Angle</div>$$\sin\theta_c = \frac{n_2}{n_1} \quad \Rightarrow \quad \theta_c = \sin^{-1}\!\left(\frac{n_2}{n_1}\right)$$</div>
       <p>Light entering the fiber core at the proper angle undergoes repeated TIR at the core-cladding boundary, zig-zagging down the fiber over kilometers.</p>
     </div></div>
+
+    <div class="cd op"><div class="cdh" onclick="tCard(this)"><h3>📐 Acceptance Angle &amp; Numerical Aperture</h3><span class="tg tgh">★ Theory + Numerical</span><span class="chv">▶</span></div><div class="cdb">
+      <p><b>Acceptance Angle ($\theta_a$):</b> The maximum angle at which light can enter the fiber core and still undergo total internal reflection. If light enters at an angle greater than $\theta_a$, it escapes into the cladding and is lost.</p>
+      <p><b>Numerical Aperture (NA):</b> A dimensionless number measuring the light-gathering ability of the fiber. It is simply the sine of the acceptance angle.</p>
+      <div class="fb"><div class="fl">Key Formulas</div>$$\text{NA} = \sin\theta_a = \sqrt{n_1^2 - n_2^2}$$$$\text{NA} = n_1\sqrt{2\Delta} \qquad \Delta = \frac{n_1 - n_2}{n_1}$$</div>
+      <div class="ib">💡 <b>Note:</b> The complete mathematical derivation of the NA formula from Snell's law is available in the <b>📝 NA Derivation</b> tab!</div>
+    </div></div>
+
     <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>📡 V-Parameter (Normalized Frequency)</h3><span class="tg tgi">Theory</span><span class="chv">▶</span></div><div class="cdb">
       <p>The V-parameter is a dimensionless number that determines how many modes (paths) a fiber can support.</p>
       <div class="fb"><div class="fl">V-Parameter Formula</div>$$V = \frac{2\pi a}{\lambda} \cdot \text{NA} = \frac{2\pi a}{\lambda} \sqrt{n_1^2 - n_2^2}$$</div>
@@ -2102,6 +2150,16 @@ $\theta_a = \sin^{-1}(0.384) = 22.6°$</div>
       <div class="sol-insight">💡 Compare F-1 (same values): the slight differences come from rounding. These are the same fiber parameters — practice this problem type well, it's guaranteed in exams!</div>
     </div></div>
   </div>
+
+  <!-- M4: QUICK REF -->
+  <div class="tp" id="m4q">
+    <div class="qrg">
+      <div class="qrc"><h4>Acceptance</h4><div class="qrr"><span class="qrl">Critical Ang</span><span class="qrv">θ_c = sin⁻¹(n₂/n₁)</span></div><div class="qrr"><span class="qrl">Accept Ang</span><span class="qrv">θ_a = sin⁻¹(NA)</span></div></div>
+      <div class="qrc"><h4>Num Aperture</h4><div class="qrr"><span class="qrl">From n</span><span class="qrv">NA = √(n₁² - n₂²)</span></div><div class="qrr"><span class="qrl">From Δ</span><span class="qrv">NA = n₁√(2Δ)</span></div><div class="qrr"><span class="qrl">Delta (Δ)</span><span class="qrv">Δ = (n₁ - n₂)/n₁</span></div></div>
+      <div class="qrc"><h4>Fiber Properties</h4><div class="qrr"><span class="qrl">V-Parameter</span><span class="qrv">V = (2πa/λ)·NA</span></div><div class="qrr"><span class="qrl">Modes (Step)</span><span class="qrv">N ≈ V²/2</span></div><div class="qrr"><span class="qrl">Attenuation</span><span class="qrv">α = (10/L)log(P_in/P_out)</span></div></div>
+    </div>
+    <div class="exb"><h4>🎯 Exam Strategy — Module 4</h4><ul><li><b>Numerical Guarantee:</b> Expect a problem giving you $n_1$ and $n_2$ and asking for $\theta_c$, $\theta_a$, NA, and $\Delta$. Master this template!</li><li><b>Theory Priority:</b> Dispersion types (Intermodal vs Intramodal), Attenuation, and the classification of fibers (SMF, MMF, GRIN).</li></ul></div>
+  </div>
 </div>
 
 <!-- ╔══════════════════════════════════════════════════════════╗
@@ -2113,6 +2171,7 @@ $\theta_a = \sin^{-1}(0.384) = 22.6°$</div>
     <button class="ctb on" onclick="goTab(this,'m5c')">📖 Concepts</button>
     <button class="ctb" onclick="goTab(this,'m5f')">📐 Formulas</button>
     <button class="ctb" onclick="goTab(this,'m5n')">🔢 Numericals</button>
+    <button class="ctb" onclick="goTab(this,'m5q')">⚡ Quick Ref</button>
   </div>
 
   <div class="tp on" id="m5c">
@@ -2402,6 +2461,16 @@ $= 0.411$ A/W</div>
       <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\eta = 60\%$ &nbsp;|&nbsp; $R = 0.411$ A/W</div></div>
       <div class="sol-insight">💡 <b>This is the most fundamental QE problem</b> — directly counting photons in vs electrons out. In exams, this could be phrased as "1 electron per 2 photons" (η=50%), "3 out of 5 absorbed" (η=60%), etc. Always convert to the ratio first.</div>
     </div></div>
+  </div>
+
+  <!-- M5: QUICK REF -->
+  <div class="tp" id="m5q">
+    <div class="qrg">
+      <div class="qrc"><h4>Bandgap</h4><div class="qrr"><span class="qrl">Direct</span><span class="qrv">Photon only (LEDs, GaAs)</span></div><div class="qrr"><span class="qrl">Indirect</span><span class="qrv">Photon+Phonon (Si, Ge)</span></div></div>
+      <div class="qrc"><h4>Sources</h4><div class="qrr"><span class="qrl">LED</span><span class="qrv">Spontaneous, Broad, Incoherent</span></div><div class="qrr"><span class="qrl">Laser Diode</span><span class="qrv">Stimulated, Narrow, Coherent</span></div><div class="qrr"><span class="qrl">Wavelength</span><span class="qrv">λ(nm) = 1240 / E_g(eV)</span></div></div>
+      <div class="qrc"><h4>Photodetectors</h4><div class="qrr"><span class="qrl">Quantum Eff</span><span class="qrv">η = (I_p/e) / (P/hν)</span></div><div class="qrr"><span class="qrl">Responsivity</span><span class="qrv">R = I_p/P = (ηe)/(hν)</span></div><div class="qrr"><span class="qrl">PIN vs PN</span><span class="qrv">PIN has thicker i-layer (better)</span></div></div>
+    </div>
+    <div class="exb"><h4>🎯 Exam Strategy — Module 5</h4><ul><li><b>Numerical Guarantee:</b> Finding quantum efficiency ($\eta$) or responsivity ($R$) of a photodiode. Always remember to convert between $R$ (A/W) and $\eta$ (%).</li><li><b>Theory Priority:</b> Direct vs Indirect bandgap differences, and comparing LED vs Laser diode properties.</li></ul></div>
   </div>
 </div>
 
