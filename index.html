@@ -1835,11 +1835,43 @@ $= 29,948$ K $\approx 30,000$ K</div>
       <div class="fb"><div class="fl">Critical Angle</div>$$\sin\theta_c = \frac{n_2}{n_1} \quad \Rightarrow \quad \theta_c = \sin^{-1}\!\left(\frac{n_2}{n_1}\right)$$</div>
       <p>Light entering the fiber core at the proper angle undergoes repeated TIR at the core-cladding boundary, zig-zagging down the fiber over kilometers.</p>
     </div></div>
-    <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>📡 V-Parameter &amp; Types of Fibers</h3><span class="tg tgi">Theory</span><span class="chv">▶</span></div><div class="cdb">
-      <div class="fb"><div class="fl">V-Parameter (Normalized Frequency)</div>$$V = \frac{2\pi a}{\lambda} \cdot \text{NA} \qquad \text{Number of modes} \approx \frac{V^2}{2}$$<p style="margin-top:6px">$V < 2.405$ → <b>Single-mode</b> &nbsp;|&nbsp; $V > 2.405$ → <b>Multimode</b></p></div>
-      <p><b>Step-Index Single-Mode (SMF):</b> Core 5-10 μm. Only fundamental mode propagates. No intermodal dispersion. Used for long-haul telecom.</p>
-      <p><b>Step-Index Multimode (MMF):</b> Core 50-200 μm. Many modes → severe modal dispersion → limited bandwidth. Used for short links (LANs, medical).</p>
-      <p><b>Graded-Index Multimode (GRIN):</b> Refractive index decreases parabolically from center: $n(r) = n_1[1 - 2\Delta(r/a)^2]^{1/2}$. Higher-order modes travel faster in lower-$n$ region → path time equalized → greatly reduced dispersion.</p>
+    <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>📡 V-Parameter (Normalized Frequency)</h3><span class="tg tgi">Theory</span><span class="chv">▶</span></div><div class="cdb">
+      <p>The V-parameter is a dimensionless number that determines how many modes (paths) a fiber can support.</p>
+      <div class="fb"><div class="fl">V-Parameter Formula</div>$$V = \frac{2\pi a}{\lambda} \cdot \text{NA} = \frac{2\pi a}{\lambda} \sqrt{n_1^2 - n_2^2}$$</div>
+      <p>Where $a$ is the core radius, $\lambda$ is the operating wavelength, and NA is the Numerical Aperture.</p>
+      <ul>
+        <li><b>Number of modes for Step-Index:</b> $N \approx \frac{V^2}{2}$</li>
+        <li><b>Number of modes for Graded-Index:</b> $N \approx \frac{V^2}{4}$</li>
+        <li><b>Cut-off condition:</b> If $V < 2.405$, the fiber supports only ONE mode (Single-Mode Fiber). If $V > 2.405$, it supports multiple modes (Multimode Fiber).</li>
+      </ul>
+    </div></div>
+    
+    <div class="cd op"><div class="cdh" onclick="tCard(this)"><h3>🔀 Types of Optical Fibers (Single-Mode &amp; Multimode)</h3><span class="tg tgh">★ Theory</span><span class="chv">▶</span></div><div class="cdb">
+      <p>Based on the refractive index profile and the number of modes (paths) they support, fibers are classified into three main types:</p>
+      
+      <h4 style="color:var(--m4);margin-top:10px;">1. Step-Index Single-Mode Fiber (SMF)</h4>
+      <ul>
+        <li><b>Structure:</b> Very thin core ($5 - 10$ μm). Refractive index drops abruptly (step) from core ($n_1$) to cladding ($n_2$).</li>
+        <li><b>Light Propagation:</b> Only a single path (the fundamental mode) straight down the center.</li>
+        <li><b>Advantages:</b> Zero intermodal dispersion (no pulse broadening). High bandwidth.</li>
+        <li><b>Applications:</b> Long-distance telecommunications (undersea cables, internet backbone).</li>
+      </ul>
+
+      <h4 style="color:var(--m4);margin-top:10px;">2. Step-Index Multimode Fiber (MMF)</h4>
+      <ul>
+        <li><b>Structure:</b> Thicker core ($50 - 200$ μm). Abrupt step index profile.</li>
+        <li><b>Light Propagation:</b> Light travels in zig-zag paths at various angles (meridional rays).</li>
+        <li><b>Disadvantages:</b> High intermodal dispersion since different modes travel different distances and arrive at different times, scrambling the signal.</li>
+        <li><b>Applications:</b> Short-distance data transmission (LANs, medical endoscopes).</li>
+      </ul>
+
+      <h4 style="color:var(--m4);margin-top:10px;">3. Graded-Index Multimode Fiber (GRIN)</h4>
+      <ul>
+        <li><b>Structure:</b> Core ($50 - 100$ μm). Refractive index is maximum at the center and decreases <i>parabolically</i> towards the cladding: $n(r) = n_1[1 - 2\Delta(r/a)^2]^{1/2}$.</li>
+        <li><b>Light Propagation:</b> Light travels in smooth sinusoidal or helical curves rather than zig-zags.</li>
+        <li><b>Advantages:</b> Higher-order modes travel through the lower-$n$ outer regions where light moves faster, allowing them to catch up with central modes. This equalizes path times and drastically reduces intermodal dispersion.</li>
+        <li><b>Applications:</b> Medium-distance communication (campus networks).</li>
+      </ul>
     </div></div>
     <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>📉 Attenuation &amp; Dispersion</h3><span class="tg tgh">★ Theory</span><span class="chv">▶</span></div><div class="cdb">
       <p><b>Attenuation</b> = signal power loss over distance.</p>
