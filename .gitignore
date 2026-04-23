@@ -1,0 +1,13 @@
+# Helper scripts
+extract_problems.py
+add_missing.py
+verify.py
+extracted_problems.txt
+
+# Source PDFs (too large for git)
+OneDrive_1_4-22-2026/
+*.pdf
+
+# OS files
+Thumbs.db
+.DS_Store

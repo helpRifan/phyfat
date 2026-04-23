@@ -1,0 +1,2384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHY1701 — Engineering Physics FAT Study Portal</title>
+<meta name="description" content="Comprehensive Engineering Physics study portal for FAT exam prep — Quantum Mechanics, Lasers, Fiber Optics, Optoelectronics.">
+<script>
+MathJax = {
+  tex: { inlineMath: [['$','$']], displayMath: [['$$','$$']], tags: 'none' },
+  options: { skipHtmlTags: ['script','noscript','style','textarea','pre'] },
+  startup: { typeset: true }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════ RESET & TOKENS ═══════════════════ */
+:root {
+  --bg: #070b16; --bg2: #0b1022; --sf: #111827; --sf2: #1a2235; --sf3: #212d45;
+  --bd: #263354; --bd2: #334670;
+  --tx: #e2e8f0; --tx2: #c8d6e8; --txm: #7a8faa; --txd: #4a5c78; --wh: #fff;
+  --m1: #60a5fa; --m1b: #0c1e3a; --m2: #a78bfa; --m2b: #1a1235;
+  --m3: #fbbf24; --m3b: #1e1a08; --m4: #f97316; --m4b: #1e1208;
+  --m5: #34d399; --m5b: #081e18;
+  --gn: #34d399; --rd: #f87171; --yl: #fbbf24;
+  --sbw: 270px; --hh: 54px; --rad: 10px; --rads: 6px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Source Serif 4',Georgia,serif;background:var(--bg);color:var(--tx);font-size:16px;line-height:1.8;overflow-x:hidden}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--bd);border-radius:3px}
+
+/* ═══════════════════ HEADER ═══════════════════ */
+#hdr{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--hh);background:linear-gradient(135deg,#060a14,#0e1628);border-bottom:1px solid var(--bd);display:flex;align-items:center;padding:0 14px;backdrop-filter:blur(12px)}
+.logo{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;color:var(--m1);letter-spacing:.08em;padding-right:16px;margin-right:4px;border-right:1px solid var(--bd);white-space:nowrap;display:flex;align-items:center;gap:7px}
+.logo .dot{width:7px;height:7px;border-radius:50%;background:var(--m1);box-shadow:0 0 8px var(--m1);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.htabs{display:flex;gap:0;overflow-x:auto;scrollbar-width:none;flex:1}.htabs::-webkit-scrollbar{display:none}
+.ht{padding:0 16px;height:var(--hh);display:flex;align-items:center;gap:7px;border:none;background:0 0;color:var(--txm);cursor:pointer;font-family:'Inter',sans-serif;font-size:.76rem;font-weight:600;letter-spacing:.02em;white-space:nowrap;border-bottom:3px solid transparent;transition:all .2s}
+.ht:hover{color:var(--tx);background:rgba(255,255,255,.03)}
+.ht.on{border-bottom-color:var(--m1);color:var(--m1)}
+.ht[data-m="2"].on{border-bottom-color:var(--m2);color:var(--m2)}
+.ht[data-m="3"].on{border-bottom-color:var(--m3);color:var(--m3)}
+.ht[data-m="4"].on{border-bottom-color:var(--m4);color:var(--m4)}
+.ht[data-m="5"].on{border-bottom-color:var(--m5);color:var(--m5)}
+.ht .n{font-family:'JetBrains Mono',monospace;font-size:.62rem;font-weight:700;background:var(--sf3);color:var(--txm);padding:2px 6px;border-radius:4px}
+.ht.on .n{background:var(--m1);color:#000}
+.ht[data-m="2"].on .n{background:var(--m2)}
+.ht[data-m="3"].on .n{background:var(--m3);color:#000}
+.ht[data-m="4"].on .n{background:var(--m4);color:#000}
+.ht[data-m="5"].on .n{background:var(--m5);color:#000}
+
+/* ═══════════════════ LAYOUT ═══════════════════ */
+#app{display:flex;margin-top:var(--hh);min-height:calc(100vh - var(--hh))}
+
+/* ═══════════════════ SIDEBAR ═══════════════════ */
+#sb{width:var(--sbw);min-width:var(--sbw);background:var(--bg2);border-right:1px solid var(--bd);height:calc(100vh - var(--hh));position:sticky;top:var(--hh);overflow-y:auto;overflow-x:hidden;padding:10px 0}
+.sm{margin-bottom:2px}
+.smb{width:100%;padding:9px 14px;display:flex;align-items:center;gap:9px;background:0 0;border:none;color:var(--txm);cursor:pointer;font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;text-align:left;transition:all .15s;border-left:3px solid transparent}
+.smb:hover{background:var(--sf);color:var(--tx)}
+.smb.on{background:var(--sf);color:var(--m1);border-left-color:var(--m1)}
+.smb[data-m="2"].on{color:var(--m2);border-left-color:var(--m2)}
+.smb[data-m="3"].on{color:var(--m3);border-left-color:var(--m3)}
+.smb[data-m="4"].on{color:var(--m4);border-left-color:var(--m4)}
+.smb[data-m="5"].on{color:var(--m5);border-left-color:var(--m5)}
+.smb .arr{margin-left:auto;font-size:.62rem;transition:transform .2s}
+.smb.on .arr{transform:rotate(90deg)}
+.sts{display:none;padding:4px 0 8px}
+.sts.op{display:block;animation:fi .2s ease}
+@keyframes fi{from{opacity:0}to{opacity:1}}
+.st{width:100%;padding:6px 14px 6px 32px;background:0 0;border:none;color:var(--txd);cursor:pointer;font-family:'Inter',sans-serif;font-size:.74rem;font-weight:500;text-align:left;transition:all .15s;border-left:3px solid transparent;display:block}
+.st:hover{color:var(--txm);background:rgba(255,255,255,.02)}
+.st.on{color:var(--m1);background:var(--m1b);border-left-color:var(--m1)}
+
+/* ═══════════════════ MAIN AREA ═══════════════════ */
+#mn{flex:1;min-width:0;padding:28px 36px 80px;max-width:960px}
+.mp{display:none}.mp.on{display:block}
+
+/* Page header */
+.ph{margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--bd)}
+.ph .bg{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:700;letter-spacing:.1em;padding:3px 12px;border-radius:20px;margin-bottom:8px}
+.m1p .bg{background:var(--m1b);color:var(--m1)}.m2p .bg{background:var(--m2b);color:var(--m2)}.m3p .bg{background:var(--m3b);color:var(--m3)}.m4p .bg{background:var(--m4b);color:var(--m4)}.m5p .bg{background:var(--m5b);color:var(--m5)}
+.ph h1{font-family:'Inter',sans-serif;font-size:1.6rem;font-weight:800;color:var(--wh);line-height:1.3}
+.ph p{font-size:.88rem;color:var(--txm);margin-top:5px;font-style:italic}
+
+/* Content tabs */
+.ct{display:flex;gap:2px;border-bottom:1px solid var(--bd);margin-bottom:22px;overflow-x:auto}
+.ctb{padding:8px 16px;border:none;background:0 0;color:var(--txm);cursor:pointer;font-family:'Inter',sans-serif;font-size:.8rem;font-weight:600;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s;white-space:nowrap}
+.ctb:hover{color:var(--tx)}.ctb.on{color:var(--wh);border-bottom-color:var(--wh)}
+.tp{display:none}.tp.on{display:block;animation:fi .2s ease}
+
+/* ═══════════════════ CONTENT ELEMENTS ═══════════════════ */
+/* Section title */
+.stl{font-family:'Inter',sans-serif;font-size:.76rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txm);margin:28px 0 14px;padding-bottom:8px;border-bottom:1px solid var(--bd)}
+.stl:first-child{margin-top:0}
+
+/* Card */
+.cd{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rad);margin-bottom:14px;overflow:hidden}
+.cdh{padding:13px 16px;background:var(--sf2);border-bottom:1px solid transparent;cursor:pointer;user-select:none;display:flex;justify-content:space-between;align-items:center;gap:10px;transition:background .15s}
+.cdh:hover{background:var(--sf3)}
+.cdh h3{font-family:'Inter',sans-serif;font-size:.97rem;font-weight:700;color:var(--tx);line-height:1.4}
+.cdh .tg{font-family:'JetBrains Mono',monospace;font-size:.63rem;font-weight:600;padding:2px 7px;border-radius:20px;flex-shrink:0;letter-spacing:.02em}
+.tgh{background:#2a1010;color:var(--rd)}.tgi{background:#2a2010;color:var(--yl)}.tgn{background:#102030;color:var(--m1)}
+.cdh .chv{font-size:.65rem;color:var(--txd);transition:transform .2s;flex-shrink:0}
+.cd.op .cdh .chv{transform:rotate(90deg)}.cd.op .cdh{border-bottom-color:var(--bd)}
+.cdb{padding:0 16px;max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s ease}
+.cd.op .cdb{padding:16px;max-height:12000px}
+.cdb p{font-size:.97rem;color:var(--tx2);margin-bottom:10px}
+.cdb ul,.cdb ol{padding-left:20px;margin-bottom:10px}
+.cdb li{font-size:.95rem;color:var(--tx2);margin-bottom:6px}
+.cdb b,.cdb strong{color:var(--wh);font-weight:600}
+
+/* Formula */
+.fb{background:#080e20;border:1px solid var(--bd);border-left:3px solid var(--m1);border-radius:var(--rads);padding:14px 18px;margin:14px 0}
+.fb .fl{font-family:'Inter',sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--m1);margin-bottom:8px}
+.m2p .fb{border-left-color:var(--m2)}.m2p .fb .fl{color:var(--m2)}
+.m3p .fb{border-left-color:var(--m3)}.m3p .fb .fl{color:var(--m3)}
+.m4p .fb{border-left-color:var(--m4)}.m4p .fb .fl{color:var(--m4)}
+.m5p .fb{border-left-color:var(--m5)}.m5p .fb .fl{color:var(--m5)}
+
+/* Result */
+.rb{border:1.5px solid var(--m1);border-radius:var(--rad);padding:16px 20px;margin:16px 0;text-align:center;background:var(--m1b)}
+.rb .rl{font-family:'Inter',sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--m1);margin-bottom:8px}
+.rb.pu{background:var(--m2b);border-color:var(--m2)}.rb.pu .rl{color:var(--m2)}
+.rb.am{background:var(--m3b);border-color:var(--m3)}.rb.am .rl{color:var(--m3)}
+.rb.or{background:var(--m4b);border-color:var(--m4)}.rb.or .rl{color:var(--m4)}
+.rb.gn{background:var(--m5b);border-color:var(--m5)}.rb.gn .rl{color:var(--m5)}
+
+/* Step (derivation) */
+.sr{display:grid;grid-template-columns:110px 1fr;border:1px solid var(--bd);border-radius:var(--rads);margin:12px 0;overflow:hidden}
+.sl{background:var(--sf2);border-right:1px solid var(--bd);padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.sl .sn{font-family:'Inter',sans-serif;font-size:.66rem;font-weight:700;color:var(--m1);letter-spacing:.06em;text-transform:uppercase}
+.sl .sd{font-family:'Inter',sans-serif;font-size:.7rem;color:var(--txm)}
+.sc{background:var(--sf);padding:12px 16px;font-size:.93rem;color:var(--tx2);line-height:2}
+
+/* Alert boxes */
+.wb{background:#1e1a0f;border:1px solid #5a4a20;border-left:4px solid var(--yl);border-radius:var(--rads);padding:12px 16px;margin:14px 0;font-family:'Inter',sans-serif;font-size:.86rem;color:#e5c96a;line-height:1.7}
+.tb{background:#0c1e18;border:1px solid #1a4a30;border-left:4px solid var(--gn);border-radius:var(--rads);padding:12px 16px;margin:14px 0;font-family:'Inter',sans-serif;font-size:.86rem;color:#7dcea0;line-height:1.7}
+.ib{background:#0c1428;border:1px solid #1a3a6a;border-left:4px solid var(--m1);border-radius:var(--rads);padding:12px 16px;margin:14px 0;font-family:'Inter',sans-serif;font-size:.86rem;color:#7ab8f5;line-height:1.7}
+
+/* ═══════════════════ NUMERICAL PROBLEM (NEW SPACIOUS DESIGN) ═══════════════════ */
+.prob{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rad);margin-bottom:20px;overflow:hidden}
+.pq{padding:14px 18px;background:var(--sf2);cursor:pointer;font-size:.95rem;color:var(--tx);line-height:1.8;transition:background .15s}
+.pq:hover{background:var(--sf3)}
+.pn{font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:700;background:#0d1c3a;color:var(--m1);padding:3px 9px;border-radius:4px;display:inline;margin-right:10px;vertical-align:middle}
+.pval{color:#82aaff;font-weight:600;font-family:'JetBrains Mono',monospace;font-size:.88rem}
+.ps{padding:0 18px;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s ease}
+.prob.op .ps{padding:20px 18px;max-height:15000px;border-top:1px solid var(--bd)}
+
+/* Solution inner blocks */
+.sol-given{background:#0a1020;border:1px solid var(--bd);border-left:3px solid var(--m1);border-radius:var(--rads);padding:14px 18px;margin-bottom:16px}
+.sol-given h4{font-family:'Inter',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--m1);margin-bottom:10px}
+.sol-given .row{display:flex;gap:8px;align-items:baseline;padding:3px 0;font-size:.9rem;color:var(--tx2);line-height:1.6}
+.sol-given .lbl{color:var(--txm);font-family:'Inter',sans-serif;font-size:.82rem;min-width:100px;flex-shrink:0}
+.sol-given .val{color:#82aaff;font-family:'JetBrains Mono',monospace;font-size:.85rem}
+
+.sol-formula{background:#100820;border:1px solid #2a1850;border-left:3px solid var(--m2);border-radius:var(--rads);padding:14px 18px;margin-bottom:16px}
+.sol-formula h4{font-family:'Inter',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--m2);margin-bottom:10px}
+
+.sol-step{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rads);padding:16px 18px;margin-bottom:14px;position:relative}
+.sol-step h4{font-family:'Inter',sans-serif;font-size:.74rem;font-weight:700;color:var(--m1);margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:8px}
+.sol-step h4 .snum{background:var(--m1);color:#000;font-size:.62rem;font-weight:800;padding:2px 8px;border-radius:12px;font-family:'JetBrains Mono',monospace}
+.sol-step p{font-size:.92rem;color:var(--tx2);margin-bottom:8px;line-height:1.9}
+.sol-step .calc{background:#080e1c;border:1px solid var(--bd);border-radius:var(--rads);padding:12px 16px;margin:10px 0;font-family:'JetBrains Mono',monospace;font-size:.82rem;color:#82aaff;line-height:2.2}
+.sol-step .why{background:#0a1418;border:1px solid #1a3a30;border-radius:var(--rads);padding:10px 14px;margin:10px 0;font-family:'Inter',sans-serif;font-size:.82rem;color:#7dcea0;line-height:1.7;font-style:italic}
+
+.sol-answer{background:#081a14;border:2px solid var(--gn);border-radius:var(--rad);padding:16px 20px;margin-top:16px;text-align:center}
+.sol-answer h4{font-family:'Inter',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gn);margin-bottom:8px}
+.sol-answer .av{font-family:'JetBrains Mono',monospace;font-size:1.05rem;color:var(--gn);font-weight:600;line-height:2}
+
+.sol-insight{background:#1a1200;border:1px solid #4a3600;border-radius:var(--rads);padding:12px 16px;margin-top:14px;font-family:'Inter',sans-serif;font-size:.84rem;color:#c8b06a;line-height:1.7}
+.sol-insight b{color:var(--yl)}
+
+/* Comparison tables */
+.ctbl{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem}
+.ctbl th{background:var(--sf2);padding:9px 14px;text-align:left;font-family:'Inter',sans-serif;font-weight:600;color:var(--tx);border:1px solid var(--bd)}
+.ctbl td{padding:8px 14px;border:1px solid var(--bd);color:var(--tx2);vertical-align:top}
+.ctbl tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+
+/* Quick ref grid */
+.qrg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-top:8px}
+.qrc{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rads);padding:12px}
+.qrc h4{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;color:var(--m1);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.qrr{display:flex;justify-content:space-between;border-bottom:1px solid var(--bd);padding:3px 0;gap:6px;font-size:.8rem}
+.qrr:last-child{border-bottom:none}
+.qrl{color:var(--txm);flex-shrink:0;font-family:'Inter',sans-serif;font-size:.76rem}
+.qrv{color:#82aaff;font-family:'JetBrains Mono',monospace;text-align:right;font-size:.74rem}
+
+/* Exam box */
+.exb{background:#1a1200;border:1px solid #4a3600;border-radius:var(--rad);padding:16px 18px;margin:20px 0}
+.exb h4{font-family:'Inter',sans-serif;font-size:.8rem;font-weight:700;color:var(--yl);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px}
+.exb li{font-size:.9rem;color:#c8b06a;margin-bottom:5px;line-height:1.7}
+.exb ul{padding-left:18px}
+
+.sctop{position:fixed;bottom:24px;right:24px;width:42px;height:42px;border-radius:50%;background:var(--m1);color:#000;border:none;cursor:pointer;font-size:1.1rem;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(96,165,250,.4);z-index:100;transition:all .2s;opacity:0;pointer-events:none}
+.sctop.sh{opacity:1;pointer-events:auto}.sctop:hover{transform:scale(1.1)}
+
+@media(max-width:768px){
+  #sb{display:none}#mn{padding:18px 14px 60px}
+  .sr{grid-template-columns:1fr}.sl{border-right:none;border-bottom:1px solid var(--bd);flex-direction:row;gap:8px;padding:8px 14px}
+  .ph h1{font-size:1.3rem}.qrg{grid-template-columns:1fr}
+  .sol-given .row{flex-direction:column;gap:2px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ HEADER ═══════════════════ -->
+<header id="hdr">
+  <div class="logo"><span class="dot"></span>PHY1701</div>
+  <div class="htabs">
+    <button class="ht on" data-m="1" onclick="goMod(0)"><span class="n">1</span>Quantum Mechanics</button>
+    <button class="ht" data-m="2" onclick="goMod(1)"><span class="n">2</span>QM Applications</button>
+    <button class="ht" data-m="3" onclick="goMod(2)"><span class="n">3</span>Lasers</button>
+    <button class="ht" data-m="4" onclick="goMod(3)"><span class="n">4</span>Fiber Optics</button>
+    <button class="ht" data-m="5" onclick="goMod(4)"><span class="n">5</span>Optoelectronics</button>
+  </div>
+</header>
+
+<div id="app">
+<!-- ═══════════════════ SIDEBAR ═══════════════════ -->
+<aside id="sb">
+  <div class="sm"><button class="smb on" data-m="1" onclick="goMod(0)">⚛ Module 1<span class="arr">▶</span></button><div class="sts op"><button class="st on" data-m="1">Quantization</button><button class="st" data-m="1">Compton Effect</button><button class="st" data-m="1">de Broglie Hypothesis</button><button class="st" data-m="1">Davisson-Germer</button><button class="st" data-m="1">Wave Function</button><button class="st" data-m="1">Heisenberg Uncertainty</button><button class="st" data-m="1">Schrödinger Equation</button></div></div>
+  <div class="sm"><button class="smb" data-m="2" onclick="goMod(1)">🔬 Module 2<span class="arr">▶</span></button><div class="sts"><button class="st" data-m="2">1D Box</button><button class="st" data-m="2">Quantum Confinement</button><button class="st" data-m="2">Tunnel Effect</button><button class="st" data-m="2">STM</button></div></div>
+  <div class="sm"><button class="smb" data-m="3" onclick="goMod(2)">💡 Module 3<span class="arr">▶</span></button><div class="sts"><button class="st" data-m="3">Laser Properties</button><button class="st" data-m="3">Einstein Coefficients</button><button class="st" data-m="3">Population Inversion</button><button class="st" data-m="3">He-Ne / Nd:YAG / CO₂</button></div></div>
+  <div class="sm"><button class="smb" data-m="4" onclick="goMod(3)">🔆 Module 4<span class="arr">▶</span></button><div class="sts"><button class="st" data-m="4">Fiber Structure & TIR</button><button class="st" data-m="4">Acceptance Angle & NA</button><button class="st" data-m="4">V-Parameter & Types</button><button class="st" data-m="4">Attenuation & Dispersion</button></div></div>
+  <div class="sm"><button class="smb" data-m="5" onclick="goMod(4)">💎 Module 5<span class="arr">▶</span></button><div class="sts"><button class="st" data-m="5">Direct / Indirect Bandgap</button><button class="st" data-m="5">LED</button><button class="st" data-m="5">Laser Diode</button><button class="st" data-m="5">Photodetectors</button></div></div>
+</aside>
+
+<!-- ═══════════════════ MAIN CONTENT ═══════════════════ -->
+<main id="mn">
+
+<!-- ╔══════════════════════════════════════════════════════════╗
+     ║  MODULE 1: ELEMENTS OF QUANTUM MECHANICS               ║
+     ╚══════════════════════════════════════════════════════════╝ -->
+<div class="mp m1p on" id="mod0">
+  <div class="ph"><div class="bg">MODULE 1 · ELEMENTS OF QUANTUM MECHANICS</div><h1>⚛ Quantum Physics Foundations</h1><p>The birth of modern physics — when classical physics broke down at atomic scales</p></div>
+  <div class="ct">
+    <button class="ctb on" onclick="goTab(this,'m1c')">📖 Concepts</button>
+    <button class="ctb" onclick="goTab(this,'m1f')">📐 Formulas</button>
+    <button class="ctb" onclick="goTab(this,'m1d')">📝 Derivations</button>
+    <button class="ctb" onclick="goTab(this,'m1n')">🔢 Numericals</button>
+    <button class="ctb" onclick="goTab(this,'m1q')">⚡ Quick Ref</button>
+  </div>
+
+  <!-- M1: CONCEPTS -->
+  <div class="tp on" id="m1c">
+    <div class="cd op"><div class="cdh" onclick="tCard(this)"><h3>💡 Idea of Quantization — The Beginning of Quantum Physics</h3><span class="tg tgn">Foundation</span><span class="chv">▶</span></div><div class="cdb">
+      <p>In the late 1800s, classical physics hit a wall. It predicted that a heated object should radiate <strong>infinite energy at high frequencies</strong> — a prediction so absurd it was called the <strong>Ultraviolet Catastrophe</strong>. Classical electromagnetism said energy could be emitted continuously, in any amount, which led to this nonsensical result.</p>
+      <p>In <strong>1900, Max Planck</strong> made a radical proposal: energy is NOT continuous. Instead, it is emitted and absorbed in tiny, indivisible packets called <strong>quanta</strong> (singular: quantum). Each quantum carries energy proportional to its frequency:</p>
+      <div class="fb"><div class="fl">Planck's Quantization</div>$$E = nh\nu \qquad n = 1, 2, 3, \ldots$$<p style="margin-top:8px">where $h = 6.626 \times 10^{-34}$ J·s is Planck's constant — one of the most fundamental numbers in physics.</p><p>For a single quantum (photon): $E = h\nu = hc/\lambda$</p></div>
+      <p><strong>Why this mattered:</strong> By forcing energy to come in discrete steps instead of being continuous, Planck's formula perfectly matched experimental blackbody radiation data. This single idea — that nature is "grainy" at tiny scales — is the foundation of ALL quantum mechanics.</p>
+      <p><strong>Einstein (1905)</strong> took Planck's idea further: light itself is made of discrete particles called <strong>photons</strong>. Each photon carries exactly $E = h\nu$. This explained the photoelectric effect: $KE_{max} = h\nu - \phi$, where $\phi$ is the work function (minimum energy to free an electron from the metal).</p>
+      <div class="wb">⚠ <b>Classical view:</b> Energy = continuous wave. <b>Quantum view:</b> Energy = discrete packets (photons). This isn't just a math trick — it reflects reality at atomic scales.</div>
+    </div></div>
+
+    <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>☢ Compton Effect — Proof That Photons Have Momentum</h3><span class="tg tgh">★ Theory + Numerical</span><span class="chv">▶</span></div><div class="cdb">
+      <p>In 1923, Arthur Compton fired X-rays at free electrons (in graphite) and made a shocking discovery: the <strong>scattered X-rays had a longer wavelength</strong> than the incident ones. Classical wave theory couldn't explain this — waves don't change frequency during scattering.</p>
+      <p>Compton explained it by treating X-rays as <strong>particles (photons) colliding with electrons</strong>, just like billiard balls. The photon loses some energy to the electron → its frequency drops → wavelength increases.</p>
+      <div class="fb"><div class="fl">Compton Shift Formula</div>$$\Delta\lambda = \lambda' - \lambda = \frac{h}{m_0 c}(1 - \cos\theta)$$<p style="margin-top:10px"><b>Key values to memorize:</b></p><p>Compton wavelength of electron: $\displaystyle\frac{h}{m_0 c} = \frac{6.626\times10^{-34}}{9.1\times10^{-31}\times3\times10^8} = 0.02426$ Å</p><p>At $\theta = 0°$: $\Delta\lambda = 0$ (no shift — photon goes straight)</p><p>At $\theta = 90°$: $\Delta\lambda = 0.02426$ Å</p><p>At $\theta = 180°$: $\Delta\lambda_{max} = 0.04852$ Å (backscattering — maximum shift)</p></div>
+      <p><b>Why there's an "unmodified" peak too:</b> Some photons interact with tightly-bound electrons. In this case, the entire atom recoils (huge mass $M \gg m_e$), so the Compton shift $h/(Mc)$ is negligibly small → wavelength barely changes.</p>
+      <p><b>Physical significance:</b> Compton effect proves conclusively that photons have momentum $p = h/\lambda = E/c$. Light behaves as both wave (interference, diffraction) and particle (photoelectric, Compton).</p>
+    </div></div>
+
+    <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>🌊 de Broglie Hypothesis — Matter Has Wave Nature</h3><span class="tg tgh">★ Numerical</span><span class="chv">▶</span></div><div class="cdb">
+      <p>If light (classically a wave) behaves like particles, then shouldn't particles (like electrons) behave like waves? In 1924, Louis de Broglie proposed exactly this:</p>
+      <p style="font-size:1.05rem;color:var(--wh);text-align:center;margin:16px 0"><em>"Every moving particle has an associated wave — a matter wave — whose wavelength is inversely proportional to its momentum."</em></p>
+      <div class="fb"><div class="fl">de Broglie Wavelength</div>$$\lambda = \frac{h}{p} = \frac{h}{mv}$$<p style="margin-top:10px"><b>Derived forms:</b></p><p>Using kinetic energy $KE = \frac{1}{2}mv^2$ → $p = \sqrt{2mKE}$:</p>$$\lambda = \frac{h}{\sqrt{2mKE}}$$<p>Electron accelerated through potential difference $V$: $KE = eV$</p>$$\lambda = \frac{h}{\sqrt{2meV}} = \frac{12.26}{\sqrt{V}} \;\text{Å} \quad\text{(quick formula for electrons)}$$</div>
+      <p><b>Why we don't see wave nature in everyday life:</b> A cricket ball ($m = 0.15$ kg, $v = 40$ m/s) has $\lambda = h/(mv) = 1.1 \times 10^{-34}$ m — billions of times smaller than a proton! Wave effects only become visible when $\lambda$ is comparable to the size of the system (atomic scales, ~Å).</p>
+    </div></div>
+
+    <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>🔬 Davisson-Germer Experiment — Proving Matter Waves</h3><span class="tg tgi">4-5 marks</span><span class="chv">▶</span></div><div class="cdb">
+      <p><b>Purpose:</b> The first experimental proof that electrons (matter) exhibit wave behavior — confirming de Broglie's hypothesis.</p>
+      <p><b>Setup &amp; Procedure:</b></p>
+      <ol>
+        <li>An <strong>electron gun</strong> produces electrons accelerated through voltage $V = 54$ V</li>
+        <li>These electrons hit a <strong>nickel crystal</strong> target</li>
+        <li>A movable <strong>Faraday cup detector</strong> measures scattered electron intensity at various angles</li>
+        <li>A strong intensity peak was found at scattering angle $\theta = 50°$</li>
+      </ol>
+      <p><b>Analysis — Two independent calculations of λ:</b></p>
+      <p><b>Method 1 (Bragg's law):</b> The Ni crystal planes (spacing $d = 0.91$ Å) act as a diffraction grating. Glancing angle $\phi = 90° - 50°/2 = 65°$.<br>$2d\sin\phi = n\lambda$ → $\lambda_{exp} = 2 \times 0.91 \times \sin 65° = 1.65$ Å</p>
+      <p><b>Method 2 (de Broglie):</b> $\lambda = 12.26/\sqrt{V} = 12.26/\sqrt{54} = 1.67$ Å</p>
+      <div class="rb gn"><div class="rl">✦ Verification Result</div><p style="color:var(--gn);font-size:.95rem">$\lambda_{experiment} = 1.65$ Å &nbsp;≈&nbsp; $\lambda_{de\;Broglie} = 1.67$ Å &nbsp;✓</p><p style="color:#7dcea0;font-size:.85rem;margin-top:6px">Electrons diffract just like X-rays → wave nature of matter confirmed experimentally!</p></div>
+    </div></div>
+
+    <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>Ψ Wave Function &amp; Born's Probability Interpretation</h3><span class="tg tgn">Foundation</span><span class="chv">▶</span></div><div class="cdb">
+      <p>If electrons are waves, what exactly is "waving"? Unlike water waves or sound waves, there's no physical medium oscillating. The <b>wave function $\psi(x,t)$</b> is a complex-valued mathematical function that completely describes the quantum state of a particle.</p>
+      <p><b>$\psi$ itself has no direct physical meaning</b> — it can even be complex! But <strong>$|\psi|^2$</strong> tells us the <strong>probability density</strong> of finding the particle at a given position:</p>
+      <div class="fb"><div class="fl">Born's Interpretation</div>$$P(x)\,dx = |\psi(x)|^2\,dx = \psi \cdot \psi^*\,dx$$<p style="margin-top:6px">Probability of finding the particle between $x$ and $x+dx$</p><p>Total probability = 1 (particle must be somewhere):</p>$$\int_{-\infty}^{+\infty}|\psi(x)|^2\,dx = 1 \quad \text{(Normalization condition)}$$</div>
+      <p><b>Properties of a physically valid $\psi$:</b></p>
+      <ul>
+        <li><b>Single-valued:</b> Only ONE value of $\psi$ at each point (physics can't be ambiguous)</li>
+        <li><b>Finite:</b> $\psi$ can't blow up to infinity anywhere</li>
+        <li><b>Continuous:</b> No sudden jumps in $\psi$ or its derivatives</li>
+        <li><b>Square-integrable:</b> The total probability integral must converge → $\psi \to 0$ as $x \to \pm\infty$</li>
+      </ul>
+      <div class="ib">💡 <b>Deep insight:</b> The boundary condition that $\psi = 0$ at the walls of a box forces $\lambda$ to take discrete values → discrete energies → QUANTIZATION emerges naturally from wave mechanics!</div>
+    </div></div>
+
+    <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>❓ Heisenberg Uncertainty Principle</h3><span class="tg tgh">★ Numerical</span><span class="chv">▶</span></div><div class="cdb">
+      <p>Werner Heisenberg (1927) showed that certain pairs of measurements have a fundamental, built-in trade-off. The more precisely you measure one, the less precisely you can know the other:</p>
+      <div class="fb"><div class="fl">Heisenberg Uncertainty Relations</div>$$\Delta x \cdot \Delta p_x \geq \frac{h}{4\pi} = \frac{\hbar}{2}$$$$\Delta E \cdot \Delta t \geq \frac{h}{4\pi} = \frac{\hbar}{2}$$<p style="margin-top:8px">where $\hbar = h/(2\pi) = 1.054 \times 10^{-34}$ J·s</p></div>
+      <p><b>This is NOT a measurement limitation</b> — it's a fundamental property of nature. Even with a perfect instrument, you CANNOT simultaneously know both position and momentum exactly.</p>
+      <p><b>Why?</b> Think of it this way: to "see" an electron, you need to bounce a photon off it. A short-wavelength photon (high energy) gives precise position info but kicks the electron hard (large momentum uncertainty). A long-wavelength photon barely disturbs the electron but gives fuzzy position info.</p>
+      <p><b>Macroscopic vs microscopic:</b> For a 1 kg ball with $\Delta x = 10^{-10}$ m (atomic!), $\Delta v = h/(4\pi m \Delta x) = 5 \times 10^{-25}$ m/s — totally negligible. For an electron with $\Delta x = 10^{-10}$ m, $\Delta v \approx 6 \times 10^{5}$ m/s — hugely significant!</p>
+      <div class="wb">⚠ <b>Exam approach:</b> Given $\Delta x$ → find $\Delta p_{min} = h/(4\pi\Delta x)$ → then $\Delta v = \Delta p/m$. Always use $h/(4\pi)$, not $h/(2\pi)$!</div>
+    </div></div>
+  </div>
+
+  <!-- M1: FORMULAS -->
+  <div class="tp" id="m1f">
+    <div class="stl">Complete Module 1 Formula Sheet</div>
+    <div class="fb"><div class="fl">Planck's Quantization</div>$$E = nh\nu = \frac{nhc}{\lambda} \qquad n = 1, 2, 3, \ldots$$</div>
+    <div class="fb"><div class="fl">Compton Shift</div>$$\Delta\lambda = \frac{h}{m_0 c}(1 - \cos\theta) \qquad \frac{h}{m_0 c} = 0.02426 \;\text{Å}$$</div>
+    <div class="fb"><div class="fl">de Broglie Wavelength</div>$$\lambda = \frac{h}{p} = \frac{h}{mv} = \frac{h}{\sqrt{2mE}} = \frac{h}{\sqrt{2meV}} \qquad \text{Electrons: } \lambda = \frac{12.26}{\sqrt{V}}\;\text{Å}$$</div>
+    <div class="fb"><div class="fl">Heisenberg Uncertainty Principle</div>$$\Delta x \cdot \Delta p \geq \frac{h}{4\pi} \qquad\qquad \Delta E \cdot \Delta t \geq \frac{h}{4\pi}$$</div>
+    <div class="fb"><div class="fl">Time-Dependent Schrödinger Equation</div>$$i\hbar\frac{\partial\Psi}{\partial t} = -\frac{\hbar^2}{2m}\frac{\partial^2\Psi}{\partial x^2} + V\Psi$$</div>
+    <div class="fb"><div class="fl">Time-Independent Schrödinger Equation</div>$$\frac{d^2\psi}{dx^2} + \frac{2m}{\hbar^2}(E - V)\psi = 0$$</div>
+    <div class="fb"><div class="fl">Photoelectric Effect</div>$$KE_{max} = h\nu - \phi = h(\nu - \nu_0) \qquad \phi = h\nu_0$$</div>
+    <div class="fb"><div class="fl">Davisson-Germer Verification</div>$$2d\sin\phi = n\lambda \quad \text{where } \phi = 90° - \theta/2 \text{ (glancing angle)}$$</div>
+  </div>
+
+  <!-- M1: DERIVATIONS -->
+  <div class="tp" id="m1d">
+    <div class="stl">Part A — Time-Dependent Schrödinger Equation ⭐</div>
+    <div class="ib"><b>Strategy:</b> Start with the wave equation for a free particle, take derivatives, and use the classical energy-momentum relation $E = p^2/2m + V$.</div>
+    <p style="margin:12px 0">Our starting point is a plane wave representing a free particle:</p>
+    <div class="rb"><div class="rl">Starting Point</div>$$\Psi(x,t) = Ae^{i(kx - \omega t)} = A\exp\!\left[\frac{i}{\hbar}(px - Et)\right]$$<p style="color:var(--txm);font-size:.82rem;margin-top:6px">using $p = \hbar k$ and $E = \hbar\omega$</p></div>
+    <div class="sr"><div class="sl"><span class="sn">Step 1</span><span class="sd">Time derivative</span></div><div class="sc"><p>Differentiate $\Psi$ with respect to time:</p>$$\frac{\partial\Psi}{\partial t} = -\frac{iE}{\hbar}\Psi$$<p>Rearranging: $\boxed{E\Psi = i\hbar\frac{\partial\Psi}{\partial t}}$ — the <b>energy operator</b></p></div></div>
+    <div class="sr"><div class="sl"><span class="sn">Step 2</span><span class="sd">Space derivative</span></div><div class="sc"><p>Differentiate $\Psi$ twice with respect to $x$:</p>$$\frac{\partial^2\Psi}{\partial x^2} = -\frac{p^2}{\hbar^2}\Psi$$<p>Rearranging: $\boxed{p^2\Psi = -\hbar^2\frac{\partial^2\Psi}{\partial x^2}}$ — the <b>momentum² operator</b></p></div></div>
+    <div class="sr"><div class="sl"><span class="sn">Step 3</span><span class="sd">Classical energy</span></div><div class="sc"><p>Total energy in classical mechanics:</p>$$E = \frac{p^2}{2m} + V$$<p>Multiply both sides by $\Psi$:</p>$$E\Psi = \frac{p^2}{2m}\Psi + V\Psi$$</div></div>
+    <div class="sr"><div class="sl"><span class="sn">Step 4</span><span class="sd">Substitute operators</span></div><div class="sc"><p>Replace $E\Psi$ with Step 1 result and $p^2\Psi$ with Step 2 result:</p></div></div>
+    <div class="rb"><div class="rl">✦ Time-Dependent Schrödinger Equation (1D)</div>$$\boxed{i\hbar\frac{\partial\Psi}{\partial t} = -\frac{\hbar^2}{2m}\frac{\partial^2\Psi}{\partial x^2} + V\Psi}$$</div>
+
+    <div class="stl" style="margin-top:36px">Part B — Time-Independent Schrödinger Equation ⭐⭐</div>
+    <div class="ib"><b>Strategy:</b> Separate variables — assume $\Psi(x,t) = \psi(x)\cdot T(t)$ where $T(t) = e^{-iEt/\hbar}$. Substitute into TDSE.</div>
+    <div class="sr"><div class="sl"><span class="sn">Step 1</span><span class="sd">Separation</span></div><div class="sc"><p>For <b>stationary states</b> (constant energy): $\Psi(x,t) = \psi(x)\cdot e^{-iEt/\hbar}$</p><p>Time derivative: $i\hbar\frac{\partial\Psi}{\partial t} = E\Psi = E\psi(x)e^{-iEt/\hbar}$</p></div></div>
+    <div class="sr"><div class="sl"><span class="sn">Step 2</span><span class="sd">Substitute into TDSE</span></div><div class="sc"><p>Since $e^{-iEt/\hbar}$ cancels from both sides:</p>$$E\psi = -\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} + V\psi$$</div></div>
+    <div class="sr"><div class="sl"><span class="sn">Step 3</span><span class="sd">Rearrange</span></div><div class="sc"><p>Bring everything to one side:</p></div></div>
+    <div class="rb gn"><div class="rl">✦ Time-Independent Schrödinger Equation (TISE)</div>$$\boxed{\frac{d^2\psi}{dx^2} + \frac{2m}{\hbar^2}(E - V)\psi = 0}$$</div>
+    <div class="rb or"><div class="rl">✦ For Free Particle ($V = 0$)</div>$$\frac{d^2\psi}{dx^2} + \frac{2mE}{\hbar^2}\psi = 0$$</div>
+    <div class="wb">⚠ <b>Exam tip:</b> Start from $\Psi = Ae^{i(kx-\omega t)}$. Show each differentiation step clearly. Box the final results. The TISE is the more frequently asked derivation.</div>
+  </div>
+
+  <!-- M1: NUMERICALS (SPACIOUS) -->
+  <div class="tp" id="m1n">
+
+    <div class="stl">Compton Effect Problems</div>
+
+    <!-- C-1 -->
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">C-1</span>X-rays of wavelength <span class="pval">λ = 0.2 Å</span> are scattered by free electrons at angle <span class="pval">θ = 90°</span>. Find the Compton shift and the wavelength of the scattered X-rays.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Incident λ</span><span class="val">$\lambda = 0.2$ Å</span></div>
+        <div class="row"><span class="lbl">Scatter angle</span><span class="val">$\theta = 90°$</span></div>
+        <div class="row"><span class="lbl">Find</span><span class="val">$\Delta\lambda$ (Compton shift) and $\lambda'$ (scattered wavelength)</span></div>
+      </div>
+      <div class="sol-formula"><h4>📐 Formula to Use</h4>
+        <p style="font-size:.9rem;color:var(--tx2)">Compton shift equation:</p>
+        $$\Delta\lambda = \frac{h}{m_0 c}(1 - \cos\theta) \qquad \frac{h}{m_0 c} = 0.02426 \;\text{Å}$$
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Calculate the Compton Shift</h4>
+        <p>Plug in $\theta = 90°$. Since $\cos 90° = 0$:</p>
+        <div class="calc">$\Delta\lambda = 0.02426 \times (1 - \cos 90°)$
+
+$\Delta\lambda = 0.02426 \times (1 - 0)$
+
+$\Delta\lambda = 0.02426$ Å</div>
+        <div class="why">💡 Notice: at 90°, the shift equals exactly one Compton wavelength. This is because $(1 - \cos 90°) = 1$.</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Find the Scattered Wavelength</h4>
+        <p>The scattered wavelength is simply:</p>
+        <div class="calc">$\lambda' = \lambda + \Delta\lambda$
+
+$\lambda' = 0.2 + 0.02426$
+
+$\lambda' = 0.22426$ Å</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\Delta\lambda = 0.02426$ Å<br>$\lambda' = 0.22426$ Å</div></div>
+      <div class="sol-insight">💡 <b>Physical insight:</b> The shift is ~12% of the original wavelength. The photon lost energy to the electron → wavelength increased. At 90°, the photon and recoiling electron share the incident energy roughly equally.</div>
+    </div></div>
+
+    <!-- C-2 -->
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">C-2</span>X-rays of wavelength <span class="pval">λ = 1 Å</span> undergo Compton scattering at <span class="pval">θ = 180°</span> (backscattering). Find the scattered wavelength and energy of the scattered photon.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Incident λ</span><span class="val">$\lambda = 1$ Å $= 10^{-10}$ m</span></div>
+        <div class="row"><span class="lbl">Scatter angle</span><span class="val">$\theta = 180°$ (photon bounces straight back)</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Compton Shift at 180°</h4>
+        <p>At $\theta = 180°$, $\cos 180° = -1$, so $(1 - \cos 180°) = 2$:</p>
+        <div class="calc">$\Delta\lambda = 0.02426 \times (1 - (-1))$
+
+$\Delta\lambda = 0.02426 \times 2$
+
+$\Delta\lambda = 0.04852$ Å</div>
+        <div class="why">💡 This is the MAXIMUM possible Compton shift — it happens when the photon bounces completely backward.</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Scattered Wavelength</h4>
+        <div class="calc">$\lambda' = 1 + 0.04852 = 1.04852$ Å</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">3</span> Energy of Scattered Photon</h4>
+        <p>Using $E = hc/\lambda$:</p>
+        <div class="calc">$E' = \dfrac{6.626 \times 10^{-34} \times 3 \times 10^{8}}{1.04852 \times 10^{-10}}$
+
+$E' = \dfrac{1.988 \times 10^{-25}}{1.04852 \times 10^{-10}}$
+
+$E' = 1.896 \times 10^{-15}$ J</div>
+        <p>Converting to keV: $E' = 1.896 \times 10^{-15} / (1.6 \times 10^{-19}) = 11,850$ eV</p>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\lambda' = 1.04852$ Å<br>$E' = 1.896 \times 10^{-15}$ J $\approx 11.85$ keV</div></div>
+      <div class="sol-insight">💡 <b>Physical insight:</b> The photon lost only ~5% of its wavelength even in the worst case (180°). The shift $\Delta\lambda$ is independent of $\lambda$ — it's the same whether you use X-rays or γ-rays. That's why Compton effect is noticeable only for short-wavelength X-rays (where $\Delta\lambda/\lambda$ is significant).</div>
+    </div></div>
+
+    <div class="stl">de Broglie Problems</div>
+
+    <!-- dB-1 -->
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">dB-1</span>Calculate the de Broglie wavelength of an electron accelerated through a potential difference of <span class="pval">V = 100 V</span>.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Voltage</span><span class="val">$V = 100$ V</span></div>
+        <div class="row"><span class="lbl">Particle</span><span class="val">Electron ($m = 9.1 \times 10^{-31}$ kg, $e = 1.6 \times 10^{-19}$ C)</span></div>
+      </div>
+      <div class="sol-formula"><h4>📐 Formula to Use</h4>
+        <p style="font-size:.9rem;color:var(--tx2)">Quick formula for electrons accelerated through voltage $V$:</p>
+        $$\lambda = \frac{12.26}{\sqrt{V}} \;\text{Å}$$
+        <div class="why">💡 This shortcut comes from substituting all electron constants into $\lambda = h/\sqrt{2meV}$. Use it — it saves time in exams!</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Direct Calculation</h4>
+        <div class="calc">$\lambda = \dfrac{12.26}{\sqrt{100}}$
+
+$\lambda = \dfrac{12.26}{10}$
+
+$\lambda = 1.226$ Å</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\lambda = 1.226$ Å</div></div>
+      <div class="sol-insight">💡 This is comparable to X-ray wavelengths (~1 Å) and interatomic spacings in crystals, which is exactly why electrons can be diffracted by crystal lattices (as in Davisson-Germer).</div>
+    </div></div>
+
+    <!-- dB-2 -->
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">dB-2</span>Find the de Broglie wavelength of a proton moving at <span class="pval">v = 10⁶ m/s</span>. Given: <span class="pval">mₚ = 1.67 × 10⁻²⁷ kg</span></div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Particle</span><span class="val">Proton ($m_p = 1.67 \times 10^{-27}$ kg)</span></div>
+        <div class="row"><span class="lbl">Velocity</span><span class="val">$v = 10^6$ m/s</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Apply $\lambda = h/mv$</h4>
+        <div class="calc">$\lambda = \dfrac{h}{m_p \times v}$
+
+$= \dfrac{6.626 \times 10^{-34}}{1.67 \times 10^{-27} \times 10^{6}}$
+
+$= \dfrac{6.626 \times 10^{-34}}{1.67 \times 10^{-21}}$
+
+$= 3.97 \times 10^{-13}$ m
+
+$= 0.00397$ Å</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\lambda = 3.97 \times 10^{-13}$ m $\approx 0.004$ Å</div></div>
+      <div class="sol-insight">💡 The proton is ~1836× heavier than the electron, so its wavelength is ~1836× smaller. This is why <b>electron microscopes</b> use electrons (not protons) — they give better resolution at practical energies.</div>
+    </div></div>
+
+    <div class="stl">Heisenberg Uncertainty Problems</div>
+
+    <!-- HUP-1 -->
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">HUP-1</span>The position of an electron is measured to an accuracy of <span class="pval">Δx = 0.01 Å</span>. Find the minimum uncertainty in its velocity.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Position uncertainty</span><span class="val">$\Delta x = 0.01$ Å $= 10^{-12}$ m</span></div>
+        <div class="row"><span class="lbl">Particle</span><span class="val">Electron ($m_e = 9.1 \times 10^{-31}$ kg)</span></div>
+        <div class="row"><span class="lbl">Find</span><span class="val">Minimum uncertainty in velocity $\Delta v_{min}$</span></div>
+      </div>
+      <div class="sol-formula"><h4>📐 Formula to Use</h4>
+        $$\Delta x \cdot \Delta p \geq \frac{h}{4\pi}$$
+        <p style="font-size:.88rem;color:var(--tx2);margin-top:6px">For minimum uncertainty: replace $\geq$ with $=$, then $\Delta p_{min} = m \cdot \Delta v_{min}$</p>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Find Minimum Momentum Uncertainty</h4>
+        <div class="calc">$\Delta p_{min} = \dfrac{h}{4\pi \cdot \Delta x}$
+
+$= \dfrac{6.626 \times 10^{-34}}{4\pi \times 10^{-12}}$
+
+$= \dfrac{6.626 \times 10^{-34}}{1.257 \times 10^{-11}}$
+
+$= 5.27 \times 10^{-23}$ kg·m/s</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Convert to Velocity Uncertainty</h4>
+        <p>Since $\Delta p = m \cdot \Delta v$:</p>
+        <div class="calc">$\Delta v_{min} = \dfrac{\Delta p_{min}}{m_e}$
+
+$= \dfrac{5.27 \times 10^{-23}}{9.1 \times 10^{-31}}$
+
+$= 5.79 \times 10^{7}$ m/s</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\Delta v_{min} \approx 5.79 \times 10^{7}$ m/s</div></div>
+      <div class="sol-insight">💡 <b>That's ~20% the speed of light!</b> By pinning down the electron's position to just 0.01 Å (~1/10th of an atomic radius), we've completely lost track of how fast it's moving. This is precisely why electrons don't have well-defined orbits in atoms — they exist in probability clouds (orbitals) instead.</div>
+    </div></div>
+
+    <!-- HUP-2 -->
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">HUP-2</span>An electron has speed <span class="pval">v = 600 m/s</span> with accuracy of <span class="pval">0.005%</span>. Find the minimum uncertainty in its position.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Speed</span><span class="val">$v = 600$ m/s</span></div>
+        <div class="row"><span class="lbl">Accuracy</span><span class="val">$0.005\%$</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Calculate $\Delta v$ from the percentage accuracy</h4>
+        <div class="calc">$\Delta v = \dfrac{0.005}{100} \times 600 = 0.03$ m/s</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Find $\Delta p$</h4>
+        <div class="calc">$\Delta p = m_e \times \Delta v = 9.1 \times 10^{-31} \times 0.03$
+
+$= 2.73 \times 10^{-32}$ kg·m/s</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">3</span> Find $\Delta x_{min}$</h4>
+        <div class="calc">$\Delta x_{min} = \dfrac{h}{4\pi \cdot \Delta p}$
+
+$= \dfrac{6.626 \times 10^{-34}}{4\pi \times 2.73 \times 10^{-32}}$
+
+$= \dfrac{6.626 \times 10^{-34}}{3.43 \times 10^{-31}}$
+
+$= 1.93 \times 10^{-3}$ m</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\Delta x_{min} \approx 1.93$ mm</div></div>
+      <div class="sol-insight">💡 Even knowing the velocity to 0.005% accuracy, the position uncertainty is ~2 mm — enormous on atomic scales! HUP makes precise electron trajectories meaningless.</div>
+    </div></div>
+
+    <!-- HUP-3 -->
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">HUP-3</span>A nucleon is confined to a nucleus of diameter <span class="pval">d = 6 × 10⁻¹⁵ m</span>. Find the minimum kinetic energy of the nucleon. Given: <span class="pval">mₙ = 1.675 × 10⁻²⁷ kg</span></div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Confinement</span><span class="val">$\Delta x = 6 \times 10^{-15}$ m (diameter of nucleus)</span></div>
+        <div class="row"><span class="lbl">Nucleon mass</span><span class="val">$m_n = 1.675 \times 10^{-27}$ kg</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Find Minimum Momentum</h4>
+        <div class="calc">$\Delta p_{min} = \dfrac{h}{4\pi \cdot \Delta x}$
+
+$= \dfrac{6.626 \times 10^{-34}}{4\pi \times 6 \times 10^{-15}}$
+
+$= \dfrac{6.626 \times 10^{-34}}{7.54 \times 10^{-14}}$
+
+$= 8.79 \times 10^{-21}$ kg·m/s</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Calculate Minimum KE</h4>
+        <p>The minimum momentum gives minimum KE:</p>
+        <div class="calc">$KE_{min} = \dfrac{(\Delta p)^2}{2m}$
+
+$= \dfrac{(8.79 \times 10^{-21})^2}{2 \times 1.675 \times 10^{-27}}$
+
+$= \dfrac{7.73 \times 10^{-41}}{3.35 \times 10^{-27}}$
+
+$= 2.31 \times 10^{-14}$ J</div>
+        <p>Convert to MeV: $\dfrac{2.31 \times 10^{-14}}{1.6 \times 10^{-13}} = 0.144$ MeV</p>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$KE_{min} \approx 0.144$ MeV</div></div>
+      <div class="sol-insight">💡 <b>This is why nuclear physics involves MeV-scale energies!</b> Confining a particle to a tiny space (femtometers) forces it to have huge minimum momentum and energy. Compare: atomic electrons (~eV); nuclear particles (~MeV) — a million times more!</div>
+    </div></div>
+
+    <div class="stl">More de Broglie Problems (from Class Notes)</div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">dB-3</span>Calculate the de Broglie wavelength of an electron accelerated from rest through a potential of <span class="pval">V = 400 V</span>.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Voltage</span><span class="val">$V = 400$ V</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Use the Quick Electron Formula</h4>
+        <div class="calc">$\lambda = \dfrac{12.26}{\sqrt{V}} = \dfrac{12.26}{\sqrt{400}} = \dfrac{12.26}{20}$
+
+$\lambda = 0.613$ Å</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\lambda = 0.613$ Å</div></div>
+      <div class="sol-insight">💡 Doubling the voltage from 100V to 400V reduced the wavelength from 1.226Å to 0.613Å — exactly halved, because $\lambda \propto 1/\sqrt{V}$.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">dB-4</span>Calculate the energy (in eV) of an electron wave with wavelength <span class="pval">λ = 3 × 10⁻¹² m</span>.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Wavelength</span><span class="val">$\lambda = 3 \times 10^{-12}$ m</span></div>
+      </div>
+      <div class="sol-formula"><h4>📐 Formula to Use</h4>
+        $$E = \frac{h^2}{2m\lambda^2}$$
+        <div class="why">💡 From $\lambda = h/\sqrt{2mE}$, rearrange to get $E = h^2/(2m\lambda^2)$</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Substitute Values</h4>
+        <div class="calc">$E = \dfrac{(6.62 \times 10^{-34})^2}{2 \times 9.1 \times 10^{-31} \times (3 \times 10^{-12})^2}$
+
+$= \dfrac{4.38 \times 10^{-67}}{2 \times 9.1 \times 10^{-31} \times 9 \times 10^{-24}}$
+
+$= \dfrac{4.38 \times 10^{-67}}{1.638 \times 10^{-53}}$
+
+$= 2.674 \times 10^{-14}$ J</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Convert to eV</h4>
+        <div class="calc">$E = \dfrac{2.674 \times 10^{-14}}{1.6 \times 10^{-19}} = 1.67 \times 10^{5}$ eV $\approx 0.167$ MeV</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$E \approx 0.167$ MeV</div></div>
+      <div class="sol-insight">💡 Very short wavelength (3 pm) → very high energy! This is in the MeV range, comparable to gamma rays. Such high-energy electrons are used in electron microscopes for atomic-resolution imaging.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">dB-5</span>Calculate the wavelength of thermal neutrons at <span class="pval">T = 300 K</span>. Given: rest mass of neutron <span class="pval">mₙ = 1.67 × 10⁻²⁷ kg</span>, thermal energy <span class="pval">E = kT</span>.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Temperature</span><span class="val">$T = 300$ K</span></div>
+        <div class="row"><span class="lbl">Neutron mass</span><span class="val">$m_n = 1.67 \times 10^{-27}$ kg</span></div>
+        <div class="row"><span class="lbl">Boltzmann</span><span class="val">$k = 1.38 \times 10^{-23}$ J/K</span></div>
+      </div>
+      <div class="sol-formula"><h4>📐 Formula to Use</h4>
+        $$\lambda = \frac{h}{\sqrt{2m_n kT}}$$
+        <div class="why">💡 At temperature T, kinetic energy E = kT (from equipartition). Using $\lambda = h/\sqrt{2mE}$, substitute E = kT.</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Calculate $2m_n kT$</h4>
+        <div class="calc">$2m_n kT = 2 \times 1.67 \times 10^{-27} \times 1.38 \times 10^{-23} \times 300$
+
+$= 2 \times 1.67 \times 10^{-27} \times 4.14 \times 10^{-21}$
+
+$= 1.383 \times 10^{-47}$</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Find Wavelength</h4>
+        <div class="calc">$\lambda = \dfrac{6.626 \times 10^{-34}}{\sqrt{1.383 \times 10^{-47}}}$
+
+$= \dfrac{6.626 \times 10^{-34}}{3.72 \times 10^{-24}}$
+
+$= 1.78 \times 10^{-10}$ m $= 1.78$ Å</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\lambda = 1.78$ Å</div></div>
+      <div class="sol-insight">💡 <b>Thermal neutrons have wavelength ~1.78 Å — perfect for crystal diffraction!</b> This is comparable to interatomic spacings, which is why neutron diffraction is a powerful tool for studying crystal structures.</div>
+    </div></div>
+
+    <div class="stl">More HUP Problems (from Class Notes)</div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">HUP-4</span>An electron is confined to a box of length <span class="pval">L = 10⁻⁹ m</span> (1 nm). Calculate the minimum uncertainty in its velocity.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Box size</span><span class="val">$\Delta x_{max} = L = 10^{-9}$ m</span></div>
+        <div class="row"><span class="lbl">Electron mass</span><span class="val">$m_e = 9.1 \times 10^{-31}$ kg</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Find Minimum Momentum Uncertainty</h4>
+        <p>When $\Delta x$ is maximum (= box size), $\Delta p$ is minimum:</p>
+        <div class="calc">$\Delta p_{min} = \dfrac{h}{4\pi \cdot \Delta x_{max}} = \dfrac{6.626 \times 10^{-34}}{4\pi \times 10^{-9}}$
+
+$= \dfrac{6.626 \times 10^{-34}}{1.257 \times 10^{-8}}$
+
+$= 5.27 \times 10^{-26}$ kg·m/s</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Find Minimum Velocity Uncertainty</h4>
+        <div class="calc">$\Delta v_{min} = \dfrac{\Delta p_{min}}{m_e} = \dfrac{5.27 \times 10^{-26}}{9.1 \times 10^{-31}}$
+
+$= 5.79 \times 10^{4}$ m/s $\approx 57,900$ m/s</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\Delta v_{min} \approx 5.79 \times 10^{4}$ m/s</div></div>
+      <div class="sol-insight">💡 Even in a 1 nm box (relatively large compared to atoms), the velocity uncertainty is ~58 km/s! Compare with HUP-1 where Δx = 0.01 Å → Δv was 1000× larger. The uncertainty scales as $1/\Delta x$.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">HUP-5</span>An electron has speed <span class="pval">v = 3.5 × 10⁵ m/s</span> with accuracy of <span class="pval">0.0098%</span>. Find the fundamental accuracy with which we can locate the electron. (Use ℏ = h/2π)</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Speed</span><span class="val">$v = 3.5 \times 10^5$ m/s</span></div>
+        <div class="row"><span class="lbl">Accuracy</span><span class="val">$0.0098\%$</span></div>
+        <div class="row"><span class="lbl">Note</span><span class="val">Use $\Delta x \cdot \Delta p = \hbar = h/(2\pi)$ (not $h/4\pi$)</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Calculate Momentum and Δp</h4>
+        <div class="calc">$mv = 9.1 \times 10^{-31} \times 3.5 \times 10^5 = 3.185 \times 10^{-25}$ kg·m/s
+
+$\Delta p = \dfrac{0.0098}{100} \times 3.185 \times 10^{-25}$
+
+$= 9.8 \times 10^{-5} \times 3.185 \times 10^{-25}$
+
+$= 3.12 \times 10^{-29}$ kg·m/s</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Find $\Delta x_{min}$ using ℏ</h4>
+        <div class="calc">$\Delta x_{min} = \dfrac{\hbar}{\Delta p} = \dfrac{h}{2\pi \cdot \Delta p}$
+
+$= \dfrac{6.626 \times 10^{-34}}{2\pi \times 3.12 \times 10^{-29}}$
+
+$= \dfrac{6.626 \times 10^{-34}}{1.96 \times 10^{-28}}$
+
+$= 3.38 \times 10^{-6}$ m</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\Delta x_{min} \approx 3.38$ μm</div></div>
+      <div class="sol-insight">💡 <b>Watch out:</b> This problem uses $\hbar = h/(2\pi)$ instead of $h/(4\pi)$. Always read the question carefully! If it says "use ℏ" or "$\Delta x \Delta p = \hbar$", use $h/(2\pi)$. If no specification, use $h/(4\pi)$ for minimum uncertainty.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">HUP-6</span>Estimate the minimum kinetic energy of an electron confined within a radius of <span class="pval">r = 10⁻¹¹ m</span> (atomic size).</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Confinement</span><span class="val">$\Delta x = 10^{-11}$ m</span></div>
+        <div class="row"><span class="lbl">Electron mass</span><span class="val">$m_e = 9.1 \times 10^{-31}$ kg</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Find Minimum Momentum</h4>
+        <div class="calc">$\Delta p = \dfrac{h}{4\pi \cdot \Delta x} = \dfrac{6.626 \times 10^{-34}}{4\pi \times 10^{-11}}$
+
+$= 5.275 \times 10^{-24}$ kg·m/s</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Find Minimum KE</h4>
+        <div class="calc">$KE_{min} = \dfrac{(\Delta p)^2}{2m}$
+
+$= \dfrac{(5.275 \times 10^{-24})^2}{2 \times 9.1 \times 10^{-31}}$
+
+$= \dfrac{2.783 \times 10^{-47}}{1.82 \times 10^{-30}}$
+
+$= 1.53 \times 10^{-17}$ J</div>
+        <p>Convert to eV:</p>
+        <div class="calc">$KE_{min} = \dfrac{1.53 \times 10^{-17}}{1.6 \times 10^{-19}} = 95.6$ eV</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$KE_{min} \approx 95.6$ eV</div></div>
+      <div class="sol-insight">💡 <b>This proves electrons orbit atoms with eV-scale energies!</b> Confining an electron to atomic dimensions (~0.1 Å) gives it a minimum KE of ~96 eV — consistent with ionization energies of inner-shell electrons.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">dB-6</span>Calculate the de Broglie wavelength of a neutron whose energy is <span class="pval">E = 12.8 MeV</span>. Given: <span class="pval">mₙ = 1.67 × 10⁻²⁷ kg</span></div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Energy</span><span class="val">$E = 12.8$ MeV $= 12.8 \times 10^6 \times 1.6 \times 10^{-19} = 2.048 \times 10^{-12}$ J</span></div>
+        <div class="row"><span class="lbl">Neutron mass</span><span class="val">$m_n = 1.67 \times 10^{-27}$ kg</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Find Velocity from KE</h4>
+        <div class="calc">$\frac{1}{2}m_n v^2 = 2.048 \times 10^{-12}$
+
+$v = \sqrt{\dfrac{2 \times 2.048 \times 10^{-12}}{1.67 \times 10^{-27}}} = \sqrt{2.452 \times 10^{15}}$
+
+$v = 4.95 \times 10^{7}$ m/s</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Calculate de Broglie Wavelength</h4>
+        <div class="calc">$\lambda = \dfrac{h}{m_n v} = \dfrac{6.626 \times 10^{-34}}{1.67 \times 10^{-27} \times 4.95 \times 10^7}$
+
+$= \dfrac{6.626 \times 10^{-34}}{8.27 \times 10^{-20}}$
+
+$= 8.01 \times 10^{-15}$ m $= 8.01$ fm</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\lambda = 8.01 \times 10^{-15}$ m $\approx 8$ fm</div></div>
+      <div class="sol-insight">💡 8 femtometers is comparable to the size of a nucleus (~10⁻¹⁵ m). Such high-energy neutrons can probe nuclear structure. Compare: 100V electron → 1.2 Å (atomic scale); 12.8 MeV neutron → 8 fm (nuclear scale).</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">HUP-7</span>Compare the uncertainties in velocities of an electron and a proton confined to a <span class="pval">1 nm box</span>. Given: <span class="pval">mₑ = 9.1 × 10⁻³¹ kg</span>, <span class="pval">mₚ = 1.67 × 10⁻²⁷ kg</span></div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Box size</span><span class="val">$\Delta x = 1$ nm $= 10^{-9}$ m (same for both)</span></div>
+        <div class="row"><span class="lbl">Electron mass</span><span class="val">$m_e = 9.1 \times 10^{-31}$ kg</span></div>
+        <div class="row"><span class="lbl">Proton mass</span><span class="val">$m_p = 1.67 \times 10^{-27}$ kg</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Key Insight — Same Box, Same Δp</h4>
+        <p>Both particles are in the same box, so they have the same $\Delta x$, hence the same $\Delta p_{min}$:</p>
+        <div class="calc">$\Delta p_{min} = \dfrac{h}{4\pi \cdot \Delta x}$ — same for both</div>
+        <div class="why">💡 Since $\Delta v = \Delta p / m$, and $\Delta p$ is the same, the velocity uncertainty is inversely proportional to mass!</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Find the Ratio</h4>
+        <div class="calc">$\dfrac{\Delta v_e}{\Delta v_p} = \dfrac{\Delta p / m_e}{\Delta p / m_p} = \dfrac{m_p}{m_e}$
+
+$= \dfrac{1.67 \times 10^{-27}}{9.1 \times 10^{-31}}$
+
+$= 1835$</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\Delta v_e / \Delta v_p = 1835$<br>The electron's velocity uncertainty is <b>1835 times larger</b> than the proton's</div></div>
+      <div class="sol-insight">💡 This ratio is exactly the proton-to-electron mass ratio! Lighter particles are much harder to pin down. This is why quantum effects dominate for electrons but are negligible for protons in most atomic-scale experiments.</div>
+    </div></div>
+
+    <div class="stl">Additional Compton Problems (from Class Notes)</div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">C-3</span>A beam of X-rays is scattered by a target. At <span class="pval">θ = 45°</span> from the beam direction, the scattered X-rays have a wavelength of <span class="pval">λ' = 2.2 pm</span>. What is the wavelength of X-rays in the direct beam?</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Scattered λ'</span><span class="val">$\lambda' = 2.2$ pm</span></div>
+        <div class="row"><span class="lbl">Scatter angle</span><span class="val">$\theta = 45°$</span></div>
+        <div class="row"><span class="lbl">Find</span><span class="val">Incident wavelength $\lambda$</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Find the Compton Shift</h4>
+        <div class="calc">$\Delta\lambda = 0.02426(1 - \cos 45°) = 0.02426(1 - 0.707)$
+
+$= 0.02426 \times 0.293 = 0.00711$ pm</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Find Incident Wavelength</h4>
+        <p>Since $\lambda' = \lambda + \Delta\lambda$:</p>
+        <div class="calc">$\lambda = \lambda' - \Delta\lambda = 2.2 - 0.00711$
+
+$\lambda = 2.193$ pm $= 0.02193$ Å</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\lambda = 2.193$ pm (incident) &nbsp;→&nbsp; $\lambda' = 2.2$ pm (scattered)</div></div>
+      <div class="sol-insight">💡 This is a <b>reverse Compton problem</b> — given scattered wavelength, find the incident. Simply rearrange: $\lambda = \lambda' - \Delta\lambda$. The shift at 45° is only ~0.007 pm — very small!</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">C-4</span>At what scattering angle will incident <span class="pval">100 keV</span> X-rays leave a target with an energy of <span class="pval">90 keV</span>?</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Incident energy</span><span class="val">$E = 100$ keV</span></div>
+        <div class="row"><span class="lbl">Scattered energy</span><span class="val">$E' = 90$ keV</span></div>
+      </div>
+      <div class="sol-formula"><h4>📐 Formula to Use</h4>
+        <p style="font-size:.9rem;color:var(--tx2)">Energy form of Compton equation:</p>
+        $$\frac{1}{E'} - \frac{1}{E} = \frac{1}{m_0 c^2}(1 - \cos\theta)$$
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Calculate LHS</h4>
+        <div class="calc">$\frac{1}{E'} - \frac{1}{E} = \frac{1}{90} - \frac{1}{100} = \frac{100 - 90}{9000}$
+
+$= \frac{10}{9000} = \frac{1}{900}$ keV$^{-1}$</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Solve for θ</h4>
+        <p>$m_0 c^2 = 511$ keV (rest energy of electron)</p>
+        <div class="calc">$(1 - \cos\theta) = m_0 c^2 \left(\frac{1}{E'} - \frac{1}{E}\right) = \frac{511}{900} = 0.568$
+
+$\cos\theta = 1 - 0.568 = 0.432$
+
+$\theta = \cos^{-1}(0.432) \approx 64.4°$</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\theta \approx 64°$</div></div>
+      <div class="sol-insight">💡 <b>Energy-form Compton equation</b> is useful when energies are given instead of wavelengths. Remember: $m_0 c^2 = 511$ keV for electrons.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">C-5</span>In Compton scattering, incident radiation has wavelength <span class="pval">λ = 2 Å</span>. Calculate the energy of the recoil electron when radiation is scattered through <span class="pval">θ = 60°</span>.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Incident λ</span><span class="val">$\lambda = 2$ Å $= 2 \times 10^{-10}$ m</span></div>
+        <div class="row"><span class="lbl">Scatter angle</span><span class="val">$\theta = 60°$</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Find Scattered Wavelength</h4>
+        <div class="calc">$\Delta\lambda = 0.02426(1 - \cos 60°) = 0.02426 \times 0.5 = 0.01213$ Å
+
+$\lambda' = 2 + 0.01213 = 2.01213$ Å</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Energy of Recoil Electron</h4>
+        <p>By conservation of energy: $E_{recoil} = E_{photon} - E'_{photon} = hc\left(\frac{1}{\lambda} - \frac{1}{\lambda'}\right)$</p>
+        <div class="calc">$E_{recoil} = 6.626 \times 10^{-34} \times 3 \times 10^8 \left(\frac{1}{2 \times 10^{-10}} - \frac{1}{2.01213 \times 10^{-10}}\right)$
+
+$= 1.988 \times 10^{-25} \times (5 \times 10^9 - 4.970 \times 10^9)$
+
+$= 1.988 \times 10^{-25} \times 3.01 \times 10^7$
+
+$= 5.98 \times 10^{-18}$ J $= 37.4$ eV</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$E_{recoil} \approx 37$ eV</div></div>
+      <div class="sol-insight">💡 The recoil electron gets only ~37 eV out of a 6.2 keV photon — less than 1%. This is because $\Delta\lambda/\lambda$ is very small for long-wavelength X-rays.</div>
+    </div></div>
+
+    <div class="stl">Additional de Broglie Problems (from Class Notes)</div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">dB-7</span>Calculate the de Broglie wavelength of a proton moving at <span class="pval">v = c/20</span> (1/20th the speed of light). Given: <span class="pval">mₚ = 1.67 × 10⁻²⁷ kg</span></div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Velocity</span><span class="val">$v = c/20 = 3 \times 10^8/20 = 1.5 \times 10^7$ m/s</span></div>
+        <div class="row"><span class="lbl">Mass</span><span class="val">$m_p = 1.67 \times 10^{-27}$ kg</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Apply de Broglie Formula</h4>
+        <div class="calc">$\lambda = \dfrac{h}{mv} = \dfrac{6.626 \times 10^{-34}}{1.67 \times 10^{-27} \times 1.5 \times 10^7}$
+
+$= \dfrac{6.626 \times 10^{-34}}{2.505 \times 10^{-20}}$
+
+$= 2.645 \times 10^{-14}$ m</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\lambda = 2.645 \times 10^{-14}$ m $\approx 0.026$ pm</div></div>
+      <div class="sol-insight">💡 This wavelength is ~10⁴ times smaller than interatomic spacing. To probe nuclear structure (~fm = 10⁻¹⁵ m), you need even faster protons — this is the principle behind particle accelerators.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">dB-8</span>Calculate the de Broglie wavelength of (a) a golf ball of mass <span class="pval">50 g</span> moving at <span class="pval">20 m/s</span>, and (b) a proton moving at <span class="pval">2200 m/s</span>.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Part (a)</span><span class="val">$m = 0.05$ kg, $v = 20$ m/s</span></div>
+        <div class="row"><span class="lbl">Part (b)</span><span class="val">$m_p = 1.67 \times 10^{-27}$ kg, $v = 2200$ m/s</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Golf Ball</h4>
+        <div class="calc">$\lambda = \dfrac{h}{mv} = \dfrac{6.626 \times 10^{-34}}{0.05 \times 20} = \dfrac{6.626 \times 10^{-34}}{1}$
+
+$= 6.626 \times 10^{-34}$ m</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Proton</h4>
+        <div class="calc">$\lambda = \dfrac{h}{m_p v} = \dfrac{6.626 \times 10^{-34}}{1.67 \times 10^{-27} \times 2200}$
+
+$= \dfrac{6.626 \times 10^{-34}}{3.674 \times 10^{-24}}$
+
+$= 1.80 \times 10^{-10}$ m $= 1.80$ Å</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">(a) Golf ball: $\lambda = 6.63 \times 10^{-34}$ m (undetectable!)<br>(b) Proton: $\lambda = 1.80$ Å (comparable to X-rays)</div></div>
+      <div class="sol-insight">💡 <b>The golf ball's wavelength is 10⁻³⁴ m</b> — smaller than anything in the universe! No experiment can detect this. But the proton's wavelength at just 2200 m/s is already comparable to interatomic spacings. Mass matters enormously in quantum mechanics.</div>
+    </div></div>
+
+    <div class="stl">Additional HUP Problems (from Class Notes)</div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">HUP-8</span>A microscope is used to locate an electron within a distance of <span class="pval">Δx = 0.1 Å</span>. Find the uncertainty in its momentum and velocity. (Use <span class="pval">Δx·Δp ≈ h</span>, not h/4π)</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Position uncertainty</span><span class="val">$\Delta x = 0.1$ Å $= 10^{-11}$ m</span></div>
+        <div class="row"><span class="lbl">Note</span><span class="val">Use $\Delta x \cdot \Delta p \approx h$ (not $h/4\pi$)</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Find Δp</h4>
+        <div class="calc">$\Delta p = \dfrac{h}{\Delta x} = \dfrac{6.626 \times 10^{-34}}{10^{-11}}$
+
+$= 6.626 \times 10^{-23}$ kg·m/s</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Find Δv</h4>
+        <div class="calc">$\Delta v = \dfrac{\Delta p}{m_e} = \dfrac{6.626 \times 10^{-23}}{9.1 \times 10^{-31}}$
+
+$= 7.28 \times 10^{7}$ m/s</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\Delta p = 6.63 \times 10^{-23}$ kg·m/s &nbsp;|&nbsp; $\Delta v = 7.28 \times 10^{7}$ m/s</div></div>
+      <div class="sol-insight">💡 <b>Caution:</b> This uses $\Delta x \Delta p \approx h$, giving a larger uncertainty than $h/4\pi$. Always check which form the question specifies! With $h/4\pi$: $\Delta v \approx 5.8 \times 10^6$ m/s (12× smaller).</div>
+    </div></div>
+
+    <div class="stl">Bragg Diffraction Problems (from Class Notes)</div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">BG-1</span>A beam of mono-energetic neutrons at <span class="pval">T = 27°C</span> falls on a crystal. A first-order reflection is observed at glancing angle <span class="pval">φ = 30°</span>. Calculate the interplanar spacing of the crystal.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Temperature</span><span class="val">$T = 27°C = 300$ K</span></div>
+        <div class="row"><span class="lbl">Glancing angle</span><span class="val">$\phi = 30°$</span></div>
+        <div class="row"><span class="lbl">Order</span><span class="val">$n = 1$</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Find Neutron Wavelength</h4>
+        <p>Thermal energy $E = kT$, so $\lambda = h/\sqrt{2m_n kT}$:</p>
+        <div class="calc">$\lambda = \dfrac{6.626 \times 10^{-34}}{\sqrt{2 \times 1.67 \times 10^{-27} \times 1.38 \times 10^{-23} \times 300}}$
+
+$= \dfrac{6.626 \times 10^{-34}}{\sqrt{1.383 \times 10^{-47}}} = \dfrac{6.626 \times 10^{-34}}{3.72 \times 10^{-24}}$
+
+$= 1.78 \times 10^{-10}$ m $= 1.78$ Å</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Apply Bragg's Law</h4>
+        <div class="calc">$2d\sin\phi = n\lambda$
+
+$d = \dfrac{n\lambda}{2\sin\phi} = \dfrac{1 \times 1.78}{2 \times \sin 30°} = \dfrac{1.78}{2 \times 0.5}$
+
+$d = 1.78$ Å</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$d = 1.78$ Å</div></div>
+      <div class="sol-insight">💡 The interplanar spacing equals the neutron wavelength here because $\sin 30° = 0.5$ and $n=1$. This is typical for crystal diffraction experiments.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">BG-2</span><span class="pval">10 kV</span> electrons are passed through a thin film of a metal with atomic spacing <span class="pval">d = 5.5 × 10⁻¹¹ m</span>. Find the angle of deviation of the first-order diffraction maximum.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Accelerating voltage</span><span class="val">$V = 10$ kV $= 10^4$ V</span></div>
+        <div class="row"><span class="lbl">Atomic spacing</span><span class="val">$d = 5.5 \times 10^{-11}$ m</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Electron Wavelength</h4>
+        <div class="calc">$\lambda = \dfrac{h}{\sqrt{2meV}} = \dfrac{6.626 \times 10^{-34}}{\sqrt{2 \times 9.11 \times 10^{-31} \times 1.602 \times 10^{-19} \times 10^4}}$
+
+$= \dfrac{6.626 \times 10^{-34}}{5.403 \times 10^{-23}} = 1.227 \times 10^{-11}$ m</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Bragg Diffraction</h4>
+        <div class="calc">$2d\sin\phi = n\lambda$
+
+$\sin\phi = \dfrac{\lambda}{2d} = \dfrac{1.227 \times 10^{-11}}{2 \times 5.5 \times 10^{-11}} = 0.1115$
+
+$\phi = 6.4°$
+
+Angle of deviation $= 2\phi = 12.8°$</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\phi = 6°24'$ &nbsp;|&nbsp; Deviation angle $= 12°48'$</div></div>
+      <div class="sol-insight">💡 High-energy electrons have very short wavelength (~0.12 Å), so they diffract at small angles. This is the basis of <b>electron diffraction</b> used in TEM to study crystal structures.</div>
+    </div></div>
+
+    <div class="stl">Planck's Oscillator Problem</div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PL-1</span>Calculate the average energy of an oscillator of frequency <span class="pval">ν = 5.6 × 10¹² Hz</span> at <span class="pval">T = 330 K</span>, treating it as (a) a classical oscillator, and (b) a Planck oscillator.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Frequency</span><span class="val">$\nu = 5.6 \times 10^{12}$ Hz</span></div>
+        <div class="row"><span class="lbl">Temperature</span><span class="val">$T = 330$ K</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Classical Average Energy</h4>
+        <p>In classical physics, average energy per oscillator = $kT$ (equipartition theorem):</p>
+        <div class="calc">$\langle E \rangle_{classical} = kT = 1.38 \times 10^{-23} \times 330$
+
+$= 4.554 \times 10^{-21}$ J</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Planck Average Energy</h4>
+        <div class="calc">$\langle E \rangle_{Planck} = \dfrac{h\nu}{e^{h\nu/kT} - 1}$
+
+$h\nu = 6.626 \times 10^{-34} \times 5.6 \times 10^{12} = 3.71 \times 10^{-21}$ J
+
+$\dfrac{h\nu}{kT} = \dfrac{3.71 \times 10^{-21}}{4.554 \times 10^{-21}} = 0.815$
+
+$\langle E \rangle = \dfrac{3.71 \times 10^{-21}}{e^{0.815} - 1} = \dfrac{3.71 \times 10^{-21}}{2.259 - 1} = \dfrac{3.71 \times 10^{-21}}{1.259}$
+
+$= 2.95 \times 10^{-21}$ J</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">Classical: $4.554 \times 10^{-21}$ J<br>Planck: $2.95 \times 10^{-21}$ J</div></div>
+      <div class="sol-insight">💡 <b>Planck's result is ~35% lower</b> than classical! At this frequency, quantum effects are already significant. The classical formula overestimates because it allows continuous energy exchange, while Planck restricts to discrete quanta $h\nu$.</div>
+    </div></div>
+
+    <div class="stl">Photoelectric Effect Problems (from Class Notes)</div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PE-1</span>Calculate the energy of a photon of sodium light of wavelength <span class="pval">λ = 5893 Å</span> in (a) joules and (b) electron volts.</div><div class="ps">
+      <div class="sol-step"><h4><span class="snum">1</span> Energy in Joules</h4>
+        <div class="calc">$E = \dfrac{hc}{\lambda} = \dfrac{6.626 \times 10^{-34} \times 3 \times 10^8}{5893 \times 10^{-10}} = 3.375 \times 10^{-19}$ J</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> In eV</h4>
+        <div class="calc">$E = 3.375 \times 10^{-19} / 1.6 \times 10^{-19} = 2.11$ eV</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$E = 3.375 \times 10^{-19}$ J $= 2.11$ eV</div></div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PE-2</span>What is the threshold wavelength for nickel whose work function is <span class="pval">W = 4.84 eV</span>?</div><div class="ps">
+      <div class="sol-step"><h4><span class="snum">1</span> Find Threshold Wavelength</h4>
+        <div class="calc">$W_0 = hc/\lambda_0$ → $\lambda_0 = hc/W_0$
+
+$= \dfrac{6.626 \times 10^{-34} \times 3 \times 10^8}{4.84 \times 1.6 \times 10^{-19}} = \dfrac{1.988 \times 10^{-25}}{7.744 \times 10^{-19}}$
+
+$= 2567$ Å</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\lambda_0 = 2567$ Å (UV region)</div></div>
+      <div class="sol-insight">💡 Nickel requires UV light (λ < 2567 Å) for photoelectric emission. Visible light (4000-7000 Å) won't work.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PE-3</span>Calculate the work function of sodium if its threshold wavelength is <span class="pval">λ₀ = 5040 Å</span>.</div><div class="ps">
+      <div class="sol-step"><h4><span class="snum">1</span> Work Function</h4>
+        <div class="calc">$W_0 = \dfrac{hc}{\lambda_0} = \dfrac{6.626 \times 10^{-34} \times 3 \times 10^8}{5040 \times 10^{-10}} = 3.94 \times 10^{-19}$ J $= 2.46$ eV</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$W_0 = 2.46$ eV</div></div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PE-4</span>The maximum energy of photoelectrons from a surface of work function <span class="pval">W = 2.2 eV</span> illuminated by monochromatic radiation is <span class="pval">KE_max = 0.8 eV</span>. Find the wavelength of incident light.</div><div class="ps">
+      <div class="sol-step"><h4><span class="snum">1</span> Use Einstein's Equation</h4>
+        <div class="calc">$\dfrac{hc}{\lambda} = W_0 + KE_{max} = 2.2 + 0.8 = 3.0$ eV
+
+$\lambda = \dfrac{hc}{3.0 \text{ eV}} = \dfrac{1240}{3.0} = 4133$ Å</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\lambda = 4133$ Å (violet light)</div></div>
+      <div class="sol-insight">💡 Quick trick: $\lambda$(Å) $= 12400/E$(eV). Here $E = 3.0$ eV → $\lambda = 4133$ Å.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PE-5</span>A photon of wavelength <span class="pval">λ = 3310 Å</span> falls on a photocathode and ejects an electron with maximum energy <span class="pval">KE_max = 3 × 10⁻¹⁹ J</span>. Calculate the work function of the cathode material.</div><div class="ps">
+      <div class="sol-step"><h4><span class="snum">1</span> Photon Energy</h4>
+        <div class="calc">$E = \dfrac{hc}{\lambda} = \dfrac{6.626 \times 10^{-34} \times 3 \times 10^8}{3310 \times 10^{-10}} = 6.0 \times 10^{-19}$ J</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Work Function</h4>
+        <div class="calc">$W_0 = h\nu - KE_{max} = 6.0 \times 10^{-19} - 3 \times 10^{-19} = 3 \times 10^{-19}$ J $= 1.875$ eV</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$W_0 = 3 \times 10^{-19}$ J $= 1.875$ eV</div></div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PE-6</span>Find the KE of photoelectrons from potassium (work function <span class="pval">W = 2.2 eV</span>) when UV light of <span class="pval">λ = 3200 Å</span> falls on it. Also find the threshold frequency.</div><div class="ps">
+      <div class="sol-step"><h4><span class="snum">1</span> Maximum KE</h4>
+        <div class="calc">$KE_{max} = \dfrac{hc}{\lambda} - W_0 = \dfrac{1240}{3200 \text{ (in nm)}} - 2.2$
+
+$= \dfrac{12400}{3200} - 2.2 = 3.875 - 2.2 = 1.675$ eV</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Threshold Frequency</h4>
+        <div class="calc">$\nu_0 = \dfrac{W_0}{h} = \dfrac{2.2 \times 1.6 \times 10^{-19}}{6.626 \times 10^{-34}} = 5.31 \times 10^{14}$ Hz</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$KE_{max} = 1.675$ eV &nbsp;|&nbsp; $\nu_0 = 5.31 \times 10^{14}$ Hz</div></div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PE-7</span>Does sodium (W = <span class="pval">2.3 eV</span>) show photoelectric effect for orange light <span class="pval">λ = 6800 Å</span>? What is the max KE if <span class="pval">λ = 2000 Å</span> light is used?</div><div class="ps">
+      <div class="sol-step"><h4><span class="snum">1</span> Threshold Wavelength of Sodium</h4>
+        <div class="calc">$\lambda_0 = \dfrac{hc}{W_0} = \dfrac{12400}{2.3} = 5391$ Å</div>
+        <p>Since orange light λ = 6800 Å > 5391 Å → <b>No photoelectric effect!</b></p>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> KE with λ = 2000 Å</h4>
+        <div class="calc">$KE_{max} = \dfrac{12400}{2000} - 2.3 = 6.2 - 2.3 = 3.9$ eV</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">Orange light: <b>No PE effect</b> (λ > λ₀)<br>UV (2000Å): $KE_{max} = 3.9$ eV</div></div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PE-8</span>The threshold frequency for copper is <span class="pval">ν₀ = 1.1 × 10¹⁵ Hz</span>. Find the max KE when light of <span class="pval">ν = 1.5 × 10¹⁵ Hz</span> falls on it. Also find the stopping potential.</div><div class="ps">
+      <div class="sol-step"><h4><span class="snum">1</span> Maximum KE</h4>
+        <div class="calc">$KE_{max} = h(\nu - \nu_0) = 6.626 \times 10^{-34} \times (1.5 - 1.1) \times 10^{15}$
+
+$= 6.626 \times 10^{-34} \times 4 \times 10^{14} = 2.65 \times 10^{-19}$ J $= 1.66$ eV</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Stopping Potential</h4>
+        <div class="calc">$eV_0 = KE_{max}$ → $V_0 = 1.66$ V</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$KE_{max} = 1.66$ eV &nbsp;|&nbsp; $V_0 = 1.66$ V</div></div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PE-9</span>The work function of sodium is <span class="pval">W = 2.27 eV</span>. Find the velocity of photoelectrons ejected by light of <span class="pval">λ = 4000 Å</span>.</div><div class="ps">
+      <div class="sol-step"><h4><span class="snum">1</span> Find KE</h4>
+        <div class="calc">$KE = \dfrac{hc}{\lambda} - W_0 = \dfrac{12400}{4000} - 2.27 = 3.1 - 2.27 = 0.83$ eV $= 1.33 \times 10^{-19}$ J</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Find Velocity</h4>
+        <div class="calc">$\frac{1}{2}mv^2 = 1.33 \times 10^{-19}$
+
+$v = \sqrt{\dfrac{2 \times 1.33 \times 10^{-19}}{9.1 \times 10^{-31}}} = \sqrt{2.923 \times 10^{11}}$
+
+$= 5.41 \times 10^5$ m/s</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$v = 5.41 \times 10^5$ m/s</div></div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PE-10</span>Calculate the max velocity of electrons from a metal of work function <span class="pval">W = 5 eV</span> irradiated by <span class="pval">λ = 161 nm</span>.</div><div class="ps">
+      <div class="sol-step"><h4><span class="snum">1</span> Find KE</h4>
+        <div class="calc">$KE = \dfrac{12400}{1610} - 5.0 = 7.70 - 5.0 = 2.70$ eV $= 4.32 \times 10^{-19}$ J</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Find Velocity</h4>
+        <div class="calc">$v = \sqrt{\dfrac{2 \times 4.32 \times 10^{-19}}{9.1 \times 10^{-31}}} = \sqrt{9.49 \times 10^{11}} = 9.74 \times 10^5$ m/s</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$v = 9.74 \times 10^5$ m/s $\approx 0.3\%$ of $c$</div></div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PE-11</span>The work function of target material is <span class="pval">W = 1.24 eV</span> and wavelength of incident light is <span class="pval">λ = 4360 Å</span>. Find the velocity of the photoelectron and the retarding potential.</div><div class="ps">
+      <div class="sol-step"><h4><span class="snum">1</span> Find KE</h4>
+        <div class="calc">$KE = \dfrac{12400}{4360} - 1.24 = 2.844 - 1.24 = 1.604$ eV $= 2.57 \times 10^{-19}$ J</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Velocity and Stopping Potential</h4>
+        <div class="calc">$v = \sqrt{\dfrac{2 \times 2.57 \times 10^{-19}}{9.1 \times 10^{-31}}} = 7.51 \times 10^5$ m/s
+
+Retarding potential $V_0 = KE/e = 1.604$ V</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$v = 7.51 \times 10^5$ m/s &nbsp;|&nbsp; $V_0 = 1.604$ V</div></div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PE-12</span>Stopping potential for gold cathode (<span class="pval">W = 4.80 eV</span>) when incident radiation has <span class="pval">λ = 2000 Å</span>.</div><div class="ps">
+      <div class="sol-step"><h4><span class="snum">1</span> Calculate Stopping Potential</h4>
+        <div class="calc">$eV_0 = h\nu - W_0 = \dfrac{hc}{\lambda} - W_0 = \dfrac{12400}{2000} - 4.80$
+
+$= 6.20 - 4.80 = 1.40$ eV
+
+$V_0 = 1.40$ V</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$V_0 = 1.40$ V</div></div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PE-13</span>What stopping potential is needed for nickel (<span class="pval">W = 5.01 eV</span>) irradiated by UV light of <span class="pval">λ = 20 nm</span>?</div><div class="ps">
+      <div class="sol-step"><h4><span class="snum">1</span> Calculate</h4>
+        <div class="calc">$V_0 = \dfrac{hc}{e\lambda} - \dfrac{W_0}{e} = \dfrac{12400}{200} - 5.01 = 62.0 - 5.01 = 57.0$ V</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$V_0 = 57.0$ V</div></div>
+      <div class="sol-insight">💡 Extreme UV (20 nm) photons carry 62 eV — enough to ionize most atoms! The huge stopping potential reflects the enormous photon energy.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PE-14</span>Light of <span class="pval">λ = 5893 Å</span> is incident on potassium. Stopping potential is <span class="pval">V₀ = 0.36 V</span>. Find KE_max, work function, and threshold frequency.</div><div class="ps">
+      <div class="sol-step"><h4><span class="snum">1</span> Maximum KE</h4>
+        <div class="calc">$KE_{max} = eV_0 = 0.36$ eV</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Work Function</h4>
+        <div class="calc">$W_0 = \dfrac{hc}{\lambda} - KE_{max} = \dfrac{12400}{5893} - 0.36 = 2.10 - 0.36 = 1.74$ eV</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">3</span> Threshold Frequency</h4>
+        <div class="calc">$\nu_0 = \dfrac{W_0}{h} = \dfrac{1.74 \times 1.6 \times 10^{-19}}{6.626 \times 10^{-34}} = 4.20 \times 10^{14}$ Hz</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$KE_{max} = 0.36$ eV &nbsp;|&nbsp; $W_0 = 1.74$ eV &nbsp;|&nbsp; $\nu_0 = 4.20 \times 10^{14}$ Hz</div></div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PE-15</span>Tungsten cathode (threshold <span class="pval">λ₀ = 2300 Å</span>) is irradiated by UV at <span class="pval">λ = 1800 Å</span>. Find (a) max KE of photoelectrons and (b) work function of tungsten.</div><div class="ps">
+      <div class="sol-step"><h4><span class="snum">1</span> Work Function</h4>
+        <div class="calc">$W_0 = \dfrac{12400}{2300} = 5.39$ eV</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Max KE</h4>
+        <div class="calc">$KE_{max} = \dfrac{12400}{1800} - 5.39 = 6.89 - 5.39 = 1.50$ eV</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$W_0 = 5.39$ eV &nbsp;|&nbsp; $KE_{max} = 1.50$ eV</div></div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PE-16</span>Electrons with zero velocity are emitted from a metal when <span class="pval">λ = 6800 Å</span>. Find the threshold frequency and work function.</div><div class="ps">
+      <div class="sol-step"><h4><span class="snum">1</span> Since KE = 0, this IS the threshold</h4>
+        <div class="calc">$\nu_0 = \dfrac{c}{\lambda_0} = \dfrac{3 \times 10^8}{6800 \times 10^{-10}} = 4.41 \times 10^{14}$ Hz
+
+$W_0 = h\nu_0 = \dfrac{12400}{6800} = 1.82$ eV</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\nu_0 = 4.41 \times 10^{14}$ Hz &nbsp;|&nbsp; $W_0 = 1.82$ eV</div></div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PE-17</span>UV light of wavelengths <span class="pval">800 Å</span> and <span class="pval">700 Å</span> liberate electrons with KE of <span class="pval">1.8 eV</span> and <span class="pval">4 eV</span> respectively. Find Planck's constant.</div><div class="ps">
+      <div class="sol-formula"><h4>📐 Strategy</h4>
+        <p style="font-size:.9rem;color:var(--tx2)">Two equations, two unknowns ($h$ and $W_0$). Subtract to eliminate $W_0$.</p>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Set Up Two Equations</h4>
+        <div class="calc">$hc/\lambda_1 - W_0 = 1.8$ eV ... (1)
+
+$hc/\lambda_2 - W_0 = 4.0$ eV ... (2)</div>
+        <p>Subtracting (1) from (2):</p>
+        <div class="calc">$hc\left(\frac{1}{\lambda_2} - \frac{1}{\lambda_1}\right) = 2.2$ eV
+
+$hc\left(\frac{1}{700} - \frac{1}{800}\right) \times 10^{10} = 2.2 \times 1.6 \times 10^{-19}$
+
+$h \times 3 \times 10^8 \times \frac{100}{560000} \times 10^{10} = 3.52 \times 10^{-19}$
+
+$h = 6.57 \times 10^{-34}$ J·s</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$h = 6.57 \times 10^{-34}$ J·s</div></div>
+      <div class="sol-insight">💡 <b>Classic exam problem!</b> Two PE measurements let you find $h$ without knowing $W_0$. The result is close to the accepted value $6.626 \times 10^{-34}$ — the small difference is due to rounding.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PE-18</span>Photoelectrons from a certain metal are stopped by voltages <span class="pval">V₁ = 6.6 V</span> and <span class="pval">V₂ = 16.5 V</span> for light of frequencies <span class="pval">ν₁ = 2.2 × 10¹⁵ Hz</span> and <span class="pval">ν₂ = 4.6 × 10¹⁵ Hz</span>. Find Planck's constant.</div><div class="ps">
+      <div class="sol-step"><h4><span class="snum">1</span> Subtract the two equations</h4>
+        <div class="calc">$eV_1 = h\nu_1 - W_0$ → $e(6.6) = h(2.2 \times 10^{15}) - W_0$
+$eV_2 = h\nu_2 - W_0$ → $e(16.5) = h(4.6 \times 10^{15}) - W_0$
+
+Subtracting: $e(16.5 - 6.6) = h(4.6 - 2.2) \times 10^{15}$
+
+$h = \dfrac{9.9 \times 1.602 \times 10^{-19}}{2.4 \times 10^{15}} = 6.61 \times 10^{-34}$ J·s</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$h = 6.61 \times 10^{-34}$ J·s</div></div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PE-19</span>X-ray spectrum of a <span class="pval">50 kV</span> tube has minimum wavelength <span class="pval">λ_min = 0.257 Å</span>. Find Planck's constant.</div><div class="ps">
+      <div class="sol-step"><h4><span class="snum">1</span> At λ_min, ALL electron energy converts to photon</h4>
+        <div class="calc">$eV = \dfrac{hc}{\lambda_{min}}$ → $h = \dfrac{eV\lambda_{min}}{c}$
+
+$= \dfrac{1.6 \times 10^{-19} \times 50 \times 10^3 \times 0.257 \times 10^{-10}}{3 \times 10^8}$
+
+$= 6.85 \times 10^{-34}$ J·s</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$h \approx 6.85 \times 10^{-34}$ J·s</div></div>
+      <div class="sol-insight">💡 The minimum wavelength (maximum photon energy) in an X-ray tube occurs when the electron's entire kinetic energy converts to a single photon. This is called the <b>Duane-Hunt limit</b>.</div>
+    </div></div>
+
+  </div>
+
+  <!-- M1: QUICK REF -->
+  <div class="tp" id="m1q">
+    <div class="qrg">
+      <div class="qrc"><h4>Compton</h4><div class="qrr"><span class="qrl">Shift</span><span class="qrv">Δλ=0.02426(1−cosθ) Å</span></div><div class="qrr"><span class="qrl">Max Δλ</span><span class="qrv">0.04852 Å (θ=180°)</span></div><div class="qrr"><span class="qrl">At 90°</span><span class="qrv">0.02426 Å</span></div></div>
+      <div class="qrc"><h4>de Broglie</h4><div class="qrr"><span class="qrl">General</span><span class="qrv">λ=h/p=h/mv</span></div><div class="qrr"><span class="qrl">Electrons</span><span class="qrv">λ=12.26/√V Å</span></div><div class="qrr"><span class="qrl">With KE</span><span class="qrv">λ=h/√(2mKE)</span></div></div>
+      <div class="qrc"><h4>Uncertainty</h4><div class="qrr"><span class="qrl">Pos-Mom</span><span class="qrv">Δx·Δp≥h/4π</span></div><div class="qrr"><span class="qrl">E-Time</span><span class="qrv">ΔE·Δt≥h/4π</span></div></div>
+      <div class="qrc"><h4>Constants</h4><div class="qrr"><span class="qrl">h</span><span class="qrv">6.626×10⁻³⁴ J·s</span></div><div class="qrr"><span class="qrl">mₑ</span><span class="qrv">9.1×10⁻³¹ kg</span></div><div class="qrr"><span class="qrl">e</span><span class="qrv">1.6×10⁻¹⁹ C</span></div><div class="qrr"><span class="qrl">c</span><span class="qrv">3×10⁸ m/s</span></div><div class="qrr"><span class="qrl">ℏ</span><span class="qrv">1.054×10⁻³⁴ J·s</span></div></div>
+    </div>
+    <div class="exb"><h4>🎯 Exam Strategy — Module 1</h4><ul><li><b>10-mark derivation:</b> Schrödinger time-independent equation — show all 4 steps clearly</li><li><b>5-mark theory:</b> Compton effect + significance OR Davisson-Germer experiment</li><li><b>8-mark numericals:</b> One from Compton + one from HUP is expected</li><li><b>Unit conversion:</b> Always convert Å to m before plugging into formulas</li></ul></div>
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════════════╗
+     ║  MODULE 2: APPLICATIONS OF QUANTUM MECHANICS            ║
+     ╚══════════════════════════════════════════════════════════╝ -->
+<div class="mp m2p" id="mod1">
+  <div class="ph"><div class="bg">MODULE 2 · APPLICATIONS OF QUANTUM MECHANICS</div><h1>🔬 Quantum Applications</h1><p>Solving real problems with the Schrödinger equation — 1D box, tunnelling, nanotechnology</p></div>
+  <div class="ct">
+    <button class="ctb on" onclick="goTab(this,'m2c')">📖 Concepts</button>
+    <button class="ctb" onclick="goTab(this,'m2f')">📐 Formulas</button>
+    <button class="ctb" onclick="goTab(this,'m2d')">📝 1D Box Derivation</button>
+    <button class="ctb" onclick="goTab(this,'m2n')">🔢 Numericals</button>
+  </div>
+
+  <div class="tp on" id="m2c">
+    <div class="cd op"><div class="cdh" onclick="tCard(this)"><h3>📦 Particle in 1D Infinite Potential Well</h3><span class="tg tgh">★★ Most Important</span><span class="chv">▶</span></div><div class="cdb">
+      <p>The simplest quantum system: a particle trapped between two impenetrable walls at $x = 0$ and $x = L$. The potential is zero inside the box and infinite outside (the particle can NEVER escape).</p>
+      <p><b>What happens:</b> The boundary conditions ($\psi = 0$ at walls) force the wave function to be standing waves — only certain wavelengths "fit." This directly leads to <b>quantized energy levels</b>.</p>
+      <div class="fb"><div class="fl">Energy Eigenvalues</div>$$E_n = \frac{n^2 h^2}{8mL^2} = n^2 E_1 \qquad n = 1, 2, 3, \ldots$$<p style="margin-top:8px">Ground state ($n=1$): $E_1 = h^2/(8mL^2)$ — the <b>zero-point energy</b>. The particle is NEVER at rest!</p></div>
+      <div class="fb"><div class="fl">Wave Functions</div>$$\psi_n(x) = \sqrt{\frac{2}{L}}\sin\!\left(\frac{n\pi x}{L}\right) \qquad 0 \leq x \leq L$$<p style="margin-top:8px">Probability density: $|\psi_n|^2 = \frac{2}{L}\sin^2\!\left(\frac{n\pi x}{L}\right)$</p></div>
+      <p><b>Key features:</b></p>
+      <ul>
+        <li>$n = 1$: One half-wave fits → max probability at center ($x = L/2$)</li>
+        <li>$n = 2$: Two half-waves → max at $L/4$ and $3L/4$; ZERO probability at $L/2$ (node)</li>
+        <li>Spacing grows: $E_2 - E_1 = 3E_1$; $E_3 - E_2 = 5E_1$; $E_4 - E_3 = 7E_1$</li>
+      </ul>
+    </div></div>
+
+    <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>🚇 Quantum Tunnelling</h3><span class="tg tgh">★ Theory + Numerical</span><span class="chv">▶</span></div><div class="cdb">
+      <p>Imagine throwing a ball at a hill that's taller than your throwing energy. Classical physics says: the ball bounces back, always. Quantum mechanics says: there's a non-zero probability the ball <b>appears on the other side</b>!</p>
+      <p>This is <b>quantum tunnelling</b> — the wave function doesn't drop to zero at the barrier; it <b>decays exponentially</b> through it. If the barrier is thin enough, there's a surviving wave on the other side.</p>
+      <div class="fb"><div class="fl">Transmission Coefficient</div>$$T \approx e^{-2\kappa L} \qquad \kappa = \frac{\sqrt{2m(V_0 - E)}}{\hbar}$$<p style="margin-top:8px">$L$ = barrier width, $V_0$ = barrier height, $E$ = particle energy ($E < V_0$)</p><p>$T$ increases when: barrier is thinner (smaller $L$), $E$ is closer to $V_0$, particle is lighter (smaller $m$)</p></div>
+      <p><b>Applications:</b> Alpha decay, tunnel diodes, Josephson junctions, flash memory, and most importantly for exams — the <b>Scanning Tunnelling Microscope (STM)</b>.</p>
+    </div></div>
+
+    <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>🔭 Scanning Tunnelling Microscope (STM)</h3><span class="tg tgi">4-5 marks</span><span class="chv">▶</span></div><div class="cdb">
+      <p><b>Principle:</b> A sharp metallic tip is brought within ~1 nm of a conducting surface. Electrons tunnel across the vacuum gap → a measurable "tunnelling current" flows.</p>
+      <div class="fb"><div class="fl">STM Current</div>$$I \propto e^{-2\kappa d}$$<p style="margin-top:6px">A change of just 0.1 nm in gap $d$ changes current by a factor of ~10!</p></div>
+      <p><b>Working modes:</b></p>
+      <ul>
+        <li><b>Constant current mode:</b> Feedback loop adjusts tip height to maintain constant $I$ → height map = surface image</li>
+        <li><b>Constant height mode:</b> Tip height fixed, $I$ varies → faster but risky for rough surfaces</li>
+      </ul>
+      <p><b>Resolution:</b> ~0.01 nm vertical, ~0.1 nm lateral — can image <b>individual atoms!</b></p>
+      <p><b>Nobel Prize 1986:</b> Binnig &amp; Rohrer</p>
+    </div></div>
+
+    <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>⚛ Quantum Confinement &amp; Nanostructures</h3><span class="tg tgi">Theory</span><span class="chv">▶</span></div><div class="cdb">
+      <p>When a material's size becomes comparable to the electron's de Broglie wavelength (~1-10 nm), electrons become <b>confined</b> and energy levels become <b>discrete</b> instead of forming continuous bands.</p>
+      <table class="ctbl"><tr><th>Structure</th><th>Confined In</th><th>Free In</th><th>Example</th></tr><tr><td>Quantum Well (2D)</td><td>1 direction</td><td>2 directions</td><td>Thin film, MOS channel</td></tr><tr><td>Quantum Wire (1D)</td><td>2 directions</td><td>1 direction</td><td>Carbon nanotube</td></tr><tr><td>Quantum Dot (0D)</td><td>All 3 directions</td><td>None</td><td>CdSe nanocrystal</td></tr></table>
+      <p><b>Consequences:</b></p>
+      <ul>
+        <li><b>Bandgap increases</b> as size decreases → blue shift in emission</li>
+        <li><b>Quantum dots</b> emit different colors depending on size — same material!</li>
+        <li><b>Surface-to-volume ratio</b> increases drastically → enhanced reactivity</li>
+        <li>Melting point decreases; mechanical strength can increase</li>
+      </ul>
+    </div></div>
+  </div>
+
+  <div class="tp" id="m2f">
+    <div class="fb"><div class="fl">Energy Eigenvalues (1D Box)</div>$$E_n = \frac{n^2 h^2}{8mL^2} = n^2 E_1 \qquad n = 1, 2, 3, \ldots$$</div>
+    <div class="fb"><div class="fl">Normalized Wave Function</div>$$\psi_n(x) = \sqrt{\frac{2}{L}}\sin\!\left(\frac{n\pi x}{L}\right) \qquad |\psi_n|^2 = \frac{2}{L}\sin^2\!\left(\frac{n\pi x}{L}\right)$$</div>
+    <div class="fb"><div class="fl">Tunnelling Coefficient</div>$$T \approx e^{-2\kappa L} \qquad \kappa = \frac{\sqrt{2m(V_0-E)}}{\hbar}$$</div>
+    <div class="fb"><div class="fl">STM Current</div>$$I \propto e^{-2\kappa d} \qquad \kappa = \frac{\sqrt{2m\phi}}{\hbar}$$</div>
+  </div>
+
+  <div class="tp" id="m2d">
+    <div class="stl">Particle in 1D Infinite Potential Well — Full Derivation ⭐⭐</div>
+    <div class="ib"><b>Setup:</b> Particle of mass $m$ in a box of length $L$. Potential $V = 0$ inside ($0 < x < L$), $V = \infty$ outside. Boundary conditions: $\psi(0) = 0$ and $\psi(L) = 0$.</div>
+    <div class="sr"><div class="sl"><span class="sn">Step 1</span><span class="sd">Write TISE inside box</span></div><div class="sc"><p>Inside the box, $V = 0$, so the TISE becomes:</p>$$\frac{d^2\psi}{dx^2} + \frac{2mE}{\hbar^2}\psi = 0$$<p>Define $k^2 = 2mE/\hbar^2$ to get: $\psi'' + k^2\psi = 0$</p></div></div>
+    <div class="sr"><div class="sl"><span class="sn">Step 2</span><span class="sd">General solution</span></div><div class="sc">$$\psi(x) = A\sin(kx) + B\cos(kx)$$</div></div>
+    <div class="sr"><div class="sl"><span class="sn">Step 3</span><span class="sd">Apply BC: $\psi(0) = 0$</span></div><div class="sc">$$\psi(0) = A\sin(0) + B\cos(0) = B = 0$$<p>Therefore: $\psi(x) = A\sin(kx)$</p></div></div>
+    <div class="sr"><div class="sl"><span class="sn">Step 4</span><span class="sd">Apply BC: $\psi(L) = 0$</span></div><div class="sc">$$A\sin(kL) = 0$$<p>Since $A \neq 0$ (that would mean no particle): $\sin(kL) = 0$ → $kL = n\pi$ → $k = n\pi/L$</p></div></div>
+    <div class="sr"><div class="sl"><span class="sn">Step 5</span><span class="sd">Energy eigenvalues</span></div><div class="sc"><p>From $k^2 = 2mE/\hbar^2$ and $k = n\pi/L$:</p>$$E_n = \frac{k^2\hbar^2}{2m} = \frac{n^2\pi^2\hbar^2}{2mL^2}$$<p>Since $\hbar = h/(2\pi)$: $\pi^2\hbar^2 = h^2/(4)$</p></div></div>
+    <div class="rb pu"><div class="rl">✦ Energy Eigenvalues</div>$$\boxed{E_n = \frac{n^2 h^2}{8mL^2}} \qquad n = 1, 2, 3, \ldots$$</div>
+    <div class="sr"><div class="sl"><span class="sn">Step 6</span><span class="sd">Normalization</span></div><div class="sc"><p>Find $A$ using: $\int_0^L |\psi|^2 dx = 1$</p>$$A^2 \int_0^L \sin^2\!\left(\frac{n\pi x}{L}\right)dx = A^2 \cdot \frac{L}{2} = 1 \implies A = \sqrt{\frac{2}{L}}$$</div></div>
+    <div class="rb gn"><div class="rl">✦ Normalized Wave Function</div>$$\boxed{\psi_n(x) = \sqrt{\frac{2}{L}}\sin\!\left(\frac{n\pi x}{L}\right)}$$</div>
+  </div>
+
+  <div class="tp" id="m2n">
+    <div class="stl">1D Box Problems</div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">1D-1</span>An electron is confined in a 1D box of length <span class="pval">L = 2 Å</span>. Find the energy of the first three levels (n = 1, 2, 3) in eV.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Box length</span><span class="val">$L = 2$ Å $= 2 \times 10^{-10}$ m</span></div>
+        <div class="row"><span class="lbl">Particle</span><span class="val">Electron ($m = 9.1 \times 10^{-31}$ kg)</span></div>
+        <div class="row"><span class="lbl">Find</span><span class="val">$E_1$, $E_2$, $E_3$ in eV</span></div>
+      </div>
+      <div class="sol-formula"><h4>📐 Formula to Use</h4>
+        $$E_n = \frac{n^2 h^2}{8mL^2}$$
+        <div class="why">💡 Strategy: First find $E_1$, then use $E_n = n^2 E_1$ to get $E_2$ and $E_3$ quickly.</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Calculate the Ground State Energy $E_1$</h4>
+        <p>Numerator: $h^2$</p>
+        <div class="calc">$h^2 = (6.626 \times 10^{-34})^2 = 4.39 \times 10^{-67}$ J²·s²</div>
+        <p>Denominator: $8mL^2$</p>
+        <div class="calc">$8mL^2 = 8 \times 9.1 \times 10^{-31} \times (2 \times 10^{-10})^2$
+
+$= 8 \times 9.1 \times 10^{-31} \times 4 \times 10^{-20}$
+
+$= 291.2 \times 10^{-51}$
+
+$= 2.912 \times 10^{-49}$</div>
+        <p>Therefore:</p>
+        <div class="calc">$E_1 = \dfrac{4.39 \times 10^{-67}}{2.912 \times 10^{-49}}$
+
+$= 1.508 \times 10^{-18}$ J</div>
+        <p>Convert to eV (divide by $1.6 \times 10^{-19}$):</p>
+        <div class="calc">$E_1 = \dfrac{1.508 \times 10^{-18}}{1.6 \times 10^{-19}} = 9.42$ eV</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Find $E_2$ and $E_3$</h4>
+        <p>Using $E_n = n^2 E_1$:</p>
+        <div class="calc">$E_2 = 2^2 \times E_1 = 4 \times 9.42 = 37.68$ eV
+
+$E_3 = 3^2 \times E_1 = 9 \times 9.42 = 84.78$ eV</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$E_1 = 9.42$ eV &nbsp;|&nbsp; $E_2 = 37.68$ eV &nbsp;|&nbsp; $E_3 = 84.78$ eV</div></div>
+      <div class="sol-insight">💡 The energy spacing grows as $n$ increases: $E_2 - E_1 = 28.26$ eV, $E_3 - E_2 = 47.1$ eV. Unlike a harmonic oscillator (equally spaced), the particle-in-a-box has <b>increasing gaps</b>.</div>
+    </div></div>
+
+    <div class="stl">Tunnelling Problems</div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">TUN-1</span>An electron with energy <span class="pval">E = 5 eV</span> encounters a potential barrier of height <span class="pval">V₀ = 10 eV</span> and width <span class="pval">L = 1 Å</span>. Find the tunnelling probability.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Particle energy</span><span class="val">$E = 5$ eV $= 8 \times 10^{-19}$ J</span></div>
+        <div class="row"><span class="lbl">Barrier height</span><span class="val">$V_0 = 10$ eV $= 16 \times 10^{-19}$ J</span></div>
+        <div class="row"><span class="lbl">Barrier width</span><span class="val">$L = 1$ Å $= 10^{-10}$ m</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Calculate the Decay Constant $\kappa$</h4>
+        <p>First find $(V_0 - E)$:</p>
+        <div class="calc">$V_0 - E = 10 - 5 = 5$ eV $= 5 \times 1.6 \times 10^{-19} = 8 \times 10^{-19}$ J</div>
+        <p>Now calculate $\kappa$:</p>
+        <div class="calc">$\kappa = \dfrac{\sqrt{2m(V_0 - E)}}{\hbar}$
+
+$= \dfrac{\sqrt{2 \times 9.1 \times 10^{-31} \times 8 \times 10^{-19}}}{1.054 \times 10^{-34}}$
+
+$= \dfrac{\sqrt{14.56 \times 10^{-49}}}{1.054 \times 10^{-34}}$
+
+$= \dfrac{1.207 \times 10^{-24}}{1.054 \times 10^{-34}}$
+
+$= 1.145 \times 10^{10}$ m⁻¹</div>
+        <div class="why">💡 This $\kappa$ tells us how quickly the wave function decays inside the barrier. Larger $\kappa$ → faster decay → less tunnelling.</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Calculate the Transmission Coefficient</h4>
+        <div class="calc">$2\kappa L = 2 \times 1.145 \times 10^{10} \times 10^{-10} = 2.29$
+
+$T = e^{-2\kappa L} = e^{-2.29} = 0.101$</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$T \approx 0.101 = 10.1\%$</div></div>
+      <div class="sol-insight">💡 <b>A 10% chance of tunnelling through!</b> That's shockingly high. This is because the barrier is very thin (1 Å) and the electron is light. If we used a proton (1836× heavier), $\kappa$ would be ~43× larger and $T$ would be essentially zero.</div>
+    </div></div>
+
+    <div class="stl">More 1D Box Problems (from Class Notes)</div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">1D-2</span>Find the least energy of an electron in a 1D infinite potential box of width <span class="pval">a = 1 Å</span>.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Box width</span><span class="val">$a = 1$ Å $= 10^{-10}$ m</span></div>
+        <div class="row"><span class="lbl">Particle</span><span class="val">Electron ($m = 9.11 \times 10^{-31}$ kg)</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Ground State Energy (n=1)</h4>
+        <div class="calc">$E_1 = \dfrac{h^2}{8ma^2} = \dfrac{(6.63 \times 10^{-34})^2}{8 \times 9.11 \times 10^{-31} \times (10^{-10})^2}$
+
+$= \dfrac{4.396 \times 10^{-67}}{7.288 \times 10^{-50}}$
+
+$= 6.03 \times 10^{-18}$ J</div>
+        <p>Convert to eV:</p>
+        <div class="calc">$E_1 = \dfrac{6.03 \times 10^{-18}}{1.6 \times 10^{-19}} = 37.7$ eV</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$E_1 \approx 37.7$ eV</div></div>
+      <div class="sol-insight">💡 Compare with 1D-1 where L=2Å → E₁=9.42 eV. Halving the box size quadrupled the energy (since $E \propto 1/L^2$). Smaller confinement = higher energy — this is quantum confinement in action!</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">1D-3</span>An electron is bound by a potential which closely approximates an infinite square well of width <span class="pval">a = 2.5 × 10⁻¹⁰ m</span>. Calculate the lowest three permissible quantum energies.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Box width</span><span class="val">$a = 2.5 \times 10^{-10}$ m</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Calculate E₁</h4>
+        <div class="calc">$E_1 = \dfrac{h^2}{8ma^2} = \dfrac{(6.63 \times 10^{-34})^2}{8 \times 9.11 \times 10^{-31} \times (2.5 \times 10^{-10})^2}$
+
+$= \dfrac{4.396 \times 10^{-67}}{4.555 \times 10^{-49}}$
+
+$= 9.65 \times 10^{-19}$ J $= 6.03$ eV</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Calculate E₂ and E₃</h4>
+        <div class="calc">$E_2 = 4 \times E_1 = 4 \times 6.03 = 24.1$ eV
+
+$E_3 = 9 \times E_1 = 9 \times 6.03 = 54.3$ eV</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$E_1 = 6.03$ eV &nbsp;|&nbsp; $E_2 = 24.1$ eV &nbsp;|&nbsp; $E_3 = 54.3$ eV</div></div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">1D-4</span>An electron is confined between two rigid walls separated by <span class="pval">a = 10⁻⁹ m</span>. Find the de Broglie wavelengths representing the first three allowed energy states and the corresponding energies.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Box width</span><span class="val">$a = 10^{-9}$ m = 10 Å</span></div>
+      </div>
+      <div class="sol-formula"><h4>📐 Formula to Use</h4>
+        <p style="font-size:.9rem;color:var(--tx2)">Standing wave condition: $a = n\lambda/2$ → $\lambda_n = 2a/n$</p>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Find Wavelengths</h4>
+        <div class="calc">$\lambda_1 = \dfrac{2a}{1} = 2 \times 10^{-9}$ m $= 20$ Å
+
+$\lambda_2 = \dfrac{2a}{2} = 10^{-9}$ m $= 10$ Å
+
+$\lambda_3 = \dfrac{2a}{3} = 6.67 \times 10^{-10}$ m $= 6.67$ Å</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Find Corresponding Energies</h4>
+        <div class="calc">$E_n = \dfrac{n^2 h^2}{8ma^2}$
+
+$E_1 = \dfrac{(6.63 \times 10^{-34})^2}{8 \times 9.11 \times 10^{-31} \times (10^{-9})^2} = 6.04 \times 10^{-20}$ J $= 0.38$ eV
+
+$E_2 = 4 \times 0.38 = 1.52$ eV
+
+$E_3 = 9 \times 0.38 = 3.42$ eV</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\lambda_1 = 20$ Å, $E_1 = 0.38$ eV<br>$\lambda_2 = 10$ Å, $E_2 = 1.52$ eV<br>$\lambda_3 = 6.67$ Å, $E_3 = 3.42$ eV</div></div>
+      <div class="sol-insight">💡 Notice: as $n$ increases, $\lambda$ decreases and $E$ increases. The wavelengths follow the pattern of standing waves — exactly $n$ half-wavelengths fit inside the box.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">1D-5</span>A particle in a 1D box of width <span class="pval">a = 0.2 nm</span> has energy <span class="pval">E = 230 eV</span> and its eigenfunction has <span class="pval">5 antinodes</span>. Find the mass of the particle and show that it can never have energy equal to 1 keV.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Box width</span><span class="val">$a = 0.2 \times 10^{-9}$ m</span></div>
+        <div class="row"><span class="lbl">Energy</span><span class="val">$E_5 = 230$ eV (5 antinodes → n=5)</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Find E₁ from E₅</h4>
+        <p>5 antinodes means $n = 5$:</p>
+        <div class="calc">$E_5 = 25 \times E_1$
+
+$E_1 = \dfrac{230}{25} = 9.2$ eV $= 9.2 \times 1.6 \times 10^{-19} = 14.72 \times 10^{-19}$ J</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Find Mass</h4>
+        <div class="calc">$E_1 = \dfrac{h^2}{8ma^2}$ → $m = \dfrac{h^2}{8E_1 a^2}$
+
+$m = \dfrac{(6.63 \times 10^{-34})^2}{8 \times 14.72 \times 10^{-19} \times (0.2 \times 10^{-9})^2}$
+
+$= \dfrac{4.396 \times 10^{-67}}{8 \times 14.72 \times 10^{-19} \times 4 \times 10^{-20}}$
+
+$= \dfrac{4.396 \times 10^{-67}}{4.71 \times 10^{-37}}$
+
+$= 9.3 \times 10^{-31}$ kg</div>
+        <div class="why">💡 This is very close to the electron mass (9.1 × 10⁻³¹ kg) — confirming the particle is likely an electron!</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">3</span> Can the Particle Have E = 1 keV?</h4>
+        <div class="calc">$E_n = n^2 E_1 = 1000$ eV
+
+$n^2 = \dfrac{1000}{9.2} = 108.7$
+
+$n = \sqrt{108.7} = 10.4$</div>
+        <p>Since $n$ must be a <b>positive integer</b> and 10.4 is NOT an integer:</p>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$m \approx 9.3 \times 10^{-31}$ kg (electron)<br>$E = 1$ keV is <b>NOT a permitted energy</b> (n = 10.4 is not an integer)</div></div>
+      <div class="sol-insight">💡 <b>Energy quantization means only specific energies are allowed!</b> The particle can have $E_{10} = 920$ eV or $E_{11} = 1113$ eV, but nothing in between.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">1D-6</span>An electron is in a 1D box of width <span class="pval">a = 25 Å</span> in the ground state. Find the probability of finding the electron in a region <span class="pval">Δx = 5 Å</span> at the center of the box.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Box width</span><span class="val">$a = 25$ Å</span></div>
+        <div class="row"><span class="lbl">Region</span><span class="val">$\Delta x = 5$ Å (at center of box)</span></div>
+        <div class="row"><span class="lbl">State</span><span class="val">Ground state ($n = 1$)</span></div>
+      </div>
+      <div class="sol-formula"><h4>📐 Formula to Use</h4>
+        <p style="font-size:.9rem;color:var(--tx2)">For $\Delta x \ll a$, approximate probability:</p>
+        $$P \approx |\psi_n(x_0)|^2 \cdot \Delta x = \frac{2}{a}\sin^2\!\left(\frac{n\pi x_0}{a}\right) \cdot \Delta x$$
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Evaluate at Center ($x_0 = a/2$, $n = 1$)</h4>
+        <div class="calc">$P = \dfrac{2}{a}\sin^2\!\left(\dfrac{\pi \cdot a/2}{a}\right) \cdot \Delta x$
+
+$= \dfrac{2}{a}\sin^2\!\left(\dfrac{\pi}{2}\right) \cdot \Delta x$
+
+$= \dfrac{2}{a} \times 1 \times \Delta x$
+
+$= \dfrac{2 \times 5}{25} = 0.4$</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$P = 0.4 = 40\%$</div></div>
+      <div class="sol-insight">💡 In the ground state (n=1), the probability is maximum at the center ($\sin^2(\pi/2) = 1$). 40% chance of finding the electron in just 20% of the box width — the electron "prefers" the center!</div>
+    </div></div>
+
+    <div class="stl">Normalization Problem</div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">1D-N</span>A particle in a 1D box of length L has wave function $\psi = A\sin(\pi x/L)$. Find the normalization constant A.</div><div class="ps">
+      <div class="sol-formula"><h4>📐 Normalization Condition</h4>
+        $$\int_0^L |\psi|^2 dx = 1$$
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Apply Normalization</h4>
+        <div class="calc">$A^2 \int_0^L \sin^2\!\left(\frac{\pi x}{L}\right) dx = 1$
+
+Using $\int_0^L \sin^2(\pi x/L)\,dx = L/2$:
+
+$A^2 \cdot \frac{L}{2} = 1$
+
+$A = \sqrt{\frac{2}{L}}$</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$A = \sqrt{2/L}$</div></div>
+      <div class="sol-insight">💡 This is the standard normalization constant for all particle-in-a-box wave functions. It ensures the total probability of finding the particle somewhere inside the box is exactly 1.</div>
+    </div></div>
+
+    <div class="stl">3D Box Problem</div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">3D-1</span>An electron is in a rectangular box with widths <span class="pval">Lx = 800 pm</span>, <span class="pval">Ly = 1600 pm</span>, and <span class="pval">Lz = 400 pm</span>. Find the ground-state energy in eV.</div><div class="ps">
+      <div class="sol-formula"><h4>📐 3D Box Energy</h4>
+        $$E_{n_x,n_y,n_z} = \frac{h^2}{8m}\left(\frac{n_x^2}{L_x^2} + \frac{n_y^2}{L_y^2} + \frac{n_z^2}{L_z^2}\right)$$
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Ground State (n_x = n_y = n_z = 1)</h4>
+        <div class="calc">$E_{1,1,1} = \dfrac{h^2}{8m}\left(\dfrac{1}{L_x^2} + \dfrac{1}{L_y^2} + \dfrac{1}{L_z^2}\right)$
+
+$= \dfrac{(6.626 \times 10^{-34})^2}{8 \times 9.11 \times 10^{-31}}\left(\dfrac{1}{(800 \times 10^{-12})^2} + \dfrac{1}{(1600 \times 10^{-12})^2} + \dfrac{1}{(400 \times 10^{-12})^2}\right)$
+
+$= 6.024 \times 10^{-38} \times (1.5625 + 0.3906 + 6.25) \times 10^{18}$
+
+$= 6.024 \times 10^{-38} \times 8.203 \times 10^{18}$
+
+$= 4.94 \times 10^{-19}$ J $= 3.09$ eV</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$E_{ground} = 3.09$ eV</div></div>
+      <div class="sol-insight">💡 The smallest dimension ($L_z = 400$ pm) contributes the most to energy ($\propto 1/L^2$). Confinement in the smallest direction dominates the ground state energy.</div>
+    </div></div>
+
+    <div class="stl">Additional Tunnelling Problems</div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">TUN-2</span>Electrons with energy <span class="pval">E = 3 eV</span> hit a barrier of height <span class="pval">V₀ = 30 eV</span> and width <span class="pval">L = 2 nm</span>. Find the transmission probability. How is it affected if the barrier width is doubled?</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Particle energy</span><span class="val">$E = 3$ eV $= 4.8 \times 10^{-19}$ J</span></div>
+        <div class="row"><span class="lbl">Barrier height</span><span class="val">$V_0 = 30$ eV $= 48 \times 10^{-19}$ J</span></div>
+        <div class="row"><span class="lbl">Barrier width</span><span class="val">$L = 2$ nm $= 2 \times 10^{-9}$ m</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Calculate κ</h4>
+        <div class="calc">$\kappa = \dfrac{\sqrt{2m(V_0 - E)}}{\hbar} = \dfrac{\sqrt{2 \times 9.1 \times 10^{-31} \times 27 \times 1.6 \times 10^{-19}}}{1.054 \times 10^{-34}}$
+
+$= \dfrac{\sqrt{2 \times 9.1 \times 10^{-31} \times 4.32 \times 10^{-18}}}{1.054 \times 10^{-34}}$
+
+$= \dfrac{\sqrt{7.862 \times 10^{-48}}}{1.054 \times 10^{-34}} = \dfrac{2.804 \times 10^{-24}}{1.054 \times 10^{-34}}$
+
+$= 2.66 \times 10^{10}$ m⁻¹</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Transmission for L = 2 nm</h4>
+        <div class="calc">$2\kappa L = 2 \times 2.66 \times 10^{10} \times 2 \times 10^{-9} = 106.4$
+
+$T = e^{-106.4} \approx 10^{-46}$</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">3</span> Effect of Doubling Width (L = 4 nm)</h4>
+        <div class="calc">$2\kappa L = 212.8$
+
+$T = e^{-212.8} \approx 10^{-92}$</div>
+        <div class="why">💡 Doubling the barrier width squares $T$ in the exponent — it reduces from $10^{-46}$ to $10^{-92}$!</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$L = 2$ nm: $T \approx 10^{-46}$ (essentially zero)<br>$L = 4$ nm: $T \approx 10^{-92}$ (even more zero!)</div></div>
+      <div class="sol-insight">💡 <b>Compare with TUN-1</b> (V₀=10eV, L=1Å → T=10%). Here the barrier is 30× higher and 20× wider, so tunnelling is negligible. Tunnelling is exponentially sensitive to both barrier height and width.</div>
+    </div></div>
+
+  </div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════════════╗
+     ║  MODULE 3: LASERS                                       ║
+     ╚══════════════════════════════════════════════════════════╝ -->
+<div class="mp m3p" id="mod2">
+  <div class="ph"><div class="bg">MODULE 3 · LASER</div><h1>💡 LASER Physics</h1><p>Light Amplification by Stimulated Emission of Radiation</p></div>
+  <div class="ct">
+    <button class="ctb on" onclick="goTab(this,'m3c')">📖 Concepts</button>
+    <button class="ctb" onclick="goTab(this,'m3f')">📐 Formulas</button>
+    <button class="ctb" onclick="goTab(this,'m3l')">🔴 Laser Types</button>
+    <button class="ctb" onclick="goTab(this,'m3d')">📝 Einstein Derivation</button>
+    <button class="ctb" onclick="goTab(this,'m3n')">🔢 Numericals</button>
+  </div>
+
+  <div class="tp on" id="m3c">
+    <div class="cd op"><div class="cdh" onclick="tCard(this)"><h3>✨ Four Unique Properties of Laser Light</h3><span class="tg tgi">Short Theory</span><span class="chv">▶</span></div><div class="cdb">
+      <p>Laser light is fundamentally different from ordinary light (bulb, sun) in four key ways:</p>
+      <p><b>1. Monochromaticity:</b> Laser emits an extremely pure single wavelength. Spectral linewidth $\Delta\nu$ can be as narrow as 100 Hz (vs $\sim 10^{14}$ Hz for sunlight).</p>
+      <p><b>2. Coherence</b> — two types:</p>
+      <ul>
+        <li><b>Spatial (transverse):</b> All points across the beam front are in phase → beam maintains shape over long distances. Coherence length $L_c = \lambda^2/\Delta\lambda$.</li>
+        <li><b>Temporal (longitudinal):</b> Phase relationship maintained over time → enables interference over long path differences.</li>
+      </ul>
+      <p><b>3. Directionality:</b> Laser beam divergence is typically milli-radians. A laser aimed at the Moon (384,000 km away) would only spread to ~5 km diameter. Ordinary light diverges in all directions.</p>
+      <p><b>4. High Intensity:</b> All energy is concentrated in a narrow, coherent beam → extremely high power per unit area. A 1 mW He-Ne laser is ~10,000× brighter than sunlight per unit area.</p>
+    </div></div>
+
+    <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>🧮 Three Radiation Processes &amp; Einstein Coefficients</h3><span class="tg tgh">★★ Most Important</span><span class="chv">▶</span></div><div class="cdb">
+      <p>Einstein (1917) identified three fundamental ways atoms interact with radiation between energy levels $E_1$ (lower) and $E_2$ (upper), where $E_2 - E_1 = h\nu$:</p>
+      <p><b>1. Stimulated Absorption</b> — an atom in $E_1$ absorbs a photon of energy $h\nu$ and jumps to $E_2$:</p>
+      <div class="fb"><div class="fl">Absorption Rate</div>$$R_{abs} = B_{12} \cdot \rho(\nu) \cdot N_1$$</div>
+      <p><b>2. Spontaneous Emission</b> — an atom in $E_2$ drops to $E_1$ on its own, emitting a photon in a random direction with random phase. This is what ordinary light sources (bulbs) produce — <b>incoherent</b>.</p>
+      <div class="fb"><div class="fl">Spontaneous Rate</div>$$R_{sp} = A_{21} \cdot N_2$$</div>
+      <p><b>3. Stimulated Emission</b> — an incoming photon of energy $h\nu$ triggers an atom in $E_2$ to drop to $E_1$, emitting a photon that is <b>identical in every way</b>: same energy, phase, direction, polarization. <b>This is the LASER mechanism!</b></p>
+      <div class="fb"><div class="fl">Stimulated Emission Rate</div>$$R_{stim} = B_{21} \cdot \rho(\nu) \cdot N_2$$</div>
+      <div class="rb am"><div class="rl">✦ Einstein Relations</div>$$B_{12} = B_{21} \qquad \frac{A_{21}}{B_{21}} = \frac{8\pi h\nu^3}{c^3}$$<p style="color:var(--m3);font-size:.85rem;margin-top:8px">$A_{21}/B_{21} \propto \nu^3$ → spontaneous emission dominates at high frequencies → harder to make X-ray/UV lasers</p></div>
+    </div></div>
+
+    <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>🔄 Population Inversion &amp; Pumping Schemes</h3><span class="tg tgh">★ Theory</span><span class="chv">▶</span></div><div class="cdb">
+      <p><b>The fundamental problem:</b> At thermal equilibrium, $N_2/N_1 = e^{-h\nu/kT} \ll 1$. Almost all atoms are in the ground state. Net stimulated emission requires $N_2 > N_1$ — this non-equilibrium state is called <b>population inversion</b>.</p>
+      <p><b>2-level system:</b> CANNOT achieve inversion. As you pump harder, the best you can do is $N_1 = N_2$ (absorption = stimulated emission) → saturation, no net amplification.</p>
+      <p><b>3-level system (e.g., Ruby laser):</b></p>
+      <ol>
+        <li>Pump atoms from $E_1$ (ground) to $E_3$ (pump band)</li>
+        <li>Fast non-radiative decay: $E_3 \to E_2$ (metastable — long lifetime ~ms)</li>
+        <li>Population builds up in $E_2$ → when $N_2 > N_1$ → laser emission $E_2 \to E_1$</li>
+      </ol>
+      <p><b>Problem:</b> Laser transition ends at ground state → need to pump &gt;50% of all atoms. Typically pulsed operation only.</p>
+      <p><b>4-level system (e.g., He-Ne, Nd:YAG):</b></p>
+      <ol>
+        <li>Pump: $E_0 \to E_3$ (pump band)</li>
+        <li>Fast decay: $E_3 \to E_2$ (metastable upper laser level)</li>
+        <li>Laser: $E_2 \to E_1$ (lower laser level)</li>
+        <li>Fast decay: $E_1 \to E_0$ — keeps $E_1$ nearly empty!</li>
+      </ol>
+      <p><b>Result:</b> Even small pumping gives inversion → low threshold → CW operation possible. <b>Most practical lasers are 4-level.</b></p>
+      <table class="ctbl"><tr><th></th><th>2-Level</th><th>3-Level</th><th>4-Level</th></tr><tr><td>Inversion</td><td>Impossible</td><td>Possible but hard</td><td>Easy</td></tr><tr><td>Threshold</td><td>—</td><td>High (&gt;50% atoms)</td><td>Low</td></tr><tr><td>Operation</td><td>—</td><td>Pulsed</td><td>CW possible</td></tr><tr><td>Example</td><td>—</td><td>Ruby</td><td>He-Ne, Nd:YAG, CO₂</td></tr></table>
+    </div></div>
+
+    <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>📊 Threshold Gain Coefficient</h3><span class="tg tgi">Theory</span><span class="chv">▶</span></div><div class="cdb">
+      <p>Laser oscillation is sustained when <b>gain ≥ losses per round trip</b>.</p>
+      <div class="fb"><div class="fl">Threshold Gain Coefficient</div>$$g_{th} = \alpha_{int} + \frac{1}{2L}\ln\!\left(\frac{1}{R_1 R_2}\right)$$<p style="margin-top:6px">$\alpha_{int}$ = internal loss (scattering + absorption), $L$ = cavity length, $R_1, R_2$ = mirror reflectivities</p><p>Gain coefficient: $g = \sigma(N_2 - N_1)$ where $\sigma$ = stimulated emission cross section</p></div>
+      <p>Below threshold: spontaneous emission (LED-like). Above threshold: output increases sharply → coherent laser.</p>
+    </div></div>
+  </div>
+
+  <div class="tp" id="m3f">
+    <div class="fb"><div class="fl">Einstein Coefficients</div>$$B_{12} = B_{21} \qquad \frac{A_{21}}{B_{21}} = \frac{8\pi h\nu^3}{c^3}$$</div>
+    <div class="fb"><div class="fl">Boltzmann Distribution</div>$$\frac{N_2}{N_1} = e^{-h\nu/kT} \qquad k = 1.38 \times 10^{-23}\;\text{J/K}$$</div>
+    <div class="fb"><div class="fl">Threshold Gain</div>$$g_{th} = \alpha_{int} + \frac{1}{2L}\ln\!\left(\frac{1}{R_1 R_2}\right)$$</div>
+    <div class="fb"><div class="fl">Photon Count</div>$$N = \frac{P}{E_{photon}} = \frac{P \lambda}{hc}$$</div>
+    <div class="fb"><div class="fl">Coherence Length</div>$$L_c = \frac{\lambda^2}{\Delta\lambda} = \frac{c}{\Delta\nu}$$</div>
+  </div>
+
+  <div class="tp" id="m3l">
+    <div class="stl">Detailed Laser Types</div>
+    <div class="cd op"><div class="cdh" onclick="tCard(this)"><h3>🔴 He-Ne Laser — The Classic Gas Laser</h3><span class="tg tgh">★ Most Asked</span><span class="chv">▶</span></div><div class="cdb">
+      <p><b>Wavelength:</b> 632.8 nm (red) | <b>Type:</b> Gas, 4-level | <b>Pumping:</b> Electrical discharge | <b>Mode:</b> CW | <b>Power:</b> 0.5-50 mW</p>
+      <p><b>Construction:</b></p>
+      <ul>
+        <li>Glass tube filled with He:Ne mixture in ratio <b>10:1</b> at low pressure (~1 torr)</li>
+        <li>Two electrodes for DC electrical discharge</li>
+        <li>Brewster angle windows at tube ends → minimize reflection losses, output is linearly polarized</li>
+        <li>External optical cavity: one mirror ~100% reflective, output coupler ~99% reflective</li>
+      </ul>
+      <p><b>Working Mechanism (4 key steps — memorize this flow):</b></p>
+      <ol>
+        <li><b>Pumping:</b> Electric discharge excites <b>He atoms</b> to metastable states (20.61 eV and 20.66 eV). He is pumped — NOT Ne!</li>
+        <li><b>Resonant Energy Transfer:</b> Excited He* collides with ground-state Ne → He returns to ground, Ne gets excited. This works because He metastable energies nearly match Ne upper levels. This is the key trick!</li>
+        <li><b>Population Inversion:</b> Ne atoms accumulate in upper laser levels (3s, 2s)</li>
+        <li><b>Laser Emission:</b> Ne transitions: 3s→2p gives <b>632.8 nm (red)</b>, also 3s→3p at 3.39 μm (IR), 2s→2p at 1.15 μm (IR)</li>
+        <li>Lower levels depopulate via spontaneous emission → wall collisions → ground state</li>
+      </ol>
+      <p><b>Why He:Ne = 10:1?</b> More He atoms → more energy transfer to Ne → stronger inversion. Narrow tube → faster wall collisions for depleting lower Ne levels.</p>
+      <p><b>Applications:</b> Holography, barcode scanners, laser printers, interferometry, optical alignment, educational labs.</p>
+    </div></div>
+    <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>🟢 Nd:YAG Laser — High-Power Solid State</h3><span class="tg tgh">★ Important</span><span class="chv">▶</span></div><div class="cdb">
+      <p><b>Nd:YAG</b> = Neodymium ions (Nd³⁺) doped in Yttrium Aluminium Garnet (Y₃Al₅O₁₂). Nd³⁺ = lasing ion, YAG = transparent host crystal.</p>
+      <p><b>Wavelength:</b> 1064 nm (near-IR) | <b>Type:</b> 4-level solid-state | <b>Pumping:</b> Optical (xenon flash lamp or laser diode) | <b>Power:</b> Up to 70+ W</p>
+      <p><b>Working:</b></p>
+      <ol>
+        <li>Flash lamp pumps Nd³⁺ from ground ⁴I₉/₂ → broad absorption bands (⁴F levels)</li>
+        <li>Fast non-radiative decay to metastable ⁴F₃/₂ (lifetime ~230 μs)</li>
+        <li>Laser transition: ⁴F₃/₂ → ⁴I₁₁/₂ emitting <b>1064 nm</b></li>
+        <li>Fast decay ⁴I₁₁/₂ → ⁴I₉/₂ (ground) → lower level stays empty → efficient 4-level</li>
+      </ol>
+      <p><b>Applications:</b> Laser cutting/welding, medical surgery, LIDAR, range finding, frequency doubled to 532 nm (green laser pointer).</p>
+    </div></div>
+    <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>🔵 CO₂ Laser — Most Powerful CW</h3><span class="tg tgh">★ Important</span><span class="chv">▶</span></div><div class="cdb">
+      <p><b>Wavelength:</b> 10.6 μm (far-IR) | <b>Type:</b> Molecular gas | <b>Mix:</b> CO₂:N₂:He | <b>Power:</b> Up to 10 kW! | <b>Efficiency:</b> ~30%</p>
+      <p><b>Key difference:</b> Uses <b>vibrational</b> energy levels of CO₂ molecule (not electronic levels like other lasers). Three vibrational modes: symmetric stretch, bending, asymmetric stretch.</p>
+      <p><b>Working:</b></p>
+      <ol>
+        <li>Electric discharge excites N₂ to first vibrational level ($\nu=1$, 2331 cm⁻¹)</li>
+        <li>N₂* transfers energy to CO₂ asymmetric stretch mode 001 (~2349 cm⁻¹) — resonant transfer!</li>
+        <li>Laser transition: 001→100 giving <b>10.6 μm</b>, or 001→020 giving 9.6 μm</li>
+        <li>He cools the gas and helps depopulate lower levels</li>
+      </ol>
+      <p><b>Applications:</b> Industrial cutting and welding of metals, bloodless surgery (cauterizes as it cuts), LIDAR, materials processing.</p>
+    </div></div>
+    <table class="ctbl" style="margin-top:16px"><tr><th>Parameter</th><th>He-Ne</th><th>Nd:YAG</th><th>CO₂</th></tr><tr><td>Wavelength</td><td>632.8 nm (red)</td><td>1064 nm (IR)</td><td>10.6 μm (far IR)</td></tr><tr><td>Type</td><td>Gas</td><td>Solid-state</td><td>Molecular gas</td></tr><tr><td>Pumping</td><td>Electrical discharge</td><td>Flash lamp / laser diode</td><td>Electrical discharge</td></tr><tr><td>Power</td><td>0.5-50 mW</td><td>Up to ~70 W</td><td>Up to ~10 kW</td></tr><tr><td>Level system</td><td>4-level</td><td>4-level</td><td>4-level (vibrational)</td></tr><tr><td>Key trick</td><td>He→Ne energy transfer</td><td>Flash lamp optical pump</td><td>N₂→CO₂ energy transfer</td></tr></table>
+  </div>
+
+  <div class="tp" id="m3d">
+    <div class="stl">Einstein A-B Coefficient Relations — Derivation ⭐⭐</div>
+    <div class="sr"><div class="sl"><span class="sn">Step 1</span><span class="sd">Equilibrium condition</span></div><div class="sc"><p>At thermal equilibrium, rate of upward transitions = rate of downward transitions:</p>$$B_{12}\rho(\nu)N_1 = A_{21}N_2 + B_{21}\rho(\nu)N_2$$</div></div>
+    <div class="sr"><div class="sl"><span class="sn">Step 2</span><span class="sd">Solve for $\rho(\nu)$</span></div><div class="sc">$$\rho(\nu) = \frac{A_{21}N_2}{B_{12}N_1 - B_{21}N_2} = \frac{A_{21}/B_{21}}{(B_{12}/B_{21})(N_1/N_2) - 1}$$</div></div>
+    <div class="sr"><div class="sl"><span class="sn">Step 3</span><span class="sd">Use Boltzmann</span></div><div class="sc"><p>At temperature $T$: $N_1/N_2 = e^{h\nu/kT}$. Substituting:</p>$$\rho(\nu) = \frac{A_{21}/B_{21}}{(B_{12}/B_{21})e^{h\nu/kT} - 1}$$</div></div>
+    <div class="sr"><div class="sl"><span class="sn">Step 4</span><span class="sd">Compare with Planck</span></div><div class="sc"><p>Planck's radiation law:</p>$$\rho(\nu) = \frac{8\pi h\nu^3}{c^3} \cdot \frac{1}{e^{h\nu/kT} - 1}$$<p>Comparing the two expressions term by term (must hold for ALL $T$):</p></div></div>
+    <div class="rb am"><div class="rl">✦ Result 1</div>$$\boxed{B_{12} = B_{21}}$$<p style="font-size:.85rem;color:var(--m3);margin-top:6px">The probability of stimulated absorption equals stimulated emission</p></div>
+    <div class="rb am"><div class="rl">✦ Result 2</div>$$\boxed{\frac{A_{21}}{B_{21}} = \frac{8\pi h\nu^3}{c^3}}$$<p style="font-size:.85rem;color:var(--m3);margin-top:6px">Spontaneous emission rate increases as $\nu^3$ relative to stimulated emission</p></div>
+  </div>
+
+  <div class="tp" id="m3n">
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">L-1</span>Find the ratio N₂/N₁ at temperature <span class="pval">T = 300 K</span> for a He-Ne laser with <span class="pval">λ = 632.8 nm</span>. Can thermal equilibrium provide population inversion?</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Wavelength</span><span class="val">$\lambda = 632.8$ nm $= 632.8 \times 10^{-9}$ m</span></div>
+        <div class="row"><span class="lbl">Temperature</span><span class="val">$T = 300$ K (room temperature)</span></div>
+      </div>
+      <div class="sol-formula"><h4>📐 Formula to Use</h4>
+        <p style="font-size:.9rem;color:var(--tx2)">Boltzmann distribution at thermal equilibrium:</p>
+        $$\frac{N_2}{N_1} = e^{-h\nu/kT} = e^{-hc/\lambda kT}$$
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Calculate the Photon Energy $h\nu$</h4>
+        <div class="calc">$h\nu = \dfrac{hc}{\lambda} = \dfrac{6.626 \times 10^{-34} \times 3 \times 10^{8}}{632.8 \times 10^{-9}}$
+
+$= \dfrac{1.988 \times 10^{-25}}{6.328 \times 10^{-7}}$
+
+$= 3.14 \times 10^{-19}$ J</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Calculate $kT$</h4>
+        <div class="calc">$kT = 1.38 \times 10^{-23} \times 300 = 4.14 \times 10^{-21}$ J</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">3</span> Find the Exponent $h\nu/kT$</h4>
+        <div class="calc">$\dfrac{h\nu}{kT} = \dfrac{3.14 \times 10^{-19}}{4.14 \times 10^{-21}} = 75.8$</div>
+        <div class="why">💡 This is a huge number! It means the photon energy is ~76× the thermal energy. The Boltzmann exponential will be vanishingly small.</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">4</span> Calculate $N_2/N_1$</h4>
+        <div class="calc">$\dfrac{N_2}{N_1} = e^{-75.8} \approx 10^{-33}$</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$N_2/N_1 \approx 10^{-33}$</div></div>
+      <div class="sol-insight">💡 <b>At room temperature, for every $10^{33}$ atoms in the ground state, only ONE is in the excited state.</b> Population inversion ($N_2 > N_1$) is astronomically far from thermal equilibrium — that's why we need external pumping mechanisms. Temperature would need to be negative (physically impossible) to achieve $N_2 > N_1$ thermally!</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">L-2</span>A He-Ne laser emits <span class="pval">P = 1 mW</span> at <span class="pval">λ = 632.8 nm</span>. Find the number of photons emitted per second.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Power</span><span class="val">$P = 1$ mW $= 10^{-3}$ W</span></div>
+        <div class="row"><span class="lbl">Wavelength</span><span class="val">$\lambda = 632.8$ nm</span></div>
+      </div>
+      <div class="sol-formula"><h4>📐 Formula to Use</h4>
+        $$N = \frac{P}{E_{photon}} = \frac{P\lambda}{hc}$$
+        <div class="why">💡 Power = energy per second. Each photon carries $E = hc/\lambda$. So photons per second = total power / energy per photon.</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Energy per Photon</h4>
+        <div class="calc">$E_{photon} = \dfrac{hc}{\lambda} = \dfrac{6.626 \times 10^{-34} \times 3 \times 10^8}{632.8 \times 10^{-9}}$
+
+$= 3.14 \times 10^{-19}$ J</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Number of Photons per Second</h4>
+        <div class="calc">$N = \dfrac{P}{E_{photon}} = \dfrac{10^{-3}}{3.14 \times 10^{-19}}$
+
+$= 3.18 \times 10^{15}$ photons/second</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$N \approx 3.18 \times 10^{15}$ photons per second</div></div>
+      <div class="sol-insight">💡 Even a tiny 1 mW laser emits over <b>3 million billion photons every second</b>. Each individual photon carries very little energy, but they're all coherent — marching in lockstep — which is what gives laser light its power.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">L-3</span>Find the ratio of stimulated emission rate to spontaneous emission rate for a system at temperature <span class="pval">T = 300 K</span> emitting light of <span class="pval">λ = 632.8 nm</span>. What does this tell us about achieving laser action thermally?</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Temperature</span><span class="val">$T = 300$ K</span></div>
+        <div class="row"><span class="lbl">Wavelength</span><span class="val">$\lambda = 632.8$ nm (He-Ne laser)</span></div>
+      </div>
+      <div class="sol-formula"><h4>📐 Formula to Use</h4>
+        <p style="font-size:.9rem;color:var(--tx2)">Ratio of stimulated to spontaneous emission:</p>
+        $$\frac{R_{stim}}{R_{sp}} = \frac{B_{21}\rho(\nu)}{A_{21}} = \frac{1}{e^{h\nu/kT} - 1}$$
+        <div class="why">💡 This comes from the Planck distribution: $\rho(\nu) = (A_{21}/B_{21}) \cdot 1/(e^{h\nu/kT}-1)$</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Calculate the Exponent $h\nu/kT$</h4>
+        <p>From L-1, we already know:</p>
+        <div class="calc">$\dfrac{h\nu}{kT} = \dfrac{hc}{\lambda kT} = \dfrac{6.626 \times 10^{-34} \times 3 \times 10^8}{632.8 \times 10^{-9} \times 1.38 \times 10^{-23} \times 300}$
+
+$= \dfrac{1.988 \times 10^{-25}}{2.618 \times 10^{-27}} = 75.96$</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Calculate the Ratio</h4>
+        <div class="calc">$\dfrac{R_{stim}}{R_{sp}} = \dfrac{1}{e^{75.96} - 1}$
+
+$\approx \dfrac{1}{e^{75.96}} = e^{-75.96}$
+
+$\approx 10^{-33}$</div>
+        <div class="why">💡 Since $e^{75.96}$ is astronomically large, subtracting 1 is negligible.</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$R_{stim}/R_{sp} \approx 10^{-33}$</div></div>
+      <div class="sol-insight">💡 <b>At room temperature, for every $10^{33}$ spontaneous emissions, there is only ONE stimulated emission!</b> Spontaneous emission completely dominates at optical frequencies under thermal equilibrium. This is why lasers require external pumping — you can never achieve laser action by heating alone.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">L-4</span>A He-Ne laser has a linewidth of <span class="pval">Δν = 1.5 GHz</span>. Calculate the coherence length at <span class="pval">λ = 632.8 nm</span>.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Linewidth</span><span class="val">$\Delta\nu = 1.5$ GHz $= 1.5 \times 10^9$ Hz</span></div>
+        <div class="row"><span class="lbl">Wavelength</span><span class="val">$\lambda = 632.8$ nm</span></div>
+      </div>
+      <div class="sol-formula"><h4>📐 Formula to Use</h4>
+        $$L_c = \frac{c}{\Delta\nu} \qquad \text{(Coherence Length)}$$
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Calculate Coherence Length</h4>
+        <div class="calc">$L_c = \dfrac{c}{\Delta\nu} = \dfrac{3 \times 10^8}{1.5 \times 10^9}$
+
+$= 0.2$ m $= 20$ cm</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$L_c = 20$ cm</div></div>
+      <div class="sol-insight">💡 <b>20 cm coherence length means the laser can produce interference with path differences up to 20 cm.</b> Compare: white light has coherence length ~1 μm! For reference, stabilized He-Ne lasers can achieve coherence lengths of several km. In exams, you may also need: $L_c = \lambda^2/\Delta\lambda$.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">L-5</span>An Nd:YAG laser emitting at <span class="pval">λ = 1064 nm</span> has output power <span class="pval">P = 5 W</span>. Calculate the number of photons emitted per second and the energy of each photon in eV.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Wavelength</span><span class="val">$\lambda = 1064$ nm $= 1064 \times 10^{-9}$ m</span></div>
+        <div class="row"><span class="lbl">Output power</span><span class="val">$P = 5$ W</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Energy per Photon</h4>
+        <div class="calc">$E = \dfrac{hc}{\lambda} = \dfrac{6.626 \times 10^{-34} \times 3 \times 10^8}{1064 \times 10^{-9}}$
+
+$= \dfrac{1.988 \times 10^{-25}}{1.064 \times 10^{-6}}$
+
+$= 1.868 \times 10^{-19}$ J</div>
+        <p>Convert to eV:</p>
+        <div class="calc">$E = \dfrac{1.868 \times 10^{-19}}{1.6 \times 10^{-19}} = 1.168$ eV</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Photons per Second</h4>
+        <div class="calc">$N = \dfrac{P}{E} = \dfrac{5}{1.868 \times 10^{-19}}$
+
+$= 2.677 \times 10^{19}$ photons/second</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$E_{photon} = 1.168$ eV<br>$N = 2.68 \times 10^{19}$ photons/second</div></div>
+      <div class="sol-insight">💡 <b>5W is 5000× more powerful than the 1 mW He-Ne in L-2</b>, but the photon count only goes from $3.18 \times 10^{15}$ to $2.68 \times 10^{19}$ — about 8400× more, not 5000×. The extra factor comes from IR photons having less energy than red photons ($E_{1064nm} < E_{632.8nm}$).</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">L-6</span>At what temperature would the ratio of stimulated to spontaneous emission be 1:1 for a laser transition at <span class="pval">λ = 694.3 nm</span> (Ruby laser)?</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Wavelength</span><span class="val">$\lambda = 694.3$ nm (Ruby laser)</span></div>
+        <div class="row"><span class="lbl">Condition</span><span class="val">$R_{stim}/R_{sp} = 1$ (equal rates)</span></div>
+      </div>
+      <div class="sol-formula"><h4>📐 Formula to Use</h4>
+        $$\frac{R_{stim}}{R_{sp}} = \frac{1}{e^{h\nu/kT} - 1} = 1 \implies e^{h\nu/kT} - 1 = 1 \implies e^{h\nu/kT} = 2$$
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Find $h\nu$</h4>
+        <div class="calc">$h\nu = \dfrac{hc}{\lambda} = \dfrac{6.626 \times 10^{-34} \times 3 \times 10^8}{694.3 \times 10^{-9}}$
+
+$= 2.863 \times 10^{-19}$ J</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Solve for Temperature</h4>
+        <p>From $e^{h\nu/kT} = 2$, taking natural log: $h\nu/kT = \ln 2 = 0.693$</p>
+        <div class="calc">$T = \dfrac{h\nu}{k \cdot \ln 2} = \dfrac{2.863 \times 10^{-19}}{1.38 \times 10^{-23} \times 0.693}$
+
+$= \dfrac{2.863 \times 10^{-19}}{9.56 \times 10^{-24}}$
+
+$= 29,948$ K $\approx 30,000$ K</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$T \approx 30,000$ K</div></div>
+      <div class="sol-insight">💡 <b>You'd need ~30,000 K for stimulated emission to equal spontaneous emission at visible frequencies!</b> That's 5× the surface temperature of the Sun. This dramatically shows why thermal equilibrium can never produce laser action — you MUST use external pumping to achieve population inversion.</div>
+╔══════════════════════════════════════════════════════════╗
+     ║  MODULE 4: FIBER OPTICS                                 ║
+     ╚══════════════════════════════════════════════════════════╝ -->
+<div class="mp m4p" id="mod3">
+  <div class="ph"><div class="bg">MODULE 4 · FIBER OPTICS</div><h1>🔆 Optical Fiber Communication</h1><p>Guiding light through glass — total internal reflection, modes, losses</p></div>
+  <div class="ct">
+    <button class="ctb on" onclick="goTab(this,'m4c')">📖 Concepts</button>
+    <button class="ctb" onclick="goTab(this,'m4f')">📐 Formulas</button>
+    <button class="ctb" onclick="goTab(this,'m4d')">📝 NA Derivation</button>
+    <button class="ctb" onclick="goTab(this,'m4n')">🔢 Numericals</button>
+  </div>
+
+  <div class="tp on" id="m4c">
+    <div class="cd op"><div class="cdh" onclick="tCard(this)"><h3>🏗 Fiber Structure &amp; Total Internal Reflection</h3><span class="tg tgn">Foundation</span><span class="chv">▶</span></div><div class="cdb">
+      <p>An optical fiber is essentially a thin glass strand that traps light inside and carries it over long distances. Its structure:</p>
+      <ul>
+        <li><b>Core:</b> Central cylinder, refractive index $n_1$ (higher). Diameter: 5-100 μm depending on type</li>
+        <li><b>Cladding:</b> Surrounds core, refractive index $n_2 < n_1$. Typically ~125 μm diameter</li>
+        <li><b>Protective jacket:</b> Polymer coating for strength</li>
+      </ul>
+      <p><b>Principle — Total Internal Reflection (TIR):</b></p>
+      <p>When light travels from a denser medium ($n_1$) to rarer medium ($n_2$), it bends away from the normal. If the angle of incidence exceeds the <b>critical angle</b> $\theta_c$, the light is <b>100% reflected back</b> — zero transmission.</p>
+      <div class="fb"><div class="fl">Critical Angle</div>$$\sin\theta_c = \frac{n_2}{n_1} \quad \Rightarrow \quad \theta_c = \sin^{-1}\!\left(\frac{n_2}{n_1}\right)$$</div>
+      <p>Light entering the fiber core at the proper angle undergoes repeated TIR at the core-cladding boundary, zig-zagging down the fiber over kilometers.</p>
+    </div></div>
+    <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>📡 V-Parameter &amp; Types of Fibers</h3><span class="tg tgi">Theory</span><span class="chv">▶</span></div><div class="cdb">
+      <div class="fb"><div class="fl">V-Parameter (Normalized Frequency)</div>$$V = \frac{2\pi a}{\lambda} \cdot \text{NA} \qquad \text{Number of modes} \approx \frac{V^2}{2}$$<p style="margin-top:6px">$V < 2.405$ → <b>Single-mode</b> &nbsp;|&nbsp; $V > 2.405$ → <b>Multimode</b></p></div>
+      <p><b>Step-Index Single-Mode (SMF):</b> Core 5-10 μm. Only fundamental mode propagates. No intermodal dispersion. Used for long-haul telecom.</p>
+      <p><b>Step-Index Multimode (MMF):</b> Core 50-200 μm. Many modes → severe modal dispersion → limited bandwidth. Used for short links (LANs, medical).</p>
+      <p><b>Graded-Index Multimode (GRIN):</b> Refractive index decreases parabolically from center: $n(r) = n_1[1 - 2\Delta(r/a)^2]^{1/2}$. Higher-order modes travel faster in lower-$n$ region → path time equalized → greatly reduced dispersion.</p>
+    </div></div>
+    <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>📉 Attenuation &amp; Dispersion</h3><span class="tg tgh">★ Theory</span><span class="chv">▶</span></div><div class="cdb">
+      <p><b>Attenuation</b> = signal power loss over distance.</p>
+      <div class="fb"><div class="fl">Attenuation Formula</div>$$\alpha = \frac{10}{L}\log_{10}\!\left(\frac{P_{in}}{P_{out}}\right) \;\text{dB/km}$$</div>
+      <p><b>Causes:</b> Rayleigh scattering ($\propto 1/\lambda^4$, dominant at short λ), OH⁻ absorption (water peaks at 1.38 μm), bending losses (macro and micro).</p>
+      <p><b>Minimum attenuation:</b> ~0.2 dB/km at $\lambda = 1550$ nm — the telecom sweet spot.</p>
+      <p style="margin-top:16px"><b>Dispersion</b> = pulse broadening (limits how fast you can send data).</p>
+      <p><b>Intermodal:</b> Only in multimode fibers. Different modes travel different path lengths → arrive at different times. Eliminated in SMF.</p>
+      <p><b>Intramodal (chromatic):</b> Even within one mode, different λ travel at different speeds.</p>
+      <ul><li><b>Material dispersion:</b> $n$ varies with $\lambda$ → different speeds</li><li><b>Waveguide dispersion:</b> Mode shape changes with $\lambda$</li></ul>
+      <p>At $\lambda = 1310$ nm, material and waveguide dispersion cancel → <b>zero dispersion wavelength</b>.</p>
+    </div></div>
+  </div>
+
+  <div class="tp" id="m4f">
+    <div class="fb"><div class="fl">Complete Fiber Optics Formula Sheet</div>$$\sin\theta_c = n_2/n_1 \qquad \text{(Critical angle)}$$$$\text{NA} = \sin\theta_a = \sqrt{n_1^2 - n_2^2} = n_1\sqrt{2\Delta} \qquad \text{(Numerical Aperture)}$$$$\Delta = \frac{n_1 - n_2}{n_1} \qquad \text{(Fractional index difference)}$$$$V = \frac{2\pi a}{\lambda}\cdot\text{NA} \qquad \text{(V-number, single-mode if } V < 2.405\text{)}$$$$\text{Modes} \approx V^2/2 \qquad \text{(for step-index, large V)}$$$$\alpha = \frac{10}{L}\log_{10}\!\left(\frac{P_{in}}{P_{out}}\right) \;\text{dB/km}$$</div>
+  </div>
+
+  <div class="tp" id="m4d">
+    <div class="stl">Acceptance Angle &amp; NA — Full Derivation ⭐</div>
+    <div class="ib"><b>Setup:</b> Step-index fiber: core $n_1$, cladding $n_2$, surrounding medium $n_0 = 1$ (air). A ray enters the fiber at angle $\theta_i$ to the axis.</div>
+    <div class="sr"><div class="sl"><span class="sn">Step 1</span><span class="sd">Snell's law at fiber face</span></div><div class="sc"><p>At the air-core interface:</p>$$n_0 \sin\theta_i = n_1 \sin\theta_r \quad \Rightarrow \quad \sin\theta_i = n_1\sin\theta_r \quad \cdots(1)$$</div></div>
+    <div class="sr"><div class="sl"><span class="sn">Step 2</span><span class="sd">Geometry inside core</span></div><div class="sc"><p>The refracted ray hits the core-cladding interface at angle $\phi = 90° - \theta_r$ from the normal. For TIR: $\phi \geq \theta_c$.</p>$$\sin\theta_r = \cos\phi \quad \cdots(2)$$</div></div>
+    <div class="sr"><div class="sl"><span class="sn">Step 3</span><span class="sd">Apply TIR condition</span></div><div class="sc"><p>Maximum $\theta_i$ occurs when $\phi = \theta_c$ (just at TIR):</p>$$\sin\theta_{i,max} = n_1 \cos\theta_c = n_1\sqrt{1 - \sin^2\theta_c} = n_1\sqrt{1 - n_2^2/n_1^2}$$</div></div>
+    <div class="rb or"><div class="rl">✦ Numerical Aperture &amp; Acceptance Angle</div>$$\boxed{\text{NA} = \sin\theta_a = \sqrt{n_1^2 - n_2^2}}$$$$\boxed{\text{NA} = n_1\sqrt{2\Delta}} \qquad \Delta = \frac{n_1 - n_2}{n_1}$$</div>
+  </div>
+
+  <div class="tp" id="m4n">
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">F-1</span>An optical fiber has core RI <span class="pval">n₁ = 1.50</span>, cladding RI <span class="pval">n₂ = 1.45</span>, core radius <span class="pval">a = 25 μm</span>, and operates at <span class="pval">λ = 1.3 μm</span>. Find the critical angle, NA, acceptance angle, Δ, and V-parameter.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Core RI</span><span class="val">$n_1 = 1.50$</span></div>
+        <div class="row"><span class="lbl">Cladding RI</span><span class="val">$n_2 = 1.45$</span></div>
+        <div class="row"><span class="lbl">Core radius</span><span class="val">$a = 25$ μm $= 25 \times 10^{-6}$ m</span></div>
+        <div class="row"><span class="lbl">Wavelength</span><span class="val">$\lambda = 1.3$ μm $= 1.3 \times 10^{-6}$ m</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Critical Angle</h4>
+        <div class="calc">$\sin\theta_c = \dfrac{n_2}{n_1} = \dfrac{1.45}{1.50} = 0.9667$
+
+$\theta_c = \sin^{-1}(0.9667) = 75.2°$</div>
+        <div class="why">💡 Close to 90° because $n_1$ and $n_2$ are very similar. Small Δ → near-90° critical angle → light must hit at a very shallow angle for TIR.</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Numerical Aperture</h4>
+        <div class="calc">$\text{NA} = \sqrt{n_1^2 - n_2^2}$
+
+$= \sqrt{(1.50)^2 - (1.45)^2}$
+
+$= \sqrt{2.25 - 2.1025}$
+
+$= \sqrt{0.1475}$
+
+$= 0.384$</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">3</span> Acceptance Angle</h4>
+        <div class="calc">$\theta_a = \sin^{-1}(\text{NA}) = \sin^{-1}(0.384) = 22.6°$</div>
+        <div class="why">💡 Light must enter within a cone of half-angle 22.6° to be guided. This is the "acceptance cone" of the fiber.</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">4</span> Fractional Index Difference</h4>
+        <div class="calc">$\Delta = \dfrac{n_1 - n_2}{n_1} = \dfrac{1.50 - 1.45}{1.50} = \dfrac{0.05}{1.50} = 0.0333 = 3.33\%$</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">5</span> V-Parameter</h4>
+        <div class="calc">$V = \dfrac{2\pi a}{\lambda} \cdot \text{NA}$
+
+$= \dfrac{2\pi \times 25 \times 10^{-6}}{1.3 \times 10^{-6}} \times 0.384$
+
+$= \dfrac{2\pi \times 19.23}{1} \times 0.384$
+
+$= 120.8 \times 0.384$
+
+$= 46.4$</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\theta_c = 75.2°$ &nbsp;|&nbsp; NA $= 0.384$ &nbsp;|&nbsp; $\theta_a = 22.6°$<br>$\Delta = 3.33\%$ &nbsp;|&nbsp; $V = 46.4$ → <b>Multimode fiber</b></div></div>
+      <div class="sol-insight">💡 Since $V = 46.4 \gg 2.405$, this is a <b>multimode fiber</b> supporting approximately $V^2/2 \approx 1076$ modes. To make it single-mode, you'd need to reduce the core radius to ~$25 \times 2.405/46.4 \approx 1.3$ μm, or decrease NA.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">F-2</span>A fiber has attenuation <span class="pval">α = 0.5 dB/km</span> and length <span class="pval">L = 50 km</span>. If input power is <span class="pval">Pᵢₙ = 1 mW</span>, find the output power.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Attenuation</span><span class="val">$\alpha = 0.5$ dB/km</span></div>
+        <div class="row"><span class="lbl">Length</span><span class="val">$L = 50$ km</span></div>
+        <div class="row"><span class="lbl">Input power</span><span class="val">$P_{in} = 1$ mW</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Total Loss in dB</h4>
+        <div class="calc">Total loss $= \alpha \times L = 0.5 \times 50 = 25$ dB</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Convert dB to Power Ratio</h4>
+        <p>From the attenuation formula: $\alpha L = 10\log_{10}(P_{in}/P_{out})$</p>
+        <div class="calc">$25 = 10\log_{10}(P_{in}/P_{out})$
+
+$\log_{10}(P_{in}/P_{out}) = 2.5$
+
+$P_{in}/P_{out} = 10^{2.5} = 316.2$
+
+$P_{out} = \dfrac{P_{in}}{316.2} = \dfrac{1 \text{ mW}}{316.2}$
+
+$= 3.16 \times 10^{-3}$ mW $= 3.16$ μW</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$P_{out} = 3.16$ μW</div></div>
+      <div class="sol-insight">💡 The signal dropped by a factor of 316! Over 50 km, with 0.5 dB/km attenuation, the signal is barely detectable. This is why modern telecom uses 1550 nm (only 0.2 dB/km) and places optical amplifiers every ~80 km.</div>
+    </div></div>
+
+    <div class="stl">More Fiber Optics Problems (from Class Notes)</div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">F-3</span>An optical fiber has core RI <span class="pval">n₁ = 1.4513</span> and cladding RI <span class="pval">n₂ = 1.4468</span>. Find (i) Critical angle, (ii) Critical propagation angle, (iii) Acceptance angle, (iv) Numerical Aperture.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Core RI</span><span class="val">$n_1 = 1.4513$</span></div>
+        <div class="row"><span class="lbl">Cladding RI</span><span class="val">$n_2 = 1.4468$</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Critical Angle</h4>
+        <div class="calc">$\sin\theta_c = \dfrac{n_2}{n_1} = \dfrac{1.4468}{1.4513} = 0.9969$
+
+$\theta_c = \sin^{-1}(0.9969) = 85.5°$</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Critical Propagation Angle</h4>
+        <p>The propagation angle $\alpha_c = 90° - \theta_c$:</p>
+        <div class="calc">$\alpha_c = 90° - 85.5° = 4.5°$</div>
+        <div class="why">💡 The propagation angle is the max angle a ray can make with the fiber axis and still undergo TIR.</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">3</span> Numerical Aperture</h4>
+        <div class="calc">$NA = \sqrt{n_1^2 - n_2^2} = \sqrt{(1.4513)^2 - (1.4468)^2}$
+
+$= \sqrt{2.1063 - 2.0932} = \sqrt{0.01304}$
+
+$= 0.1142$</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">4</span> Acceptance Angle</h4>
+        <div class="calc">$\theta_a = \sin^{-1}(NA) = \sin^{-1}(0.1142)$
+
+$= 6.56°$</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\theta_c = 85.5°$ &nbsp;|&nbsp; $\alpha_c = 4.5°$ &nbsp;|&nbsp; $NA = 0.114$ &nbsp;|&nbsp; $\theta_a = 6.56°$</div></div>
+      <div class="sol-insight">💡 Very small RI difference (Δn = 0.0045) → small NA → narrow acceptance cone. This fiber is likely a single-mode fiber designed for long-distance telecom.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">F-4</span>Calculate the NA of an optical fiber whose core index is <span class="pval">n₁ = 1.48</span> and relative refractive index difference is <span class="pval">Δ = 0.02</span>.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Core RI</span><span class="val">$n_1 = 1.48$</span></div>
+        <div class="row"><span class="lbl">Relative Δ</span><span class="val">$\Delta = 0.02$</span></div>
+      </div>
+      <div class="sol-formula"><h4>📐 Formula to Use</h4>
+        $$NA = n_1\sqrt{2\Delta}$$
+        <div class="why">💡 This is the simplified formula when $\Delta$ (relative index difference) is given directly instead of $n_2$.</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Direct Calculation</h4>
+        <div class="calc">$NA = n_1\sqrt{2\Delta} = 1.48 \times \sqrt{2 \times 0.02}$
+
+$= 1.48 \times \sqrt{0.04}$
+
+$= 1.48 \times 0.2 = 0.296$</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$NA = 0.296$</div></div>
+      <div class="sol-insight">💡 <b>Remember this shortcut:</b> $NA = n_1\sqrt{2\Delta}$. It's faster than finding $n_2$ first. Δ=0.02 means the core-cladding RI difference is just 2% of the core index.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">F-5</span>A step-index fiber has core RI <span class="pval">n₁ = 1.48</span> and cladding RI <span class="pval">n₂ = 1.46</span>. Find the NA and the maximum entrance angle in air.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Core RI</span><span class="val">$n_1 = 1.48$</span></div>
+        <div class="row"><span class="lbl">Cladding RI</span><span class="val">$n_2 = 1.46$</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Calculate NA</h4>
+        <div class="calc">$NA = \sqrt{n_1^2 - n_2^2} = \sqrt{(1.48)^2 - (1.46)^2}$
+
+$= \sqrt{2.1904 - 2.1316} = \sqrt{0.0588}$
+
+$= 0.2425$</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Maximum Entrance Angle</h4>
+        <div class="calc">$\theta_a = \sin^{-1}(NA) = \sin^{-1}(0.2425)$
+
+$= 14.03°$</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$NA = 0.2425$ &nbsp;|&nbsp; $\theta_a = 14.03°$</div></div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">F-6</span>A step-index fiber has core RI <span class="pval">n₁ = 1.5</span> and cladding RI <span class="pval">n₂ = 1.48</span>. Calculate the NA, acceptance angle θₐ, critical propagation angle αc, and critical angle θc.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Core RI</span><span class="val">$n_1 = 1.5$</span></div>
+        <div class="row"><span class="lbl">Cladding RI</span><span class="val">$n_2 = 1.48$</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Numerical Aperture</h4>
+        <div class="calc">$NA = \sqrt{n_1^2 - n_2^2} = \sqrt{2.25 - 2.1904} = \sqrt{0.0596}$
+
+$= 0.2441$</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Acceptance Angle</h4>
+        <div class="calc">$\theta_a = \sin^{-1}(0.2441) = 14.12°$</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">3</span> Critical Angle</h4>
+        <div class="calc">$\theta_c = \sin^{-1}\!\left(\dfrac{n_2}{n_1}\right) = \sin^{-1}\!\left(\dfrac{1.48}{1.5}\right) = \sin^{-1}(0.9867)$
+
+$= 80.63°$</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">4</span> Critical Propagation Angle</h4>
+        <div class="calc">$\alpha_c = 90° - \theta_c = 90° - 80.63° = 9.37°$</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$NA = 0.244$ &nbsp;|&nbsp; $\theta_a = 14.12°$ &nbsp;|&nbsp; $\theta_c = 80.63°$ &nbsp;|&nbsp; $\alpha_c = 9.37°$</div></div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">F-7</span>A step-index fiber has core RI <span class="pval">n₁ = 1.5</span> and cladding RI <span class="pval">n₂ = 1.45</span>. Calculate the critical angle, acceptance angle, and NA.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Core RI</span><span class="val">$n_1 = 1.5$</span></div>
+        <div class="row"><span class="lbl">Cladding RI</span><span class="val">$n_2 = 1.45$</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Critical Angle</h4>
+        <div class="calc">$\theta_c = \sin^{-1}\!\left(\dfrac{1.45}{1.5}\right) = \sin^{-1}(0.9667) = 75.16°$</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> NA and Acceptance Angle</h4>
+        <div class="calc">$NA = \sqrt{(1.5)^2 - (1.45)^2} = \sqrt{2.25 - 2.1025} = \sqrt{0.1475}$
+
+$= 0.384$
+
+$\theta_a = \sin^{-1}(0.384) = 22.6°$</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\theta_c = 75.16°$ &nbsp;|&nbsp; $NA = 0.384$ &nbsp;|&nbsp; $\theta_a = 22.6°$</div></div>
+      <div class="sol-insight">💡 Compare F-1 (same values): the slight differences come from rounding. These are the same fiber parameters — practice this problem type well, it's guaranteed in exams!</div>
+╔══════════════════════════════════════════════════════════╗
+     ║  MODULE 5: OPTOELECTRONIC DEVICES                       ║
+     ╚══════════════════════════════════════════════════════════╝ -->
+<div class="mp m5p" id="mod4">
+  <div class="ph"><div class="bg">MODULE 5 · OPTOELECTRONIC DEVICES</div><h1>💎 Semiconductors &amp; Optoelectronics</h1><p>From electrons ↔ photons: LEDs, laser diodes, and photodetectors</p></div>
+  <div class="ct">
+    <button class="ctb on" onclick="goTab(this,'m5c')">📖 Concepts</button>
+    <button class="ctb" onclick="goTab(this,'m5f')">📐 Formulas</button>
+    <button class="ctb" onclick="goTab(this,'m5n')">🔢 Numericals</button>
+  </div>
+
+  <div class="tp on" id="m5c">
+    <div class="cd op"><div class="cdh" onclick="tCard(this)"><h3>🔴🔵 Direct vs Indirect Bandgap Semiconductors</h3><span class="tg tgh">★ Comparison Table</span><span class="chv">▶</span></div><div class="cdb">
+      <p>In a semiconductor, the relationship between energy ($E$) and crystal momentum ($k$) of electrons determines whether the material can efficiently emit light:</p>
+      <p><b>Direct bandgap:</b> The conduction band minimum (CBM) and valence band maximum (VBM) occur at the <b>same</b> value of $k$. An electron can drop from CB to VB by emitting just a <b>photon</b> — no momentum change needed.</p>
+      <p><b>Indirect bandgap:</b> CBM and VBM at <b>different</b> $k$ values. Transition requires both a photon (for energy) AND a <b>phonon</b> (lattice vibration, for momentum). This is a three-body process → very low probability → poor light emission.</p>
+      <table class="ctbl"><tr><th>Property</th><th>Direct Bandgap</th><th>Indirect Bandgap</th></tr>
+      <tr><td>E-k band structure</td><td>CBM &amp; VBM at <b>same k</b></td><td>CBM &amp; VBM at <b>different k</b></td></tr>
+      <tr><td>Recombination</td><td>Photon only → <b>efficient light</b></td><td>Photon + Phonon → <b>mostly heat</b></td></tr>
+      <tr><td>Light emission efficiency</td><td><b>High</b> (internal QE ~90%+)</td><td><b>~0.01%</b> (negligible)</td></tr>
+      <tr><td>Examples</td><td><b>GaAs</b> (1.42 eV), <b>GaN</b> (3.4 eV), <b>InP</b> (1.35 eV), InGaAsP</td><td><b>Si</b> (1.1 eV), <b>Ge</b> (0.67 eV)</td></tr>
+      <tr><td>Used for</td><td>LEDs, Laser diodes, solar cells</td><td>Transistors, solar cells (absorption OK), NOT for LEDs</td></tr></table>
+      <div class="wb">⚠ <b>Key exam fact:</b> Silicon and Germanium are INDIRECT bandgap → they CANNOT be used for LEDs or lasers. GaAs and GaN are used instead.</div>
+    </div></div>
+    <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>💡 LED — Light Emitting Diode</h3><span class="tg tgh">★ Theory</span><span class="chv">▶</span></div><div class="cdb">
+      <p><b>Principle:</b> A <b>forward-biased p-n junction</b> of a <b>direct bandgap</b> semiconductor. When current flows, electrons and holes are injected into the junction region where they recombine radiatively → emitting photons of energy $\approx E_g$. This is <b>electroluminescence</b>.</p>
+      <div class="fb"><div class="fl">LED Wavelength</div>$$\lambda = \frac{hc}{E_g} = \frac{1240}{E_g\;(\text{eV})} \;\text{nm}$$<p style="margin-top:6px">GaAs ($E_g = 1.42$ eV) → $\lambda = 873$ nm (IR)<br>GaN ($E_g = 3.4$ eV) → $\lambda = 365$ nm (UV/blue)<br>GaAsP → 630 nm (red) &nbsp;|&nbsp; InGaN → 450-520 nm (blue-green)</p></div>
+      <p><b>Key characteristics:</b></p>
+      <ul>
+        <li><b>Spontaneous emission</b> → light is incoherent with broad spectrum (~30-50 nm)</li>
+        <li>No threshold current — light output increases gradually with current</li>
+        <li>Good for displays, indicators, short-range fiber comm</li>
+      </ul>
+    </div></div>
+    <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>🔴 Laser Diode (Semiconductor Laser)</h3><span class="tg tgh">★★ Key Comparison</span><span class="chv">▶</span></div><div class="cdb">
+      <p><b>Principle:</b> Like LED but uses <b>stimulated emission</b>. The key differences:</p>
+      <ul>
+        <li><b>Optical cavity:</b> Formed by cleaving the semiconductor crystal — the polished crystal facets act as mirrors (R ≈ 30%)</li>
+        <li><b>Population inversion:</b> Achieved at current above threshold ($I_{th}$) — heavily doped junction</li>
+        <li><b>Double heterostructure:</b> Thin active layer (~0.1 μm GaAs) sandwiched between wider-bandgap AlGaAs cladding — confines both carriers and light</li>
+      </ul>
+      <table class="ctbl"><tr><th>Parameter</th><th>LED</th><th>Laser Diode</th></tr>
+      <tr><td>Emission mechanism</td><td>Spontaneous</td><td>Stimulated</td></tr>
+      <tr><td>Coherence</td><td>Incoherent</td><td>Highly coherent</td></tr>
+      <tr><td>Spectral width</td><td>Broad (30-60 nm)</td><td>Very narrow (0.1-5 nm)</td></tr>
+      <tr><td>Beam shape</td><td>Wide (Lambertian)</td><td>Narrow, directional</td></tr>
+      <tr><td>Modulation speed</td><td>~100 MHz</td><td>&gt;10 GHz</td></tr>
+      <tr><td>Threshold behavior</td><td>No threshold (gradual)</td><td>Sharp threshold $I_{th}$</td></tr>
+      <tr><td>Drive complexity</td><td>Simple</td><td>Temperature stability, feedback needed</td></tr>
+      <tr><td>Cost</td><td>Low</td><td>Higher</td></tr>
+      <tr><td>Application</td><td>Displays, short-range fiber</td><td>Long-haul fiber, CD/DVD/Blu-ray, pointers</td></tr></table>
+    </div></div>
+    <div class="cd"><div class="cdh" onclick="tCard(this)"><h3>🔍 PN &amp; PIN Photodiodes</h3><span class="tg tgh">★ Theory + Numerical</span><span class="chv">▶</span></div><div class="cdb">
+      <p><b>PN Photodiode:</b> A <b>reverse-biased</b> p-n junction. Photons with $h\nu \geq E_g$ generate electron-hole pairs in the depletion region → swept by electric field → photocurrent.</p>
+      <p><b>Limitation:</b> Thin depletion width → low absorption → poor efficiency.</p>
+      <p><b>PIN Photodiode (better!):</b> Has a thick <b>intrinsic (undoped) layer</b> between P and N regions.</p>
+      <p><b>Advantages of PIN over PN:</b></p>
+      <ul>
+        <li>Wide I-layer = large absorption volume → <b>higher quantum efficiency</b></li>
+        <li>Lower junction capacitance ($C \propto 1/d$, d is wider) → <b>faster response (&gt;GHz)</b></li>
+        <li>Can operate at lower reverse bias</li>
+        <li>Lower dark current, lower noise</li>
+      </ul>
+      <div class="fb"><div class="fl">Quantum Efficiency</div>$$\eta = \frac{I_p/e}{P_{opt}/h\nu} = \frac{I_p \cdot h\nu}{e \cdot P_{opt}} = \frac{\text{photogenerated electrons/sec}}{\text{incident photons/sec}}$$</div>
+      <div class="fb"><div class="fl">Responsivity</div>$$R = \frac{I_p}{P_{opt}} = \frac{\eta e}{h\nu} = \frac{\eta\lambda\;(\mu\text{m})}{1.24} \;\text{A/W}$$</div>
+      <p><b>Materials:</b> Si (400-1100 nm), Ge (600-1800 nm), InGaAs (900-1700 nm — best for 1550 nm telecom).</p>
+    </div></div>
+  </div>
+
+  <div class="tp" id="m5f">
+    <div class="fb"><div class="fl">LED Emission Wavelength</div>$$\lambda\;(\text{nm}) = \frac{1240}{E_g\;(\text{eV})}$$</div>
+    <div class="fb"><div class="fl">Quantum Efficiency</div>$$\eta = \frac{I_p \cdot h\nu}{e \cdot P_{opt}} = \frac{I_p \cdot hc}{e \cdot P_{opt} \cdot \lambda}$$</div>
+    <div class="fb"><div class="fl">Responsivity</div>$$R = \frac{I_p}{P_{opt}} = \frac{\eta e \lambda}{hc} = \frac{\eta\lambda\;(\mu\text{m})}{1.24}\;\text{A/W}$$</div>
+    <div class="fb"><div class="fl">Quick Relationships</div>$$R = \frac{\eta\lambda\;(\mu\text{m})}{1.24}\;\text{A/W} \qquad \eta = \frac{R \times 1.24}{\lambda\;(\mu\text{m})}$$$$I_p = R \times P_{opt} \qquad E_{photon} = \frac{1.24}{\lambda\;(\mu\text{m})}\;\text{eV}$$</div>
+  </div>
+
+  <div class="tp" id="m5n">
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PD-1</span>A PIN photodiode at <span class="pval">λ = 0.85 μm</span> receives <span class="pval">P = 10 μW</span> of optical power and generates a photocurrent of <span class="pval">Iₚ = 6.5 μA</span>. Find the quantum efficiency and responsivity.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Wavelength</span><span class="val">$\lambda = 0.85$ μm</span></div>
+        <div class="row"><span class="lbl">Optical power</span><span class="val">$P_{opt} = 10$ μW $= 10 \times 10^{-6}$ W</span></div>
+        <div class="row"><span class="lbl">Photocurrent</span><span class="val">$I_p = 6.5$ μA $= 6.5 \times 10^{-6}$ A</span></div>
+      </div>
+
+      <div class="sol-step"><h4><span class="snum">1</span> Calculate Responsivity (the easy one first)</h4>
+        <p>Responsivity is simply the ratio of photocurrent to optical power:</p>
+        <div class="calc">$R = \dfrac{I_p}{P_{opt}} = \dfrac{6.5 \times 10^{-6}}{10 \times 10^{-6}}$
+
+$R = 0.65$ A/W</div>
+        <div class="why">💡 This means for every 1 Watt of light hitting the detector, you get 0.65 Amperes of current. A perfect detector would give $R_{max} = e\lambda/(hc) \approx 0.685$ A/W at this wavelength.</div>
+      </div>
+
+      <div class="sol-step"><h4><span class="snum">2</span> Calculate Quantum Efficiency — Method 1 (from first principles)</h4>
+        <p>Count photons per second and electrons per second separately:</p>
+        <div class="calc"><b>Photons arriving per second:</b>
+$E_{photon} = \dfrac{hc}{\lambda} = \dfrac{6.626 \times 10^{-34} \times 3 \times 10^8}{0.85 \times 10^{-6}}$
+
+$= 2.337 \times 10^{-19}$ J per photon
+
+$N_{photons} = \dfrac{P_{opt}}{E_{photon}} = \dfrac{10 \times 10^{-6}}{2.337 \times 10^{-19}} = 4.28 \times 10^{13}$ photons/s</div>
+        <div class="calc"><b>Electron-hole pairs generated per second:</b>
+$N_{e-h} = \dfrac{I_p}{e} = \dfrac{6.5 \times 10^{-6}}{1.6 \times 10^{-19}} = 4.06 \times 10^{13}$ e-h pairs/s</div>
+        <div class="calc"><b>Quantum efficiency:</b>
+$\eta = \dfrac{N_{e-h}}{N_{photons}} = \dfrac{4.06 \times 10^{13}}{4.28 \times 10^{13}} = 0.949 = 94.9\%$</div>
+      </div>
+
+      <div class="sol-step"><h4><span class="snum">3</span> Verify — Method 2 (quick formula)</h4>
+        <div class="calc">$\eta = \dfrac{R \times 1.24}{\lambda\;(\mu\text{m})} = \dfrac{0.65 \times 1.24}{0.85}$
+
+$= \dfrac{0.806}{0.85} = 0.949 = 94.9\%$ ✓</div>
+        <div class="why">💡 Both methods give the same answer. Use Method 2 for speed in exams, but show Method 1 if the question asks you to "derive" or "show working."</div>
+      </div>
+
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">Responsivity: $R = 0.65$ A/W<br>Quantum Efficiency: $\eta = 94.9\%$</div></div>
+      <div class="sol-insight">💡 94.9% quantum efficiency is excellent! Nearly every photon absorbed produces an electron-hole pair. Real PIN photodiodes at 850 nm (using Si) routinely achieve 80-95% QE. At 1550 nm, InGaAs detectors achieve ~90%.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PD-2</span>A GaAs photodiode with <span class="pval">Eg = 1.43 eV</span> and <span class="pval">η = 65%</span> is illuminated at <span class="pval">λ = 0.80 μm</span> with <span class="pval">P = 2 mW</span>. Find the responsivity and photocurrent.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Bandgap</span><span class="val">$E_g = 1.43$ eV</span></div>
+        <div class="row"><span class="lbl">Quantum efficiency</span><span class="val">$\eta = 65\% = 0.65$</span></div>
+        <div class="row"><span class="lbl">Wavelength</span><span class="val">$\lambda = 0.80$ μm</span></div>
+        <div class="row"><span class="lbl">Optical power</span><span class="val">$P = 2$ mW $= 2 \times 10^{-3}$ W</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Check: Can this wavelength be detected?</h4>
+        <p>First find the <b>cutoff wavelength</b> — the longest wavelength the detector can sense:</p>
+        <div class="calc">$\lambda_{cutoff} = \dfrac{1240}{E_g} = \dfrac{1240}{1.43} = 867$ nm $= 0.867$ μm</div>
+        <p>Since $\lambda = 0.80$ μm $< 0.867$ μm → photon energy is <b>greater</b> than bandgap → absorption occurs ✓</p>
+        <div class="why">💡 Always check this first! If $\lambda > \lambda_{cutoff}$, the photon doesn't have enough energy and the detector won't respond at all.</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Calculate Responsivity</h4>
+        <div class="calc">$R = \dfrac{\eta \lambda\;(\mu\text{m})}{1.24} = \dfrac{0.65 \times 0.80}{1.24}$
+
+$= \dfrac{0.52}{1.24}$
+
+$R = 0.419$ A/W</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">3</span> Calculate Photocurrent</h4>
+        <div class="calc">$I_p = R \times P_{opt}$
+
+$= 0.419 \times 2 \times 10^{-3}$
+
+$= 8.38 \times 10^{-4}$ A
+
+$= 0.838$ mA</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$R = 0.419$ A/W &nbsp;|&nbsp; $I_p = 0.838$ mA</div></div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PD-3</span>A photodiode generates photocurrent <span class="pval">Iₚ = 4.8 μA</span> when illuminated with <span class="pval">P = 20 μW</span> at <span class="pval">λ = 1300 nm</span>. Find the responsivity and quantum efficiency.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Photocurrent</span><span class="val">$I_p = 4.8$ μA</span></div>
+        <div class="row"><span class="lbl">Optical power</span><span class="val">$P = 20$ μW</span></div>
+        <div class="row"><span class="lbl">Wavelength</span><span class="val">$\lambda = 1300$ nm $= 1.3$ μm</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Responsivity</h4>
+        <div class="calc">$R = \dfrac{I_p}{P_{opt}} = \dfrac{4.8}{20} = 0.24$ A/W</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Quantum Efficiency</h4>
+        <div class="calc">$\eta = \dfrac{R \times 1.24}{\lambda\;(\mu\text{m})} = \dfrac{0.24 \times 1.24}{1.3}$
+
+$= \dfrac{0.2976}{1.3}$
+
+$= 0.229 = 22.9\%$</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$R = 0.24$ A/W &nbsp;|&nbsp; $\eta = 22.9\%$</div></div>
+      <div class="sol-insight">💡 22.9% QE at 1300 nm is typical for a basic PN photodiode. A PIN or APD would do much better (~70-90%). In fiber optic systems, even small improvements in detector QE translate to significantly longer transmission distances.</div>
+    </div></div>
+
+    <div class="stl">More Photodetector Problems (from Class Notes)</div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PD-4</span>A Si PIN photodiode has quantum efficiency of <span class="pval">η = 0.7</span> at wavelength <span class="pval">λ = 0.85 μm</span>. Calculate its responsivity.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Quantum efficiency</span><span class="val">$\eta = 0.7$</span></div>
+        <div class="row"><span class="lbl">Wavelength</span><span class="val">$\lambda = 0.85$ μm</span></div>
+      </div>
+      <div class="sol-formula"><h4>📐 Formula to Use</h4>
+        $$R = \eta \cdot \frac{e\lambda}{hc}$$
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Direct Calculation</h4>
+        <div class="calc">$R = \eta \cdot \dfrac{e\lambda}{hc} = 0.7 \times \dfrac{1.6 \times 10^{-19} \times 0.85 \times 10^{-6}}{6.626 \times 10^{-34} \times 3 \times 10^8}$
+
+$= 0.7 \times \dfrac{1.36 \times 10^{-25}}{1.988 \times 10^{-25}}$
+
+$= 0.7 \times 0.684$
+
+$= 0.479$ A/W</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$R = 0.479$ A/W</div></div>
+      <div class="sol-insight">💡 <b>Quick trick:</b> $R = \eta \times \lambda(\mu m) / 1.24$. So $R = 0.7 \times 0.85 / 1.24 = 0.48$ A/W. Memorize the factor 1.24!</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PD-5</span>A photodetector has responsivity <span class="pval">R = 0.6 A/W</span> at wavelength <span class="pval">λ = 1.3 μm</span>. Calculate its quantum efficiency.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Responsivity</span><span class="val">$R = 0.6$ A/W</span></div>
+        <div class="row"><span class="lbl">Wavelength</span><span class="val">$\lambda = 1.3$ μm</span></div>
+      </div>
+      <div class="sol-formula"><h4>📐 Formula to Use</h4>
+        <p style="font-size:.9rem;color:var(--tx2)">Rearranging $R = \eta \cdot e\lambda/(hc)$:</p>
+        $$\eta = \frac{R \cdot hc}{e\lambda} = \frac{R \times 1.24}{\lambda(\mu m)}$$
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Calculate η</h4>
+        <div class="calc">$\eta = \dfrac{R \times 1.24}{\lambda} = \dfrac{0.6 \times 1.24}{1.3}$
+
+$= \dfrac{0.744}{1.3}$
+
+$= 0.572 = 57.2\%$</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\eta = 57.2\%$</div></div>
+      <div class="sol-insight">💡 This is a reverse problem — given R, find η. The quick formula $\eta = R \times 1.24 / \lambda(\mu m)$ works every time. 57% QE at 1.3 μm is reasonable for an InGaAs detector.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PD-6</span>A p-n photodiode has quantum efficiency <span class="pval">η = 70%</span> for photons of energy <span class="pval">E = 1.5 × 10⁻¹⁹ J</span>. Calculate (a) the wavelength, and (b) the optical power required to achieve a photocurrent of <span class="pval">Iₚ = 3 μA</span>.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">QE</span><span class="val">$\eta = 0.70$</span></div>
+        <div class="row"><span class="lbl">Photon energy</span><span class="val">$E = 1.5 \times 10^{-19}$ J</span></div>
+        <div class="row"><span class="lbl">Photocurrent</span><span class="val">$I_p = 3$ μA $= 3 \times 10^{-6}$ A</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Find Wavelength from Photon Energy</h4>
+        <div class="calc">$E = \dfrac{hc}{\lambda}$ → $\lambda = \dfrac{hc}{E}$
+
+$\lambda = \dfrac{6.626 \times 10^{-34} \times 3 \times 10^{8}}{1.5 \times 10^{-19}}$
+
+$= \dfrac{1.988 \times 10^{-25}}{1.5 \times 10^{-19}}$
+
+$= 1.325 \times 10^{-6}$ m $= 1.325$ μm</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Find Responsivity</h4>
+        <div class="calc">$R = \eta \cdot \dfrac{e\lambda}{hc} = \eta \cdot \dfrac{e}{E}$
+
+$= 0.70 \times \dfrac{1.6 \times 10^{-19}}{1.5 \times 10^{-19}}$
+
+$= 0.70 \times 1.067 = 0.747$ A/W</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">3</span> Find Optical Power</h4>
+        <p>Since $R = I_p / P_{opt}$:</p>
+        <div class="calc">$P_{opt} = \dfrac{I_p}{R} = \dfrac{3 \times 10^{-6}}{0.747}$
+
+$= 4.016 \times 10^{-6}$ W $= 4.02$ μW</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">(a) $\lambda = 1.325$ μm<br>(b) $P_{opt} = 4.02$ μW</div></div>
+      <div class="sol-insight">💡 1.325 μm falls in the telecom O-band (1260-1360 nm) — this is one of the standard fiber optic communication windows.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PD-7</span>A PIN photodiode generates one electron-hole pair per two incident photons at <span class="pval">λ = 0.85 μm</span>. Calculate (a) the quantum efficiency, (b) the maximum possible bandgap energy in eV, and (c) the mean photocurrent when incident optical power is <span class="pval">P = 10 μW</span>.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Condition</span><span class="val">1 electron per 2 photons → $\eta = 0.5$</span></div>
+        <div class="row"><span class="lbl">Wavelength</span><span class="val">$\lambda = 0.85$ μm</span></div>
+        <div class="row"><span class="lbl">Power</span><span class="val">$P = 10$ μW</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Quantum Efficiency</h4>
+        <div class="calc">$\eta = \dfrac{\text{electrons generated}}{\text{photons incident}} = \dfrac{1}{2} = 0.5 = 50\%$</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Maximum Bandgap Energy</h4>
+        <p>For the photodiode to respond at $\lambda = 0.85$ μm, the photon energy must exceed $E_g$. At the long-wavelength cutoff, $E_g = E_{photon}$:</p>
+        <div class="calc">$E_g \leq \dfrac{hc}{\lambda} = \dfrac{6.626 \times 10^{-34} \times 3 \times 10^8}{0.85 \times 10^{-6}}$
+
+$= \dfrac{1.988 \times 10^{-25}}{0.85 \times 10^{-6}}$
+
+$= 2.338 \times 10^{-19}$ J
+
+$= \dfrac{2.338 \times 10^{-19}}{1.6 \times 10^{-19}} = 1.46$ eV</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">3</span> Mean Photocurrent</h4>
+        <div class="calc">$R = \eta \cdot \dfrac{e\lambda}{hc} = 0.5 \times \dfrac{1.6 \times 10^{-19} \times 0.85 \times 10^{-6}}{1.988 \times 10^{-25}}$
+
+$= 0.5 \times 0.684 = 0.342$ A/W
+
+$I_p = R \times P = 0.342 \times 10 \times 10^{-6}$
+
+$= 3.42 \times 10^{-6}$ A $= 3.42$ μA</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">(a) $\eta = 50\%$<br>(b) $E_g \leq 1.46$ eV<br>(c) $I_p = 3.42$ μA</div></div>
+      <div class="sol-insight">💡 <b>Max bandgap = 1.46 eV at 0.85 μm.</b> Si (1.12 eV) and GaAs (1.42 eV) both work at this wavelength! The "1 per 2 photons" is a clever way to say η = 50%.</div>
+    </div></div>
+
+    <div class="prob"><div class="pq" onclick="tProb(this)"><span class="pn">PD-8</span>In a photodetector, <span class="pval">2.5 × 10¹² photons</span> are incident and <span class="pval">1.5 × 10¹² electrons</span> are collected at <span class="pval">λ = 0.85 μm</span>. Calculate the quantum efficiency and responsivity.</div><div class="ps">
+      <div class="sol-given"><h4>📋 Given Information</h4>
+        <div class="row"><span class="lbl">Incident photons</span><span class="val">$N_{ph} = 2.5 \times 10^{12}$</span></div>
+        <div class="row"><span class="lbl">Collected electrons</span><span class="val">$N_e = 1.5 \times 10^{12}$</span></div>
+        <div class="row"><span class="lbl">Wavelength</span><span class="val">$\lambda = 0.85$ μm</span></div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">1</span> Quantum Efficiency from Counts</h4>
+        <p>QE is simply the ratio of output electrons to input photons:</p>
+        <div class="calc">$\eta = \dfrac{N_e}{N_{ph}} = \dfrac{1.5 \times 10^{12}}{2.5 \times 10^{12}}$
+
+$= 0.6 = 60\%$</div>
+      </div>
+      <div class="sol-step"><h4><span class="snum">2</span> Responsivity</h4>
+        <div class="calc">$R = \dfrac{\eta \lambda\;(\mu\text{m})}{1.24} = \dfrac{0.6 \times 0.85}{1.24}$
+
+$= \dfrac{0.51}{1.24}$
+
+$= 0.411$ A/W</div>
+      </div>
+      <div class="sol-answer"><h4>✅ Final Answer</h4><div class="av">$\eta = 60\%$ &nbsp;|&nbsp; $R = 0.411$ A/W</div></div>
+      <div class="sol-insight">💡 <b>This is the most fundamental QE problem</b> — directly counting photons in vs electrons out. In exams, this could be phrased as "1 electron per 2 photons" (η=50%), "3 out of 5 absorbed" (η=60%), etc. Always convert to the ratio first.</div>
+    </div></div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<button class="sctop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ═══════════════════ NAVIGATION ═══════════════════
+function goMod(i){
+  document.querySelectorAll('.ht').forEach((t,j)=>t.classList.toggle('on',j===i));
+  document.querySelectorAll('.mp').forEach((p,j)=>p.classList.toggle('on',j===i));
+  document.querySelectorAll('.smb').forEach((b,j)=>b.classList.toggle('on',j===i));
+  document.querySelectorAll('.sts').forEach((t,j)=>t.classList.toggle('op',j===i));
+  const mp=document.getElementById('mod'+i);
+  if(mp){mp.querySelectorAll('.ctb').forEach((t,j)=>t.classList.toggle('on',j===0));mp.querySelectorAll('.tp').forEach((p,j)=>p.classList.toggle('on',j===0))}
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise().catch(()=>{});
+}
+function goTab(btn,id){
+  const p=btn.closest('.mp');
+  p.querySelectorAll('.ctb').forEach(t=>t.classList.remove('on'));
+  p.querySelectorAll('.tp').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');document.getElementById(id).classList.add('on');
+  if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise().catch(()=>{});
+}
+function tCard(h){h.closest('.cd').classList.toggle('op')}
+function tProb(q){q.closest('.prob').classList.toggle('op')}
+window.addEventListener('scroll',()=>{document.querySelector('.sctop').classList.toggle('sh',window.scrollY>300)});
+document.addEventListener('keydown',e=>{if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;const k=parseInt(e.key);if(k>=1&&k<=5)goMod(k-1)});
+document.addEventListener('DOMContentLoaded',()=>{if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise().catch(()=>{})});
+</script>
+</body>
+</html>
